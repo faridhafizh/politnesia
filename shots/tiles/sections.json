@@ -1,0 +1,284 @@
+{
+ "url": "http://127.0.0.1:8899/",
+ "views": {
+  "desktop": {
+   "width": 1440,
+   "height": 900,
+   "navH": 72,
+   "scrollHeight": 22500,
+   "screens": 25,
+   "sections": [
+    {
+     "n": 1,
+     "tag": "section",
+     "id": "top",
+     "cls": "hero hero--word",
+     "top": 0,
+     "h": 900,
+     "hScreens": 1,
+     "offGrid": 0,
+     "tiles": [
+      {
+       "file": "desktop-sec-01-a.jpg",
+       "scrollY": 0
+      }
+     ]
+    },
+    {
+     "n": 2,
+     "tag": "section",
+     "id": "ringkasan",
+     "cls": "section",
+     "top": 900,
+     "h": 900,
+     "hScreens": 1,
+     "offGrid": 0,
+     "tiles": [
+      {
+       "file": "desktop-sec-02-a.jpg",
+       "scrollY": 900
+      }
+     ]
+    },
+    {
+     "n": 3,
+     "tag": "section",
+     "id": "orde",
+     "cls": "section g2",
+     "top": 1800,
+     "h": 1800,
+     "hScreens": 2,
+     "offGrid": 0,
+     "tiles": [
+      {
+       "file": "desktop-sec-03-a.jpg",
+       "scrollY": 1800
+      },
+      {
+       "file": "desktop-sec-03-b.jpg",
+       "scrollY": 2700
+      }
+     ]
+    },
+    {
+     "n": 4,
+     "tag": "section",
+     "id": "reformasi",
+     "cls": "section g2",
+     "top": 3600,
+     "h": 1800,
+     "hScreens": 2,
+     "offGrid": 0,
+     "tiles": [
+      {
+       "file": "desktop-sec-04-a.jpg",
+       "scrollY": 3600
+      },
+      {
+       "file": "desktop-sec-04-b.jpg",
+       "scrollY": 4500
+      }
+     ]
+    },
+    {
+     "n": 5,
+     "tag": "section",
+     "id": "presiden",
+     "cls": "section g2 ground-surface",
+     "top": 5400,
+     "h": 1800,
+     "hScreens": 2,
+     "offGrid": 0,
+     "tiles": [
+      {
+       "file": "desktop-sec-05-a.jpg",
+       "scrollY": 5400
+      },
+      {
+       "file": "desktop-sec-05-b.jpg",
+       "scrollY": 6300
+      }
+     ]
+    },
+    {
+     "n": 6,
+     "tag": "section",
+     "id": "data",
+     "cls": "section g2",
+     "top": 7200,
+     "h": 1800,
+     "hScreens": 2,
+     "offGrid": 0,
+     "tiles": [
+      {
+       "file": "desktop-sec-06-a.jpg",
+       "scrollY": 7200
+      },
+      {
+       "file": "desktop-sec-06-b.jpg",
+       "scrollY": 8100
+      }
+     ]
+    },
+    {
+     "n": 7,
+     "tag": "section",
+     "id": "pemilu",
+     "cls": "section g2",
+     "top": 9000,
+     "h": 1800,
+     "hScreens": 2,
+     "offGrid": 0,
+     "tiles": [
+      {
+       "file": "desktop-sec-07-a.jpg",
+       "scrollY": 9000
+      },
+      {
+       "file": "desktop-sec-07-b.jpg",
+       "scrollY": 9900
+      }
+     ]
+    },
+    {
+     "n": 8,
+     "tag": "section",
+     "id": "pajak",
+     "cls": "section g2",
+     "top": 10800,
+     "h": 1800,
+     "hScreens": 2,
+     "offGrid": 0,
+     "tiles": [
+      {
+       "file": "desktop-sec-08-a.jpg",
+       "scrollY": 10800
+      },
+      {
+       "file": "desktop-sec-08-b.jpg",
+       "scrollY": 11700
+      }
+     ]
+    },
+    {
+     "n": 9,
+     "tag": "section",
+     "id": "narkotika",
+     "cls": "section g2",
+     "top": 12600,
+     "h": 1800,
+     "hScreens": 2,
+     "offGrid": 0,
+     "tiles": [
+      {
+       "file": "desktop-sec-09-a.jpg",
+       "scrollY": 12600
+      },
+      {
+       "file": "desktop-sec-09-b.jpg",
+       "scrollY": 13500
+      }
+     ]
+    },
+    {
+     "n": 10,
+     "tag": "section",
+     "id": "narkotika-pola",
+     "cls": "section g2",
+     "top": 14400,
+     "h": 1800,
+     "hScreens": 2,
+     "offGrid": 0,
+     "tiles": [
+      {
+       "file": "desktop-sec-10-a.jpg",
+       "scrollY": 14400
+      },
+      {
+       "file": "desktop-sec-10-b.jpg",
+       "scrollY": 15300
+      }
+     ]
+    },
+    {
+     "n": 11,
+     "tag": "section",
+     "id": "pembunuhan",
+     "cls": "section g2",
+     "top": 16200,
+     "h": 1800,
+     "hScreens": 2,
+     "offGrid": 0,
+     "tiles": [
+      {
+       "file": "desktop-sec-11-a.jpg",
+       "scrollY": 16200
+      },
+      {
+       "file": "desktop-sec-11-b.jpg",
+       "scrollY": 17100
+      }
+     ]
+    },
+    {
+     "n": 12,
+     "tag": "section",
+     "id": "pembunuhan-pola",
+     "cls": "section g2",
+     "top": 18000,
+     "h": 1800,
+     "hScreens": 2,
+     "offGrid": 0,
+     "tiles": [
+      {
+       "file": "desktop-sec-12-a.jpg",
+       "scrollY": 18000
+      },
+      {
+       "file": "desktop-sec-12-b.jpg",
+       "scrollY": 18900
+      }
+     ]
+    },
+    {
+     "n": 13,
+     "tag": "section",
+     "id": "kesimpulan",
+     "cls": "section g2",
+     "top": 19800,
+     "h": 1800,
+     "hScreens": 2,
+     "offGrid": 0,
+     "tiles": [
+      {
+       "file": "desktop-sec-13-a.jpg",
+       "scrollY": 19800
+      },
+      {
+       "file": "desktop-sec-13-b.jpg",
+       "scrollY": 20700
+      }
+     ]
+    },
+    {
+     "n": 14,
+     "tag": "footer",
+     "id": "",
+     "cls": "closing",
+     "top": 21600,
+     "h": 900,
+     "hScreens": 1,
+     "offGrid": 0,
+     "tiles": [
+      {
+       "file": "desktop-sec-14-a.jpg",
+       "scrollY": 21600
+      }
+     ]
+    }
+   ],
+   "consoleErrors": []
+  }
+ },
+ "at": "2026-11-06T09:12:28.366Z"
+}

@@ -1,0 +1,95 @@
+
+1440x900  lines x 80 and 1360, nav 72px, one screen 900px
+  hero 900 tall; h1 141.113px/0.92, 2 lines, 1280x260 at 80,216; lead 20/30, 3 lines, 504 wide; buttons 2 x 44; visual -
+  stress: word h1 at 29 of 28 characters takes 2 lines, hero 900 tall
+  section #top section.hero.hero--word "Siklus yangTak Pernah Tuntas.  y     0  h   900  content 511
+  section #ringkasan section.section "Ringkasan eksekutif Tiga orde da y   900  h   900  content 542
+  section #orde section.section.g2 "Orde Lama & Orde Baru Soekarno m"  y  1800  h  1800  content 1151
+  section #reformasi section.section.g2 "Reformasi & Kartelisasi 1998– y  3600  h  1800  content 1151
+  section #prabowo section.section "Prabowo · 2024–sekarang 2024–sek"  y  5400  h   900  content 464
+  section #presiden section.section.ground-surface "Histori presiden D y  6300  h   900  content 673
+  section #data section.section.g2 "Kemunduran demokrasi Freedom Hou"  y  7200  h  1800  content 1608
+  section #pemilu section.section.g2 "Pemilu & kepuasan publik Campura y  9000  h  1800  content 1336
+  section #pajak section.section.g2 "Rasio pajak terhadap PDB ~20% pa" y 10800  h  1800  content 1231
+  section #narkotika section.section.g2 "Narkotika 1.117 catatan berit y 12600  h  1800  content 1608
+  section #narkotika-pola section.section.g2 "Pengungkapan terbesar 20 y 14400  h  1800  content 1416
+  section #pembunuhan section.section.g2 "Pembunuhan 2.587+ catatan be y 16200  h  1800  content 1608
+  section #pembunuhan-pola section.section.g2 "Kasus menonjol 2002–202 y 18000  h  1800  content 1416
+  section #kesimpulan section.section.g2 "Kesimpulan Lima pola yang be y 19800  h  1800  content 1472
+  no findings
+
+1024x768  lines x 80 and 944, nav 72px, one screen 768px
+  hero 768 tall; h1 106.17px/0.92, 2 lines, 864x195 at 80,182; lead 18.8186/28.228, 4 lines, 420 wide; buttons 2 x 44; visual -
+  stress: word h1 at 29 of 28 characters takes 2 lines, hero 768 tall
+  section #top section.hero.hero--word "Siklus yangTak Pernah Tuntas.  y     0  h   768  content 448
+  section #ringkasan section.section "Ringkasan eksekutif Tiga orde da y   768  h   768  content 572
+  section #orde section.section.g2 "Orde Lama & Orde Baru Soekarno m"  y  1536  h  1536  content 1046
+  section #reformasi section.section.g2 "Reformasi & Kartelisasi 1998– y  3072  h  1536  content 1068
+  section #prabowo section.section "Prabowo · 2024–sekarang 2024–sek"  y  4608  h   768  content 504
+  section #presiden section.section.ground-surface "Histori presiden D y  5376  h   772  content 580
+  section #data section.section.g2 "Kemunduran demokrasi Freedom Hou"  y  6148  h  1536  content 1344
+  section #pemilu section.section.g2 "Pemilu & kepuasan publik Campura y  7684  h  1536  content 1106
+  section #pajak section.section.g2 "Rasio pajak terhadap PDB ~20% pa" y  9220  h  1536  content 1108
+  section #narkotika section.section.g2 "Narkotika 1.117 catatan berit y 10756  h  1536  content 1344
+  section #narkotika-pola section.section.g2 "Pengungkapan terbesar 20 y 12292  h  1536  content 1155
+  section #pembunuhan section.section.g2 "Pembunuhan 2.587+ catatan be y 13828  h  1536  content 1344
+  section #pembunuhan-pola section.section.g2 "Kasus menonjol 2002–202 y 15364  h  1545  content 1144
+  section #kesimpulan section.section.g2 "Kesimpulan Lima pola yang be y 16909  h  1536  content 1340
+  screen-height    #pembunuhan-pola section.section.g2 "Kasus menonjol 2002–2026. Sumber": 1545px, 2.01 screens; a section is exactly one or two (--h)
+
+820x1180  lines x 48 and 772, nav 72px, one screen 1180px
+  hero 1180 tall; h1 89.0352px/0.92, 2 lines, 724x164 at 48,317; lead 18.2352/27.3528, 3 lines, 462 wide; buttons 2 x 44; visual -
+  stress: word h1 at 29 of 28 characters takes 2 lines, hero 1180 tall
+  section #top section.hero.hero--word "Siklus yangTak Pernah Tuntas.  y     0  h  1180  content 589
+  section #ringkasan section.section "Ringkasan eksekutif Tiga orde da y  1180  h  1180  content 639
+  section #orde section.section.g2 "Orde Lama & Orde Baru Soekarno m"  y  2360  h  2360  content 1654
+  section #reformasi section.section.g2 "Reformasi & Kartelisasi 1998– y  4720  h  2360  content 1632
+  section #prabowo section.section "Prabowo · 2024–sekarang 2024–sek"  y  7080  h  1180  content 650
+  section #presiden section.section.ground-surface "Histori presiden D y  8260  h  1180  content 620
+  section #data section.section.g2 "Kemunduran demokrasi Freedom Hou"  y  9440  h  2360  content 1799
+  section #pemilu section.section.g2 "Pemilu & kepuasan publik Campura y 11800  h  2360  content 1538
+  section #pajak section.section.g2 "Rasio pajak terhadap PDB ~20% pa" y 14160  h  2360  content 1638
+  section #narkotika section.section.g2 "Narkotika 1.117 catatan berit y 16520  h  2360  content 1771
+  section #narkotika-pola section.section.g2 "Pengungkapan terbesar 20 y 18880  h  2360  content 1563
+  section #pembunuhan section.section.g2 "Pembunuhan 2.587+ catatan be y 21240  h  2360  content 1771
+  section #pembunuhan-pola section.section.g2 "Kasus menonjol 2002–202 y 23600  h  2360  content 1582
+  section #kesimpulan section.section.g2 "Kesimpulan Lima pola yang be y 25960  h  2360  content 1752
+  no findings
+
+768x1024  lines x 48 and 720, nav 72px, one screen 1024px
+  hero 1024 tall; h1 84.6674px/0.92, 3 lines, 672x234 at 48,204; lead 18.0865/27.1297, 3 lines, 462 wide; buttons 2 x 44; visual -
+  stress: word h1 at 29 of 28 characters takes 3 lines, hero 1024 tall
+  section #top section.hero.hero--word "Siklus yangTak Pernah Tuntas.  y     0  h  1024  content 658
+  section #ringkasan section.section "Ringkasan eksekutif Tiga orde da y  1024  h  1024  content 638
+  section #orde section.section.g2 "Orde Lama & Orde Baru Soekarno m"  y  2048  h  2048  content 1498
+  section #reformasi section.section.g2 "Reformasi & Kartelisasi 1998– y  4096  h  2048  content 1476
+  section #prabowo section.section "Prabowo · 2024–sekarang 2024–sek"  y  6144  h  1024  content 649
+  section #presiden section.section.ground-surface "Histori presiden D y  7168  h  1024  content 638
+  section #data section.section.g2 "Kemunduran demokrasi Freedom Hou"  y  8192  h  2048  content 1643
+  section #pemilu section.section.g2 "Pemilu & kepuasan publik Campura y 10240  h  2048  content 1441
+  section #pajak section.section.g2 "Rasio pajak terhadap PDB ~20% pa" y 12288  h  2048  content 1482
+  section #narkotika section.section.g2 "Narkotika 1.117 catatan berit y 14336  h  2048  content 1615
+  section #narkotika-pola section.section.g2 "Pengungkapan terbesar 20 y 16384  h  2048  content 1407
+  section #pembunuhan section.section.g2 "Pembunuhan 2.587+ catatan be y 18432  h  2048  content 1615
+  section #pembunuhan-pola section.section.g2 "Kasus menonjol 2002–202 y 20480  h  2048  content 1426
+  section #kesimpulan section.section.g2 "Kesimpulan Lima pola yang be y 22528  h  2048  content 1631
+  no findings
+
+390x844  lines x 24 and 366, nav 56px, one screen 844px
+  hero 844 tall; h1 52.92px/0.92, 3 lines, 342x146 at 24,117; lead 17.0054/25.5081, 5 lines, 342 wide; buttons 2 x 44; visual -
+  stress: word h1 at 29 of 28 characters takes 3 lines, hero 844 tall
+  section #top section.hero.hero--word "Siklus yangTak Pernah Tuntas.  y     0  h   844  content 669
+  section #ringkasan section.section "Ringkasan eksekutif Tiga orde da y   844  h   844  content 575
+  section #orde section.section.g2 "Orde Lama & Orde Baru Soekarno m"  y  1688  h  1688  content 1209
+  section #reformasi section.section.g2 "Reformasi & Kartelisasi 1998– y  3376  h  1688  content 1360
+  section #prabowo section.section "Prabowo · 2024–sekarang 2024–sek"  y  5064  h   844  content 733
+  section #presiden section.section.ground-surface "Histori presiden D y  5908  h   844  content 638
+  section #data section.section.g2 "Kemunduran demokrasi Freedom Hou"  y  6752  h  1688  content 1330
+  section #pemilu section.section.g2 "Pemilu & kepuasan publik Campura y  8440  h  1688  content 884
+  section #pajak section.section.g2 "Rasio pajak terhadap PDB ~20% pa" y 10128  h  1688  content 1291
+  section #narkotika section.section.g2 "Narkotika 1.117 catatan berit y 11816  h  1688  content 1335
+  section #narkotika-pola section.section.g2 "Pengungkapan terbesar 20 y 13504  h  1688  content 1543
+  section #pembunuhan section.section.g2 "Pembunuhan 2.587+ catatan be y 15192  h  1688  content 1373
+  section #pembunuhan-pola section.section.g2 "Kasus menonjol 2002–202 y 16880  h  1688  content 1607
+  section #kesimpulan section.section.g2 "Kesimpulan Lima pola yang be y 18568  h  1688  content 1545
+  no findings

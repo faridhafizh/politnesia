@@ -1,0 +1,396 @@
+/* Politnesia — page CSS: the dealt tokens (start.mjs, printed), then the investigation's own parts.
+   Never re-declares the system (grid, buttons, radius, type scale); every block here is dossier-specific. */
+
+/* dealt: start.mjs css --page software --palette graphite-safety-orange --type schibsted --radius soft */
+:root {
+  --p-bg: #18191b; --p-surface: #222427; --p-ink: #eff0f1; --p-muted: #9c9ea3;
+  --p-accent: #ff4a1f; --p-accent-ink: #18191b; --p-action: #ff4a1f; --p-action-ink: #18191b;
+  --p-inv-bg: #eff0f1; --p-inv-surface: #dedfe0; --p-inv-ink: #18191b; --p-inv-muted: #5b5c5e;
+  --p-inv-accent: #18191b; --p-inv-accent-ink: #eff0f1; --p-inv-action: #18191b; --p-inv-action-ink: #eff0f1;
+  --font-display: "Schibsted Grotesk", system-ui, sans-serif;
+  --font-text: "Schibsted Grotesk", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  --display-weight: 400;
+  --display-tracking: -0.035em;
+  --display-tracking-xl: -0.042em;
+  --ly-scale: 0.98;
+}
+
+/* ---------------------------------------------------------------- the dossier's marks */
+.stamp {
+  display: inline-block; padding: 0.28rem 0.7rem; border: 2px solid var(--accent); border-radius: 2px;
+  color: var(--accent); font-family: var(--font-mono); font-weight: 400; font-size: 11px;
+  letter-spacing: 0.18em; text-transform: uppercase; transform: rotate(-4deg);
+  box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--accent) 25%, transparent);
+}
+.dossier-flag { display: inline-flex; align-items: center; gap: var(--s-2); font-family: var(--font-mono);
+  font-size: var(--t-label); letter-spacing: 0.22em; text-transform: uppercase; color: var(--muted); }
+.dossier-flag .mark { margin: 0; }
+
+.era-badge {
+  display: inline-flex; align-items: center; height: 22px; padding: 0 var(--s-2); border-radius: 4px;
+  font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.06em; text-transform: uppercase; white-space: nowrap;
+}
+.era-lama { background: color-mix(in oklab, #f59e0b 18%, transparent); color: #fbbf24; }
+.era-baru { background: color-mix(in oklab, #16a34a 20%, transparent); color: #4ade80; }
+.era-reformasi { background: color-mix(in oklab, #3b82f6 18%, transparent); color: #93c5fd; }
+.era-narkoba { background: color-mix(in oklab, #ef4444 18%, transparent); color: #fca5a5; }
+
+.red-thread { border-left: 2px solid var(--accent); padding-left: var(--s-4); }
+.red-thread strong { color: var(--ink); font-weight: 500; }
+
+/* ---------------------------------------------------------------- hero accent */
+.hero--word h1 .hero-accent { color: var(--accent); }
+.hero--word .hero-rule {
+  width: min(100%, 520px); height: 4px; border-radius: 2px; background: var(--accent);
+  transform-origin: left center; margin-top: var(--s-5);
+}
+
+/* ---------------------------------------------------------------- person cards (president era panels) */
+.person-card {
+  background: var(--p-bg); border: 1px solid var(--line); border-radius: var(--r-lg);
+  padding: var(--s-4); display: grid; gap: var(--s-3); align-content: start;
+  transition: transform var(--dur) var(--ease), border-color var(--dur) var(--ease);
+}
+a.person-card:hover { transform: translateY(-2px); border-color: color-mix(in oklab, var(--accent) 45%, transparent); }
+.person-head { display: flex; align-items: center; gap: var(--s-3); }
+.person-head img { width: 40px; height: 40px; border-radius: 50%; object-fit: cover;
+  border: 1px solid color-mix(in oklab, var(--accent) 35%, transparent); }
+.person-head .who { display: grid; gap: 2px; }
+.person-head h3 { font: 500 var(--t-card)/1.25 var(--font-text); letter-spacing: -0.01em; }
+
+.data-bar-track { height: 5px; border-radius: 3px; background: color-mix(in oklab, var(--ink) 10%, transparent); overflow: hidden; }
+.data-bar-fill { height: 100%; width: var(--target-w); background: var(--accent); border-radius: 3px; }
+
+/* ---------------------------------------------------------------- stat minis */
+.stat-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--s-3); }
+@media (max-width: 639px) { .stat-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.stat-mini {
+  background: var(--bg); border: 1px solid var(--line); border-radius: var(--r-md);
+  padding: var(--s-4); display: grid; gap: var(--s-1); align-content: start;
+}
+.stat-mini .stat-value { font: var(--display-weight) 30px/1.1 var(--font-display); letter-spacing: var(--display-tracking); font-variant-numeric: tabular-nums; }
+.stat-mini .stat-value.accent { color: var(--accent); }
+.stat-mini .stat-label { font-size: var(--t-label); color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; }
+.stat-mini p { font-size: var(--t-small); color: var(--muted); margin: 0; }
+
+/* ---------------------------------------------------------------- tables (kept verbatim in content) */
+.table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: thin; }
+.investigasi { width: 100%; border-collapse: collapse; font-size: var(--t-small); }
+.investigasi th {
+  text-align: left; padding: var(--s-2) var(--s-2) var(--s-3); border-bottom: 1px solid var(--line-strong);
+  color: var(--muted); font-weight: 500; text-transform: uppercase; letter-spacing: 0.06em;
+  font-size: var(--t-label); vertical-align: bottom;
+}
+.investigasi td { padding: var(--s-3) var(--s-2); border-bottom: 1px solid var(--line); color: var(--ink);
+  vertical-align: top; line-height: 1.5; }
+.investigasi tr:last-child td { border-bottom: none; }
+.investigasi td.num { font-variant-numeric: tabular-nums; text-align: right; white-space: nowrap; }
+.investigasi tbody tr:hover { background: color-mix(in oklab, var(--accent) 7%, transparent); }
+.investigasi tr.era-lama-row td { background: color-mix(in oklab, #92400e 14%, transparent); }
+.investigasi tr.era-baru-row td { background: color-mix(in oklab, #166534 14%, transparent); }
+.investigasi tr.era-reformasi-row td { background: color-mix(in oklab, #1e40af 13%, transparent); }
+.presiden-cell { display: flex; align-items: center; gap: var(--s-2); }
+.presiden-cell img { width: 32px; height: 32px; border-radius: 50%; object-fit: cover; flex: none;
+  border: 1px solid color-mix(in oklab, var(--accent) 30%, transparent); }
+
+/* ---------------------------------------------------------------- chart cards */
+.chart-card {
+  background: var(--bg); border: 1px solid var(--line); border-radius: var(--r-lg);
+  padding: var(--s-4); display: grid; gap: var(--s-1); align-content: start;
+}
+.chart-card:hover { border-color: color-mix(in oklab, var(--ink) 22%, transparent); }
+.chart-title { font-size: var(--t-label); letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); font-weight: 500; }
+.chart-box { position: relative; width: 100%; height: 280px; margin-top: var(--s-2); }
+.chart-box.tall { height: 320px; }
+@media (max-width: 767px) { .chart-box { height: 230px; } }
+.chart-note { font-size: var(--t-small); color: var(--muted); margin: 0; margin-top: var(--s-1); }
+
+.fact-toggle { display: grid; gap: var(--s-3); }
+
+/* ---------------------------------------------------------------- takeaways (perpajakan) */
+.takeaway-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--s-3); }
+@media (max-width: 1023px) { .takeaway-grid { grid-template-columns: 1fr; } }
+.takeaway { background: color-mix(in oklab, var(--ink) 4%, transparent); border: 1px solid var(--line);
+  border-radius: var(--r-md); padding: var(--s-3); font-size: var(--t-small); color: var(--muted); line-height: 1.55; }
+.takeaway strong { color: var(--ink); font-weight: 500; }
+
+/* ---------------------------------------------------------------- methodology & sources */
+.note-panel {
+  background: color-mix(in oklab, var(--ink) 4%, transparent); border: 1px solid var(--line);
+  border-radius: var(--r-lg); padding: var(--s-4); display: grid; gap: var(--s-2);
+  font-size: var(--t-small); color: var(--muted); line-height: 1.6;
+}
+.note-panel strong { color: var(--ink); font-weight: 500; }
+
+/* ---------------------------------------------------------------- ringkasan band */
+.facts-band { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
+  display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.facts-band > div { padding: var(--s-4) var(--s-2); display: grid; gap: var(--s-1); border-left: 1px solid var(--line); }
+.facts-band > div:first-child { border-left: none; padding-left: 0; }
+@media (max-width: 639px) { .facts-band { grid-template-columns: repeat(2, minmax(0, 1fr)); } .facts-band > div:nth-child(3) { border-left: none; padding-left: 0; } }
+.facts-band dt { font-size: var(--t-label); color: var(--muted); }
+.facts-band dd { margin: 0; font: var(--display-weight) 24px/1.2 var(--font-display); letter-spacing: var(--display-tracking); font-variant-numeric: tabular-nums; }
+
+/* footer credits list */
+.credits { font-size: var(--t-small); color: var(--muted); }
+.credits summary { cursor: pointer; color: var(--ink); }
+.credits ul { margin-top: var(--s-2); display: grid; gap: var(--s-1); font-size: var(--t-label); }
+.credits a { text-decoration: underline; text-underline-offset: 2px; }
+
+/* ---------------------------------------------------------------- focus panels & person cards */
+.person-character { margin: 0; font-size: var(--t-body); color: var(--ink); line-height: 1.5; }
+.person-note { margin: 0; font-size: var(--t-small); color: var(--muted); line-height: 1.55; }
+.focus-panel {
+  background: var(--bg); border: 1px solid var(--line); border-radius: var(--r-lg);
+  padding: var(--s-5); display: grid; gap: var(--s-4); align-content: start;
+}
+.focus-title { font-size: var(--t-label); letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); font-weight: 500; }
+.focus-bars { display: grid; gap: var(--s-4); }
+.focus-bar { display: grid; gap: var(--s-1); }
+.focus-bar-row { display: flex; justify-content: space-between; align-items: baseline; gap: var(--s-3); font-size: var(--t-small); }
+.focus-bar-row span { color: var(--muted); }
+.focus-bar-row strong { color: var(--ink); font-variant-numeric: tabular-nums; font-weight: 500; text-align: right; }
+.focus-note { margin: 0; font-size: var(--t-small); line-height: 1.6; color: var(--muted);
+  border: 1px solid color-mix(in oklab, var(--accent) 25%, transparent); background: color-mix(in oklab, var(--accent) 8%, transparent);
+  border-radius: var(--r-md); padding: var(--s-3); }
+.focus-note strong { color: var(--ink); }
+
+/* ---------------------------------------------------------------- stat tones & misc */
+.stat-mini .stat-value.amber { color: #f59e0b; }
+.hero-accent-note { color: var(--muted); }
+.footer__sources { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.12em; color: var(--muted);
+  line-height: 1.9; border-top: 1px solid var(--line); padding-top: var(--s-4); margin: 0; }
+
+/* ---------------------------------------------------------------- long-form prose */
+.prose { display: grid; gap: var(--s-4); max-width: 72ch; }
+.prose p { margin: 0; font-size: var(--t-body); line-height: 1.65; color: var(--ink); }
+.prose strong { color: var(--ink); font-weight: 500; }
+
+/* era split layout: text left, visual right stays the page rule; cards grid for reformasi */
+.era-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s-4); }
+@media (max-width: 639px) { .era-grid { grid-template-columns: 1fr; } }
+
+/* split lead lines & ringkasan */
+.split-line { margin: var(--s-4) 0 0; font-size: var(--t-body); color: var(--muted); line-height: 1.6; max-width: 56ch; }
+.ringkasan-lead { margin: 0; font-size: var(--t-lead); line-height: 1.6; color: var(--ink); max-width: 72ch; }
+
+/* ---------------------------------------------------------------- g2 groups, threads, compact tables */
+.group-title { margin: 0 0 var(--s-3); font-size: var(--t-label); letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); font-weight: 500; }
+.note-title { margin: 0; font-size: var(--t-label); letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); font-weight: 500; }
+.thread-list { display: grid; gap: var(--s-3); }
+.thread-item { margin: 0; font-size: var(--t-body); line-height: 1.6; color: var(--muted); }
+.thread-item strong { color: var(--ink); font-weight: 500; }
+.thread-item span { color: var(--muted); }
+.two-col { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.two-col .span-2 { grid-column: 1 / -1; }
+@media (max-width: 1023px) {
+  .two-col { grid-template-columns: 1fr; }
+  .two-col .span-2 { grid-column: auto; }
+}
+.table-compact th, .table-compact td { padding: 0.4rem 0.45rem; font-size: 0.72rem; }
+.font-strong { font-weight: 500; color: var(--ink); }
+.rik-table td { vertical-align: middle; }
+
+/* ---------------------------------------------------------------- check-round fixes */
+/* footer close word: two lines, never the viewport edge */
+.close__word { white-space: normal; line-height: 0.84; font-size: clamp(44px, 6.4vw, 92px); max-width: 100%; }
+@media (max-width: 639px) { .close__word { font-size: 30px; } }
+
+/* ringkasan: bigger facts + jump row */
+.ringkasan-lead { font-size: var(--t-lead); line-height: 1.65; }
+.facts-band dd { font-size: 30px; }
+.jump-row { display: flex; flex-wrap: wrap; gap: var(--s-3) var(--s-5); align-items: baseline;
+  border-top: 1px solid var(--line); padding-top: var(--s-5); margin-top: var(--s-6); }
+.jump-label { font-family: var(--font-mono); font-size: var(--t-label); letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); }
+.jump-row a { font-size: var(--t-small); color: var(--ink); text-underline-offset: 3px; }
+.jump-row a:hover { color: var(--accent); }
+
+/* tables: fixed layout, forced wrap, no min-widths, no sideways scroll */
+.investigasi { table-layout: fixed; width: 100%; }
+.investigasi th, .investigasi td { overflow-wrap: break-word; }
+.investigasi td.num { white-space: normal; }
+@media (max-width: 639px) {
+  .investigasi { font-size: 0.65rem; }
+  .investigasi th { font-size: 8px; padding: 0.35rem 0.3rem; }
+  .investigasi td { padding: 0.35rem 0.3rem; line-height: 1.45; }
+  .presiden-cell img { width: 22px; height: 22px; }
+}
+
+/* prabowo large cards */
+.person-card--lg { padding: var(--s-6); gap: var(--s-4); }
+.person-card--lg .person-head img { width: 112px; height: 112px; }
+.person-card--lg .who h3 { font-size: var(--t-h3); }
+.focus-panel--lg { padding: var(--s-6); gap: var(--s-5); }
+.focus-panel--lg .data-bar-track { height: 7px; }
+
+/* pola: one column, larger type */
+.thread-list.solo { grid-template-columns: 1fr; gap: var(--s-5); }
+.thread-list.solo .thread-item { font-size: 17px; line-height: 1.65; }
+
+/* kesimpulan: larger prose */
+.prose--lg p { font-size: 18px; line-height: 1.78; }
+
+/* tablet/phone: stat minis tighter */
+@media (max-width: 639px) {
+  .stat-grid { gap: var(--s-2); }
+  .stat-mini { padding: var(--s-3); }
+  .stat-mini .stat-value { font-size: 22px; }
+}
+
+/* chart box heights by density class */
+.chart-box--sm { height: 280px; }
+.chart-box--trend { height: 300px; }
+
+/* takeaway tiles sit on the 12-col grid */
+.takeaway-grid { row-gap: var(--s-3); }
+.takeaway { margin: 0; }
+
+/* tablet compaction */
+@media (max-width: 1023px) {
+  .chart-box { height: 225px; }
+  .chart-box--sm { height: 225px; }
+  .chart-box--trend { height: 240px; }
+  .chart-box.tall { height: 250px; }
+  .chart-card { padding: var(--s-3); }
+  .stat-mini .stat-value { font-size: 26px; }
+  .investigasi.table-compact { font-size: 0.68rem; }
+  .note-panel { font-size: 12px; padding: var(--s-3); line-height: 1.55; }
+  .split-line { font-size: var(--t-small); line-height: 1.55; }
+  .era-grid { gap: var(--s-3); }
+}
+
+/* phone compaction */
+@media (max-width: 639px) {
+  .chart-box { height: 205px; }
+  .chart-box--sm { height: 205px; }
+  .chart-box--trend { height: 210px; }
+  .chart-box.tall { height: 225px; }
+  .chart-card { padding: var(--s-3); }
+  .stat-mini .stat-value { font-size: 22px; }
+  .stat-mini { padding: var(--s-3); }
+  .table-compact { font-size: 0.58rem; }
+  .investigasi th { font-size: 8px; }
+  .investigasi td { padding: 0.32rem 0.28rem; }
+  .thread-item { font-size: 11.5px; line-height: 1.55; }
+  .prose--lg p { font-size: 15px; line-height: 1.65; }
+  .facts-band dd { font-size: 20px; }
+  .jump-row { row-gap: var(--s-2); }
+  .kicker-line { font-size: 10px; }
+}
+
+/* desktop enlargements */
+@media (min-width: 1024px) {
+  .person-card--lg { padding: var(--s-7); }
+  .person-card--lg .who h3 { font-size: var(--t-h3); }
+  .person-card--lg .person-character { font-size: 17px; }
+  .split-line { font-size: 17px; }
+}
+
+/* solo threads: larger type */
+.thread-list.solo { grid-template-columns: 1fr; gap: var(--s-6); }
+.thread-list.solo .thread-item { font-size: 18px; line-height: 1.75; }
+
+/* bigger ringkasan */
+.ringkasan-lead { font-size: 22px; line-height: 1.7; }
+.facts-band dd { font-size: 34px; }
+.kicker-line { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--muted); border-top: 1px solid var(--line); padding-top: var(--s-5); margin: var(--s-6) 0 0; }
+.prose--lg p { font-size: 19px; line-height: 1.8; }
+
+/* tablet: smaller split-line buttons note */
+
+/* ---------------------------------------------------------------- check round 3 */
+.thread-list.solo .thread-item { font-size: 20px; line-height: 1.78; }
+
+@media (max-width: 639px) {
+  .ringkasan-lead { font-size: 16px; line-height: 1.6; }
+  .kicker-line { display: none; }
+  .jump-row a { font-size: 12px; }
+  .facts-band dd { font-size: 19px; }
+  .chart-box--sm { height: 240px; }
+  .table-compact { font-size: 0.55rem; }
+  .investigasi th { font-size: 7px; }
+  .investigasi td { padding: 0.28rem 0.25rem; }
+  .era-badge { font-size: 8.5px; height: 17px; }
+  .thread-item { font-size: 11px; line-height: 1.5; }
+  .note-panel { font-size: 10.5px; line-height: 1.5; }
+  .stat-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s-2); }
+  .stat-value { font-size: 20px; }
+  .group-title { margin-bottom: var(--s-2); }
+  .jump-row { margin-top: var(--s-4); padding-top: var(--s-4); }
+}
+
+/* ---------------------------------------------------------------- check round 4: exact-1024 tightening */
+@media (max-width: 1024px) {
+  .chart-box { height: 195px; }
+  .chart-box--sm { height: 195px; }
+  .chart-box--trend { height: 215px; }
+  .chart-box.tall { height: 230px; }
+  .chart-card { padding: var(--s-3); gap: var(--s-2); }
+  .chart-note { font-size: 12px; }
+  .investigasi.table-compact { font-size: 0.6rem; }
+  .investigasi td { padding: 0.28rem 0.26rem; line-height: 1.4; }
+  .thread-item { font-size: 12px; line-height: 1.5; }
+  .note-panel { font-size: 11px; line-height: 1.45; }
+  .stat-mini { padding: var(--s-3); }
+  .stat-mini .stat-value { font-size: 24px; }
+}
+@media (max-width: 639px) {
+  .thread-list.solo .thread-item { font-size: 13px; line-height: 1.6; }
+}
+
+/* ---------------------------------------------------------------- check round 5: last nudges */
+@media (max-width: 1024px) {
+  .chart-box.tall { height: 215px; }
+  .thread-item { line-height: 1.42; }
+  .thread-list { gap: var(--s-2); }
+  .note-panel { font-size: 10.5px; }
+  .takeaway { font-size: 11px; padding: var(--s-2) var(--s-3); line-height: 1.5; }
+  .investigasi.table-compact { font-size: 0.57rem; }
+}
+@media (max-width: 639px) {
+  #pemilu .chart-box--sm { height: 250px; }
+  #pemilu .investigasi { font-size: 0.66rem; }
+  #pemilu td { padding: 0.4rem 0.3rem; }
+  .era-badge { font-size: 8px; height: 16px; padding: 0 var(--s-2); }
+  .table-compact { font-size: 0.53rem; }
+}
+
+@media (max-width: 1024px) {
+  .investigasi.table-compact { font-size: 0.55rem; }
+  .investigasi td { padding: 0.26rem 0.24rem; }
+  .thread-item { font-size: 11.5px; }
+}
+
+@media (max-width: 1024px) {
+  #pembunuhan-pola .table-compact { font-size: 0.52rem; }
+  #pembunuhan-pola .thread-item { font-size: 11px; }
+}
+
+@media (max-width: 1024px) {
+  #pembunuhan-pola .note-panel { padding: var(--s-2) var(--s-3); margin-top: var(--s-3); }
+}
+
+@media (max-width: 1024px) {
+  .investigasi.table-compact { font-size: 0.52rem; }
+  .investigasi td { padding: 0.24rem 0.22rem; }
+  .investigasi th { font-size: 7px; padding: 0.3rem 0.22rem; }
+}
+
+@media (max-width: 1024px) {
+  #presiden .investigasi { font-size: 0.88rem; }
+  #presiden .investigasi td { padding: 0.62rem 0.45rem; }
+  #presiden .rik-table td { vertical-align: middle; }
+}
+
+/* ---------------------------------------------------------------- check round 6: nowrap numbers & presence */
+.facts-band dd { white-space: nowrap; }
+.stat-mini .stat-value { white-space: nowrap; }
+@media (min-width: 1024px) {
+  .person-card .person-head img { width: 72px; height: 72px; }
+  .person-card .person-character { font-size: 17px; }
+  .person-note { font-size: 15px; }
+  .focus-bar-row { font-size: 15px; }
+  .data-bar-track { height: 6px; }
+}
