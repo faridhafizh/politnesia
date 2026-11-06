@@ -272,3 +272,52 @@
   #reformasi .person-head { gap: var(--s-2); }
   .person-note { font-size: var(--t-small); }
 }
+
+/* ---------------------------------------------------------------- check round 8 */
+/* badges: flush on the line, no centring */
+.era-badge { padding: 0 var(--s-1); text-align: left; }
+
+/* hero facts: span to the right line */
+/* (markup change: span-6 start-7 on facts) */
+
+/* takeaway rows: full wrap width */
+.takeaway { max-width: none; }
+
+/* close word: no clipping, single line */
+.close__word { overflow: visible; }
+
+/* footer xl: full wrap width on smaller viewports */
+@media (max-width: 1279px) { .btn--xl { width: 100%; } }
+
+/* splits: inner items stretch to equal height */
+.grid--middle > .span-6 { display: flex; flex-direction: column; }
+.grid--middle > .span-6 > * { flex: 1 1 auto; }
+
+/* presiden cell at phone: stacked, no overflow into next column */
+@media (max-width: 639px) {
+  .presiden-cell { flex-direction: column; align-items: flex-start; gap: var(--s-1); }
+  .presiden-cell strong { font-size: 12px; line-height: 1.3; }
+}
+
+/* phone: first groups must end above 796px */
+@media (max-width: 639px) {
+  .chart-box { height: 170px; }
+  .chart-box--sm { height: 175px; }
+  .chart-box--trend { height: 185px; }
+  .chart-box.tall { height: 200px; }
+  .section-head--row p { font-size: 15px; }
+  .person-head img { width: 48px; height: 48px; }
+  .person-card--lg .person-head img { width: 64px; height: 64px; }
+  .split-line { font-size: 13px; margin-top: var(--s-3); }
+  .focus-bars { gap: var(--s-3); }
+  .focus-note { font-size: 12px; line-height: 1.5; }
+  .stat-mini { padding: var(--s-2) 0; }
+  .stat-value { font-size: 20px; }
+  .group-title { margin-bottom: var(--s-1); }
+}
+
+@media (max-width: 639px) {
+  #pembunuhan-pola .table-compact, #narkotika-pola .table-compact { font-size: 0.46rem; }
+  #pembunuhan-pola .investigasi td, #narkotika-pola .investigasi td { padding: 0.18rem 0.2rem; line-height: 1.35; }
+  #pembunuhan-pola .investigasi th, #narkotika-pola .investigasi th { font-size: 6.5px; padding: 0.2rem 0.2rem; }
+}

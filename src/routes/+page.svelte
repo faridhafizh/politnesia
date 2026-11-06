@@ -49,7 +49,7 @@
 							<a class="btn btn--secondary" href="#data">Lihat datanya</a>
 						</div>
 					</div>
-					<dl class="hero__facts hero__facts--col span-5 start-7">
+					<dl class="hero__facts hero__facts--col span-6 start-7">
 						<div><dt>Presiden, tiga orde</dt><dd>8</dd></div>
 						<div><dt>Rasio pajak 2025</dt><dd>~9,3% PDB</dd></div>
 						<div><dt>Catatan narkoba</dt><dd>1.117</dd></div>
@@ -357,7 +357,7 @@
 				</div>
 				<div class="table-wrap">
 					<table class="investigasi table-compact">
-						<thead><tr><th>Tahun</th><th>Lokasi</th><th>Jenis</th><th>Jumlah</th><th>Keterangan</th></tr></thead>
+						<thead><tr><th>Tahun</th><th>Lokasi</th><th>Jenis</th><th>Jumlah</th><th>Catatan</th></tr></thead>
 						<tbody>
 							{#each NARKOTIKA_TABLE as r (r.tahun + r.lokasi + r.jenis)}
 								<tr><td class="font-strong">{r.tahun}</td><td>{r.lokasi}</td><td><span class="era-badge era-narkoba">{r.jenis}</span></td><td class="num font-strong">{r.jumlah}</td><td>{r.ket}</td></tr>
@@ -427,7 +427,7 @@
 				</div>
 				<div class="table-wrap">
 					<table class="investigasi table-compact">
-						<thead><tr><th>Tahun</th><th>Kasus</th><th>Lokasi</th><th>Jenis</th><th>Keterangan</th></tr></thead>
+						<thead><tr><th>Tahun</th><th>Kasus</th><th>Lokasi</th><th>Jenis</th><th>Catatan</th></tr></thead>
 						<tbody>
 							{#each PEMBUNUHAN_TABLE as r (r.tahun + r.kasus)}
 								<tr><td class="font-strong">{r.tahun}</td><td>{r.kasus}</td><td>{r.lokasi}</td><td><span class="era-badge era-narkoba">{r.jenis}</span></td><td>{r.ket}</td></tr>
