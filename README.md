@@ -24,7 +24,7 @@ bun run build     # outputs static site to build/
 bun run preview   # serve the production build locally
 ```
 
-Vercel: framework preset "Other" (or static), output directory `build`. No base path needed (served from the root).
+Vercel: the project is detected as SvelteKit. Deploys serve the prerendered static output as-is — no server functions are needed. If the auto-detected preset misbehaves, use "Other" with build command `bun run build` and output directory `build`. No base path needed (served from the root).
 
 ## Checks
 
