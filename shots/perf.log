@@ -1,0 +1,54 @@
+
+perf /127.0.0.1:8899/ @ 1440px
+  PASS  host CPU load (before/after)               2/1 %          
+  PASS  total transfer                             648.1 KiB      html 41.8K  css 114.4K  js 332.6K  font 77K  img 40.6K  other 41.8K
+  PASS  requests                                   24             21 by load
+  PASS  images bytes                               40.6 KiB       8 files
+  PASS  largest image                              6.7 KiB        presidents/megawati.jpg
+  PASS  JS parsed                                  330.7 KiB      10 files, 332.6K gz
+  PASS  CSS                                        114.4 KiB      2 files
+  PASS  font families                              2              JetBrains Mono, Schibsted Grotesk
+  PASS  font files                                 2              77K
+  PASS  font bytes                                 77 KiB         
+  PASS  images without width+height                0              
+  PASS  below-fold images not lazy                 0              
+  PASS  oversized images (natural > 2.2x shown)    0              
+  PASS  WebGL live at load                         0              
+  PASS  WebGL live at bottom                       0              
+  PASS  WebGL peak live                            0              0 contexts made in all
+  PASS  long tasks                                 3              runs 3, 2..3, max 333ms
+  PASS  blocking time                              377 ms         runs 3, 288..383 ms; at load 377ms
+  PASS  FCP (CPU, relative)                        304 ms         runs 3, 304..596
+  PASS  LCP (CPU, relative)                        304 ms         runs 3, 304..596, h1
+  PASS  layout shift                               0.006          runs 3, 0.006..0.006; at load 0.006
+  PASS  modules loaded, never mounted              0              
+  PASS  broken requests                            0              
+  PASS  page height                                25 screens     DOM 944 nodes
+
+perf /127.0.0.1:8899/ @ 390px
+  PASS  host CPU load (before/after)               2/1 %          
+  PASS  total transfer                             647.1 KiB      html 41.8K  css 113.9K  js 332.6K  font 76.4K  img 40.6K  other 41.8K
+  PASS  requests                                   24             21 by load
+  PASS  images bytes                               40.6 KiB       8 files
+  PASS  largest image                              6.7 KiB        presidents/megawati.jpg
+  PASS  JS parsed                                  330.7 KiB      10 files, 332.6K gz
+  PASS  CSS                                        113.9 KiB      2 files
+  PASS  font families                              2              JetBrains Mono, Schibsted Grotesk
+  PASS  font files                                 2              76.4K
+  PASS  font bytes                                 76.4 KiB       
+  PASS  images without width+height                0              
+  PASS  below-fold images not lazy                 0              
+  PASS  oversized images (natural > 2.2x shown)    0              
+  PASS  WebGL live at load                         0              
+  PASS  WebGL live at bottom                       0              
+  PASS  WebGL peak live                            0              0 contexts made in all
+  PASS  long tasks                                 2              runs 3, 2..3, max 330ms
+  PASS  blocking time                              306 ms         runs 3, 281..543 ms; at load 306ms
+  PASS  FCP (CPU, relative)                        284 ms         runs 3, 260..552
+  PASS  LCP (CPU, relative)                        284 ms         runs 3, 260..552, h1
+  PASS  layout shift                               0.000          runs 3, 0.000..0.000; at load 0.000
+  PASS  modules loaded, never mounted              0              
+  PASS  broken requests                            0              
+  PASS  page height                                26 screens     DOM 944 nodes
+
+SUMMARY /127.0.0.1:8899/: 0 FAIL, 0 WARN  -> PASS

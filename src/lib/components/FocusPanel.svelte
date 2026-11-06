@@ -5,7 +5,7 @@
 </script>
 
 <div class="focus-panel" class:focus-panel--lg={large}>
-	<h3 class="focus-title">{title}</h3>
+	<p class="focus-title">{title}</p>
 	<div class="focus-bars">
 		{#each bars as bar (bar.label)}
 			<div class="focus-bar">

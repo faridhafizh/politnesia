@@ -40,16 +40,16 @@
 	<section class="hero hero--word" id="top" aria-labelledby="hero-h">
 		<div class="wrap">
 			<div class="hero-text hero__in">
-				<h1 id="hero-h">Siklus yang<br />Tak Pernah <span class="hero-accent">Tuntas.</span></h1>
+				<h1 id="hero-h">Investigasi<br /><span class="hero-accent">Politik</span> Indonesia</h1>
 				<div class="grid hero__foot">
 					<div class="span-6">
-						<p class="hero__lead">Tiga orde berganti, delapan presiden menjabat — dan masalahnya mengulang. Dari 1.117 catatan narkoba dan 2.587+ catatan pembunuhan, pola yang sama kembali.</p>
+						<p class="hero__lead"><strong class="lead-strong">Siklus yang Tak Pernah Tuntas.</strong> Tiga orde berganti, delapan presiden menjabat — dan polanya mengulang.</p>
 						<div class="btn-row">
 							<a class="btn btn--primary" href="#ringkasan">Baca investigasinya</a>
 							<a class="btn btn--secondary" href="#data">Lihat datanya</a>
 						</div>
 					</div>
-					<dl class="hero__facts hero__facts--col span-5 start-8">
+					<dl class="hero__facts hero__facts--col span-5 start-7">
 						<div><dt>Presiden, tiga orde</dt><dd>8</dd></div>
 						<div><dt>Rasio pajak 2025</dt><dd>~9,3% PDB</dd></div>
 						<div><dt>Catatan narkoba</dt><dd>1.117</dd></div>
@@ -111,7 +111,7 @@
 				</div>
 			</div>
 			<div class="group">
-				<h3 class="group-title">Orde Baru · 1966–1998</h3>
+				<p class="group-title">Orde Baru · 1966–1998</p>
 				<div class="grid grid--middle">
 					<div class="span-6">
 						<PersonCard president={P.soeharto} />
@@ -135,14 +135,14 @@
 						<p>1998–2024: ruang demokrasi terbuka, lalu menyempit.</p>
 					</div>
 				</div>
-				<div class="era-grid">
+				<div class="grid">
 					{#each [P.habibie, P.gusdur, P.megawati, P.sby] as p (p.id)}
-						<PersonCard president={p} />
+						<div class="span-6"><PersonCard president={p} /></div>
 					{/each}
 				</div>
 			</div>
 			<div class="group">
-				<h3 class="group-title">Kartelisasi · 2014–2024</h3>
+				<p class="group-title">Kartelisasi · 2014–2024</p>
 				<div class="grid grid--middle">
 					<div class="span-6">
 						<PersonCard president={P.jokowi} />
@@ -166,7 +166,7 @@
 						<p>Delapan presiden, tiga orde — satu pola. Dimulai dari yang sedang menjabat.</p>
 					</div>
 				</div>
-				<h3 class="group-title">Prabowo · 2024–sekarang</h3>
+				<p class="group-title">Prabowo · 2024–sekarang</p>
 				<div class="grid grid--middle">
 					<div class="span-6">
 						<PersonCard president={P.prabowo} large />
@@ -178,7 +178,7 @@
 				</div>
 			</div>
 			<div class="group">
-				<h3 class="group-title">Delapan presiden, 1945–sekarang</h3>
+				<p class="group-title">Delapan presiden, 1945–sekarang</p>
 				<div class="table-wrap">
 					<table class="investigasi rik-table">
 						<thead>
@@ -218,14 +218,14 @@
 				</div>
 				<div class="grid">
 					<ChartCard title="Tren demokrasi 2014–2024"><DemokrasiChart /></ChartCard>
-					<ChartCard title="Indeks persepsi korupsi 2012–2025" note="Puncak 40 (2019), turun ke 34 (2025)."><CpiChart /></ChartCard>
+					<ChartCard title="Indeks persepsi korupsi · puncak 40 (2019) → 34 (2025)"><CpiChart /></ChartCard>
 				</div>
 			</div>
 			<div class="group">
-				<h3 class="group-title">Kebebasan pers &amp; durasi</h3>
+				<p class="group-title">Kebebasan pers &amp; durasi</p>
 				<div class="grid">
-					<ChartCard title="Kebebasan pers 2014–2025" note="Merosot ke 44,13 (2025) — terendah dalam satu dekade."><PersChart /></ChartCard>
-					<ChartCard title="Durasi kepemimpinan" note="Soekarno 21,6 tahun; Soeharto 31,2 tahun."><DurasiChart /></ChartCard>
+					<ChartCard title="Kebebasan pers · 63,23 (2019) → 44,13 (2025)"><PersChart /></ChartCard>
+					<ChartCard title="Durasi kepemimpinan · Soekarno 21,6 th — Soeharto 31,2 th"><DurasiChart /></ChartCard>
 				</div>
 			</div>
 		</div>
@@ -246,7 +246,7 @@
 				</div>
 			</div>
 			<div class="group">
-				<h3 class="group-title">Data elektoral ringkas</h3>
+				<p class="group-title">Data elektoral ringkas</p>
 				<div class="table-wrap">
 					<table class="investigasi">
 						<thead><tr><th>Tahun</th><th>Peserta</th><th>Pemenang</th><th>Suara</th><th>Catatan</th></tr></thead>
@@ -274,16 +274,16 @@
 				<div class="grid">
 					<ChartCard wide title="Rasio pajak terhadap PDB: 1969–2025"><TaxChart /></ChartCard>
 				</div>
-				<div class="grid takeaway-grid" style="margin-top: var(--s-4)">
+				<div class="takeaway-list" style="margin-top: var(--s-4)">
 					{#each TAX_TAKEAWAYS as t (t.strong)}
-						<p class="takeaway span-4"><strong>{t.strong}</strong>{t.text}</p>
+						<p class="takeaway"><strong>{t.strong}</strong>{t.text}</p>
 					{/each}
 				</div>
 			</div>
 			<div class="group">
 				<div class="grid">
 					<div class="span-6">
-						<h3 class="group-title">Sejarah tarif PPN</h3>
+						<p class="group-title">Sejarah tarif PPN</p>
 						<div class="table-wrap">
 							<table class="investigasi table-compact">
 								<thead><tr><th>Periode</th><th>Tarif</th><th>Dasar hukum</th><th>Catatan</th></tr></thead>
@@ -296,7 +296,7 @@
 						</div>
 					</div>
 					<div class="span-6">
-						<h3 class="group-title">Tarif PPh orang pribadi</h3>
+						<p class="group-title">Tarif PPh orang pribadi</p>
 						<div class="table-wrap">
 							<table class="investigasi table-compact">
 								<thead><tr><th>Era / UU</th><th>Lapisan</th><th>Tertinggi</th><th>Catatan</th></tr></thead>
@@ -333,13 +333,13 @@
 					{/each}
 				</div>
 				<div class="grid" style="margin-top: var(--s-4)">
-					<ChartCard wide title="Tren pemberitaan narkoba per tahun: 2011–2026" note="Lonjakan pada 2017 (tembakau gorila), 2020–2021 (pandemi & online), 2025–2026 (vape & laboratorium)."><NarkobaTrenChart /></ChartCard>
+					<ChartCard wide title="Tren pemberitaan narkoba per tahun · lonjakan 2017, 2020–21, 2025–26"><NarkobaTrenChart /></ChartCard>
 				</div>
 			</div>
 			<div class="group">
 				<div class="grid">
-					<ChartCard title="Distribusi jenis narkoba" note="Sabu dan narkoba generik mendominasi; vape narkoba jadi tren 2025–2026."><NarkobaJenisChart /></ChartCard>
-					<ChartCard title="Lokasi hotspot (top 8)" note="Jakarta, Sumatera Utara, Kepulauan Riau dan Kalimantan Selatan menjadi episentrum."><NarkobaLokasiChart /></ChartCard>
+					<ChartCard title="Distribusi jenis narkoba"><NarkobaJenisChart /></ChartCard>
+					<ChartCard title="Lokasi hotspot · Jakarta &amp; Sumatera Utara tertinggi"><NarkobaLokasiChart /></ChartCard>
 				</div>
 			</div>
 		</div>
@@ -367,14 +367,14 @@
 				</div>
 			</div>
 			<div class="group">
-				<h3 class="group-title">Lima pola dari data narkotika</h3>
+				<p class="group-title">Lima pola dari data narkotika</p>
 				<div class="thread-list">
 					{#each NARKOTIKA_PATTERNS as p, i (i)}
 						<p class="red-thread thread-item"><strong>{i + 1}. {p.title}</strong> <span>{p.body}</span></p>
 					{/each}
 				</div>
 				<div class="note-panel" style="margin-top: var(--s-4)">
-					<h3 class="note-title">Catatan metodologi</h3>
+					<p class="note-title">Catatan metodologi</p>
 					<p><strong>Sumber data:</strong> {NARKOTIKA_METHODOLOGY.source}</p>
 					<p><strong>Klasifikasi:</strong> {NARKOTIKA_METHODOLOGY.classification}</p>
 					<p style="margin-bottom: 0"><strong>Keterbatasan:</strong> {NARKOTIKA_METHODOLOGY.limits}</p>
@@ -403,13 +403,13 @@
 					{/each}
 				</div>
 				<div class="grid" style="margin-top: var(--s-4)">
-					<ChartCard wide title="Tren pemberitaan pembunuhan per tahun: 2002–2026" note="Lonjakan drastis pada 2026 (1.151 catatan) — femisida, mutilasi, liputan yang meningkat. Sebelumnya di bawah 200 per tahun."><PembunuhanTrenChart /></ChartCard>
+					<ChartCard wide title="Tren pemberitaan pembunuhan per tahun · 1.151 pada 2026 (44%)"><PembunuhanTrenChart /></ChartCard>
 				</div>
 			</div>
 			<div class="group">
 				<div class="grid">
-					<ChartCard title="Distribusi motif / jenis kasus" note="Dendam, sakit hati dan narkoba mendominasi; mutilasi meningkat."><PembunuhanJenisChart /></ChartCard>
-					<ChartCard title="Lokasi hotspot (top 13)" note="Jakarta, Sumatera Utara, Jawa Barat dan Jawa Timur menjadi episentrum."><PembunuhanLokasiChart /></ChartCard>
+					<ChartCard title="Distribusi motif / jenis kasus · dendam &amp; sakit hati dominan"><PembunuhanJenisChart /></ChartCard>
+					<ChartCard title="Lokasi hotspot · Jakarta ~500 catatan"><PembunuhanLokasiChart /></ChartCard>
 				</div>
 			</div>
 		</div>
@@ -437,14 +437,14 @@
 				</div>
 			</div>
 			<div class="group">
-				<h3 class="group-title">Lima pola dari data pembunuhan</h3>
+				<p class="group-title">Lima pola dari data pembunuhan</p>
 				<div class="thread-list">
 					{#each PEMBUNUHAN_PATTERNS as p, i (i)}
 						<p class="red-thread thread-item"><strong>{i + 1}. {p.title}</strong> <span>{p.body}</span></p>
 					{/each}
 				</div>
 				<div class="note-panel" style="margin-top: var(--s-4)">
-					<h3 class="note-title">Catatan metodologi</h3>
+					<p class="note-title">Catatan metodologi</p>
 					<p><strong>Sumber data:</strong> {PEMBUNUHAN_METHODOLOGY.source}</p>
 					<p><strong>Klasifikasi:</strong> {PEMBUNUHAN_METHODOLOGY.classification}</p>
 					<p style="margin-bottom: 0"><strong>Keterbatasan:</strong> {PEMBUNUHAN_METHODOLOGY.limits}</p>
@@ -470,7 +470,7 @@
 				</div>
 			</div>
 			<div class="group">
-				<h3 class="group-title">Penutup berkas</h3>
+				<p class="group-title">Penutup berkas</p>
 				<div class="prose prose--lg">
 					{#each KESIMPULAN as k, i (i)}
 						<!-- KESIMPULAN is authored in this repo, never user input -->

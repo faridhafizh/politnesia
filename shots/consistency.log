@@ -1,0 +1,969 @@
+consistency  http://127.0.0.1:8899/
+
+1440x900  30 screens  42 FAIL  28 WARN
+  FAIL credit-wall     footer.closing > div.wrap > div.closing__links > p.footer__sources  "BANK DUNIA, BPS, EIU, FREEDOM HOUSE, V-D"
+       the photo credits fill 2 lines in 1 block (1 credits, 186 characters): a wall of credits  [1440-50-credit-wall.jpg]
+       fix: one short credit line in the footer (or the credits on an imprint page): never a block of names
+  FAIL cut-text        footer.closing > div.wrap > div.closing__cta.close--word > p.close__word  "BERKAS INVESTIGASI"
+       cut 19px at the top by the overflow of footer.closing > div.wrap > div.closing__cta.close--word > p.close__word  [1440-51-cut-text.jpg]
+       fix: give the text room: no overflow clipping a line, no line past its box
+  FAIL no-visual       section#top  "Siklus yang Tak Pernah Tuntas."
+       no picture, effect or mock in this section; a feature section needs a visual  [1440-01-no-visual.jpg]
+       fix: give the section a visual: a UI fragment on a ground, real icons, or a photograph that fits
+  FAIL no-visual       section#ringkasan  "Ringkasan eksekutif"
+       no picture, effect or mock in this section; a feature section needs a visual  [1440-07-no-visual.jpg]
+       fix: give the section a visual: a UI fragment on a ground, real icons, or a photograph that fits
+  FAIL no-visual       section#orde  "Orde Lama & Orde Baru"
+       no picture, effect or mock in this section; a feature section needs a visual  [1440-12-no-visual.jpg]
+       fix: give the section a visual: a UI fragment on a ground, real icons, or a photograph that fits
+  FAIL no-visual       section#reformasi  "Reformasi & Kartelisasi"
+       no picture, effect or mock in this section; a feature section needs a visual  [1440-15-no-visual.jpg]
+       fix: give the section a visual: a UI fragment on a ground, real icons, or a photograph that fits
+  FAIL no-visual       section#presiden  "Histori presiden"
+       no picture, effect or mock in this section; a feature section needs a visual  [1440-18-no-visual.jpg]
+       fix: give the section a visual: a UI fragment on a ground, real icons, or a photograph that fits
+  FAIL no-visual       section#narkotika-pola  "Pengungkapan terbesar"
+       no picture, effect or mock in this section; a feature section needs a visual  [1440-38-no-visual.jpg]
+       fix: give the section a visual: a UI fragment on a ground, real icons, or a photograph that fits
+  FAIL no-visual       section#pembunuhan-pola  "Kasus menonjol"
+       no picture, effect or mock in this section; a feature section needs a visual  [1440-43-no-visual.jpg]
+       fix: give the section a visual: a UI fragment on a ground, real icons, or a photograph that fits
+  FAIL no-visual       section#kesimpulan  "Kesimpulan"
+       no picture, effect or mock in this section; a feature section needs a visual  [1440-47-no-visual.jpg]
+       fix: give the section a visual: a UI fragment on a ground, real icons, or a photograph that fits
+  FAIL button-styles   div.grid.hero__foot > div.span-6 > div.btn-row > a.btn.btn--primary  "Baca investigasinya"
+       one button style (soft, fill #ff4a1f) in 2 heights: 27, 44px ("Baca investigasinya" 44px, "Baca investigasinya" 27px)  [1440-02-button-styles.jpg]
+       fix: one primary and one secondary button: one shape, one height per size, one label size
+  FAIL same-action     header.nav > div.wrap.nav__bar > div.nav__actions > a.btn.btn--primary  "Baca investigasinya"
+       "Baca investigasinya" appears 3 times in different looks: 27px and 44px tall, labels at 16px and 25px  [1440-03-same-action.jpg]
+       fix: draw one action the same way everywhere (only the nav copy may be one size smaller)
+  FAIL copy-headline   h1#hero-h  "Siklus yang Tak Pernah Tuntas."
+       "Siklus yang Tak Pernah Tuntas." does not name what is sold (investigasi politik indonesia, investigasi, politik, indonesia, from flags)  [1440-04-copy-headline.jpg]
+       fix: put the category noun in the h1 (and who it is for, or where), in 2 to 8 words
+  FAIL copy-headings   h2#ringkasan-h  "Ringkasan eksekutif"
+       "Ringkasan eksekutif" names no product, part, place or section (23 headings like it; at most one brand line per page) (and 22 more like it: "Soekarno", "Soeharto", "Reformasi & Kartelisasi", "B.J. Habibie", ...)  [1440-08-copy-headings.jpg]
+       fix: name the thing in every heading: the product, a part, the place or a section noun
+  FAIL heading-scale   article.person-card > div.person-head > div.who > h3  "Soekarno"
+       h3 headings in 2 sizes, 13px ("KONDISI RAKYAT — ORDE LA") to 20px (x1.54)  [1440-10-heading-scale.jpg]
+       fix: size headings by level: the h1 largest, one size per level, each level below the one above
+  FAIL off-grid        div.wrap > div.group:nth-of-type(2) > div.thread-list > p.red-thread.thread-item:nth-of-type(1)  "1. Lapas sebagai Pusat Kendali. Sekitar "
+       left edge at 98px, 18px off the page margin at 80px (68 elements); 4 more in this section off the grid too (p.red-thread.thread-item:nth-of-type(2) at 98px, p.red-thread.thread-item:nth-of-type(3) at 98px, p.red-thread.thread-item:nth-of-type(4) at 98px, p.red-thread.thread-item:nth-of-type(5) at 98px)  [1440-40-off-grid.jpg]
+       fix: move it onto the page margin, or the column edge its section uses
+  FAIL off-grid        div.wrap > div.group:nth-of-type(2) > div.thread-list > p.red-thread.thread-item:nth-of-type(1)  "1. Femisida dan Kekerasan dalam Relasi. "
+       left edge at 98px, 18px off the page margin at 80px (68 elements, like h3.group-title); 4 more in this section off the grid too (p.red-thread.thread-item:nth-of-type(2) at 98px, p.red-thread.thread-item:nth-of-type(3) at 98px, p.red-thread.thread-item:nth-of-type(4) at 98px, p.red-thread.thread-item:nth-of-type(5) at 98px)  [1440-44-off-grid.jpg]
+       fix: move it onto the page margin, or the column edge its section uses
+  FAIL off-grid        div.wrap > div.group:nth-of-type(1) > div.thread-list.solo > p.red-thread.thread-item:nth-of-type(1)  "1. Oligarki Beradaptasi. Dari terpusat d"
+       left edge at 98px, 18px off the page margin at 80px (68 elements); 4 more in this section off the grid too (p.red-thread.thread-item:nth-of-type(2) at 98px, p.red-thread.thread-item:nth-of-type(3) at 98px, p.red-thread.thread-item:nth-of-type(4) at 98px, p.red-thread.thread-item:nth-of-type(5) at 98px)  [1440-48-off-grid.jpg]
+       fix: move it onto the page margin, or the column edge its section uses
+  FAIL text-contrast   div.group:nth-of-type(1) > div.grid.grid--middle > div.span-6:nth-of-type(1) > p.split-line  "Konsentrasi kekuasaan, mobilisasi massa,"
+       body text in #9c9ea3 on #18191b reads 6.56:1 (needs 7:1); 23 like it, like "Otoritarianisme elekto", "Koalisi besar, oposisi", "Tren menurun: ~12% → ~"  [1440-11-text-contrast.jpg]
+       fix: body text in the ink at 7:1 or more; grey (4.5:1 or more) only for captions and labels
+  FAIL text-contrast   div.group:nth-of-type(1) > div.grid.grid--middle > div.span-6:nth-of-type(1) > p.split-line  "KIM Plus menguasai 81% kursi DPR; oposis"
+       body text in #9c9ea3 on #222427 reads 5.8:1 (needs 7:1)  [1440-17-text-contrast.jpg]
+       fix: body text in the ink at 7:1 or more; grey (4.5:1 or more) only for captions and labels
+  FAIL section-gaps    section#orde / section#reformasi
+       618px between these sections, +72% against the median 360px  [1440-14-section-gaps.jpg]
+       fix: use one gap between sections (all within 25% of each other)
+  FAIL section-gaps    section#reformasi / section#presiden
+       622px between these sections, +73% against the median 360px of gaps at a change of ground  [1440-52-section-gaps.jpg]
+       fix: use one gap between sections (all within 25% of each other)
+  FAIL visual-caption  div.group:nth-of-type(1) > div.grid > figure.chart-card.span-6:nth-of-type(1) > figcaption.chart-title  "TREN DEMOKRASI 2014–2024"
+       a figcaption under the canvas: "TREN DEMOKRASI 2014–2024"; no caption or description under any image, render or visual (house rule)  [1440-20-visual-caption.jpg]
+       fix: take the line away: no caption or description under, over or on any image, render or visual; a licence credit goes in one footer line
+  FAIL visual-caption  div.group:nth-of-type(1) > div.grid > figure.chart-card.span-6:nth-of-type(2) > figcaption.chart-title  "INDEKS PERSEPSI KORUPSI 2012–2025"
+       a figcaption under the canvas: "INDEKS PERSEPSI KORUPSI 2012–2025"; no caption or description under any image, render or visual (house rule)  [1440-21-visual-caption.jpg]
+       fix: take the line away: no caption or description under, over or on any image, render or visual; a licence credit goes in one footer line
+  FAIL visual-caption  div.group:nth-of-type(2) > div.grid > figure.chart-card.span-6:nth-of-type(1) > figcaption.chart-title  "KEBEBASAN PERS 2014–2025"
+       a figcaption under the canvas: "KEBEBASAN PERS 2014–2025"; no caption or description under any image, render or visual (house rule)  [1440-23-visual-caption.jpg]
+       fix: take the line away: no caption or description under, over or on any image, render or visual; a licence credit goes in one footer line
+  FAIL visual-caption  div.group:nth-of-type(2) > div.grid > figure.chart-card.span-6:nth-of-type(2) > figcaption.chart-title  "DURASI KEPEMIMPINAN"
+       a figcaption under the canvas: "DURASI KEPEMIMPINAN"; no caption or description under any image, render or visual (house rule)  [1440-24-visual-caption.jpg]
+       fix: take the line away: no caption or description under, over or on any image, render or visual; a licence credit goes in one footer line
+  FAIL visual-caption  div.group:nth-of-type(1) > div.grid > figure.chart-card.span-12 > figcaption.chart-title  "KEPUASAN PUBLIK PER PRESIDEN"
+       a figcaption under the canvas: "KEPUASAN PUBLIK PER PRESIDEN"; no caption or description under any image, render or visual (house rule)  [1440-27-visual-caption.jpg]
+       fix: take the line away: no caption or description under, over or on any image, render or visual; a licence credit goes in one footer line
+  FAIL visual-caption  div.group:nth-of-type(1) > div.grid:nth-of-type(2) > figure.chart-card.span-12 > figcaption.chart-title  "RASIO PAJAK TERHADAP PDB: 1969–2025"
+       a figcaption under the canvas: "RASIO PAJAK TERHADAP PDB: 1969–2025"; no caption or description under any image, render or visual (house rule)  [1440-31-visual-caption.jpg]
+       fix: take the line away: no caption or description under, over or on any image, render or visual; a licence credit goes in one footer line
+  FAIL visual-caption  div.group:nth-of-type(1) > div.grid > figure.chart-card.span-12 > figcaption.chart-title  "TREN PEMBERITAAN NARKOBA PER TAHUN: 2011"
+       a figcaption under the canvas: "TREN PEMBERITAAN NARKOBA PER TAHUN: 2011..."; no caption or description under any image, render or visual (house rule)  [1440-34-visual-caption.jpg]
+       fix: take the line away: no caption or description under, over or on any image, render or visual; a licence credit goes in one footer line
+  FAIL visual-caption  div.group:nth-of-type(2) > div.grid > figure.chart-card.span-6:nth-of-type(1) > figcaption.chart-title  "DISTRIBUSI JENIS NARKOBA"
+       a figcaption under the canvas: "DISTRIBUSI JENIS NARKOBA"; no caption or description under any image, render or visual (house rule) (and 13 more like it: "LOKASI HOTSPOT (TOP ...", "TREN PEMBERITAAN PEM...", "DISTRIBUSI MOTIF / J...", "LOKASI HOTSPOT (TOP ...", ...)  [1440-35-visual-caption.jpg]
+       fix: take the line away: no caption or description under, over or on any image, render or visual; a licence credit goes in one footer line
+  WARN caption         div.group:nth-of-type(1) > div.grid > figure.chart-card.span-6:nth-of-type(2) > p.chart-note  "Puncak 40 (2019), turun ke 34 (2025)."
+       9 lines of words sit right under a picture, like "Puncak 40 (2019), turun ke 34 (2025).": the section's text says it, or the picture speaks for itself  [1440-25-caption.jpg]
+       fix: no line under a picture: never how it was made, what it shows, what is missing or what will follow (credits: one footer line)
+  WARN no-visual       section#pemilu  "Pemilu & kepuasan publik"
+       pictures, effects and mocks cover 19% of this section; a feature section needs a visual (about 25% or more)  [1440-29-no-visual.jpg]
+       fix: give the section a visual: a UI fragment on a ground, real icons, or a photograph that fits
+  WARN no-visual       section#pajak  "Rasio pajak terhadap PDB"
+       pictures, effects and mocks cover 25% of this section; a feature section needs a visual (about 25% or more)  [1440-32-no-visual.jpg]
+       fix: give the section a visual: a UI fragment on a ground, real icons, or a photograph that fits
+  WARN cta             section#orde  "Orde Lama & Orde Baru"
+       a section over 1.5 screens long with no link or button in it  [1440-13-cta.jpg]
+       fix: add the action: a button in the hero, one on every priced item, one in the closing section
+  WARN cta             section#reformasi  "Reformasi & Kartelisasi"
+       a section over 1.5 screens long with no link or button in it  [1440-16-cta.jpg]
+       fix: add the action: a button in the hero, one on every priced item, one in the closing section
+  WARN cta             section#presiden  "Histori presiden"
+       a section over 1.5 screens long with no link or button in it  [1440-19-cta.jpg]
+       fix: add the action: a button in the hero, one on every priced item, one in the closing section
+  WARN cta             section#data  "Kemunduran demokrasi"
+       a section over 1.5 screens long with no link or button in it  [1440-26-cta.jpg]
+       fix: add the action: a button in the hero, one on every priced item, one in the closing section
+  WARN cta             section#pemilu  "Pemilu & kepuasan publik"
+       a section over 1.5 screens long with no link or button in it  [1440-30-cta.jpg]
+       fix: add the action: a button in the hero, one on every priced item, one in the closing section
+  WARN cta             section#pajak  "Rasio pajak terhadap PDB"
+       a section over 1.5 screens long with no link or button in it  [1440-33-cta.jpg]
+       fix: add the action: a button in the hero, one on every priced item, one in the closing section
+  WARN cta             section#narkotika  "Narkotika"
+       a section over 1.5 screens long with no link or button in it  [1440-36-cta.jpg]
+       fix: add the action: a button in the hero, one on every priced item, one in the closing section
+  WARN cta             section#narkotika-pola  "Pengungkapan terbesar"
+       a section over 1.5 screens long with no link or button in it  [1440-39-cta.jpg]
+       fix: add the action: a button in the hero, one on every priced item, one in the closing section
+  WARN cta             section#pembunuhan  "Pembunuhan"
+       a section over 1.5 screens long with no link or button in it  [1440-41-cta.jpg]
+       fix: add the action: a button in the hero, one on every priced item, one in the closing section
+  WARN cta             section#pembunuhan-pola  "Kasus menonjol"
+       a section over 1.5 screens long with no link or button in it  [1440-45-cta.jpg]
+       fix: add the action: a button in the hero, one on every priced item, one in the closing section
+  WARN cta             section#kesimpulan  "Kesimpulan"
+       a section over 1.5 screens long with no link or button in it  [1440-49-cta.jpg]
+       fix: add the action: a button in the hero, one on every priced item, one in the closing section
+  WARN section-gaps    section#data / section#pemilu
+       188px between these sections, -48% against the median 360px  [1440-28-section-gaps.jpg]
+       fix: use one gap between sections (all within 25% of each other)
+  WARN section-gaps    section#pemilu / section#pajak
+       474px between these sections, +32% against the median 360px  [1440-53-section-gaps.jpg]
+       fix: use one gap between sections (all within 25% of each other)
+  WARN section-gaps    section#pajak / section#narkotika
+       574px between these sections, +59% against the median 360px  [1440-54-section-gaps.jpg]
+       fix: use one gap between sections (all within 25% of each other)
+  WARN section-gaps    section#narkotika / section#narkotika-pola
+       188px between these sections, -48% against the median 360px  [1440-37-section-gaps.jpg]
+       fix: use one gap between sections (all within 25% of each other)
+  WARN section-gaps    section#pembunuhan / section#pembunuhan-pola
+       188px between these sections, -48% against the median 360px  [1440-42-section-gaps.jpg]
+       fix: use one gap between sections (all within 25% of each other)
+  WARN section-gaps    section#presiden / section#data
+       uneven space at the edge of a band: 116px outside its edge, 240px inside it (the space on either side of a change of ground reads as one gap only when the two match)  [1440-22-section-gaps.jpg]
+       fix: use one gap between sections (all within 25% of each other)
+  WARN photo-credit    (the page text)
+       1 library source (wikimedia): the page credits wikimedia; confirm each shows the client's own product, place or people
+       fix: confirm the library photograph shows the client's own product, place or people; otherwise replace it
+  WARN nav-labels      div.wrap.nav__bar > nav.nav__links > div.nav__item:nth-of-type(3) > a.nav__link  "Data"
+       "Data" opens a section headed "Kemunduran demokrasi"  [1440-05-nav-labels.jpg]
+       fix: name each nav link after the heading of the section it opens
+  WARN label-centre    header.nav > div.wrap.nav__bar > div.nav__actions > a.btn.btn--primary  "Baca investigasinya"
+       its label sits 18px off-centre (25px of room at the left, 43px at the right) (and 1 more like it: "Baca investigasinya")  [1440-06-label-centre.jpg]
+       fix: centre the label in its button, or fill the empty side with an icon
+  WARN copy-length     section#pembunuhan-pola  "Kasus menonjol"
+       4 sections over 90 words a screen outside the UI mocks ("Kasus menonjol" 201, "Pengungkapan terbesar" 162, "Kesimpulan" 108); 82 words a screen across the page (1963 words in 24 screens): a tech page says it in about 80 or fewer  [1440-46-copy-length.jpg]
+       fix: cut every section to its heading, one line and the product UI: the UI says the rest; no second paragraph, no list of feature sentences
+  WARN nav-current     div > header.nav
+       the nav stays on screen with 6 links to the page's sections, but never marks the one you are in (no link changes as the page scrolls)  [1440-09-nav-current.jpg]
+       fix: mark the link of the section on screen (a colour, a weight or a line under it) as the visitor scrolls
+  FAIL section-air     section#orde / section#reformasi
+       622px of air between the content of these two sections: 128-480px (64-600px WARN) (every gap out of the band at 1440px, top to bottom: 622px after "Orde Lama & Orde Bar", 622px after "Reformasi & Kartelis", 512px after "Kemunduran demokrasi", 574px after "Rasio pajak terhadap", 540px after "Narkotika 1.117 cata", 540px after "Pembunuhan 2.587+ ca") (SR-3)  [1440-rhythm-01-section-air.jpg]
+       fix: keep 128-480px of air between the content of neighbouring sections (112-420px on a phone): the sections' padding (--padt, --padb)
+  FAIL section-air     section#reformasi / section#presiden
+       622px of air between the content of these two sections: 128-480px (64-600px WARN) (SR-3)  [1440-rhythm-02-section-air.jpg]
+       fix: keep 128-480px of air between the content of neighbouring sections (112-420px on a phone): the sections' padding (--padt, --padb)
+  WARN section-air     section#pajak / section#narkotika
+       574px of air between the content of these two sections: 128-480px (64-600px WARN) (SR-3)  [1440-rhythm-13-section-air.jpg]
+       fix: keep 128-480px of air between the content of neighbouring sections (112-420px on a phone): the sections' padding (--padt, --padb)
+  FAIL section-air     section#ringkasan > div.wrap > p.kicker-line  "Berkas 01 · 1945–2026 · Tiga orde · Dela"
+       a top border across 100% of the container, between the section's content: sections and their parts are told apart by air and ground, not lines (SR-3)  [1440-rhythm-03-section-air.jpg]
+       fix: take the rule out: sections and their parts are parted by their ground and the air between them
+  FAIL section-air     section#ringkasan > div.wrap > dl.facts-band  "Presiden 8Rasio pajak 2025 ~9,3%Catatan "
+       a top border across 100% of the container, between the section's content: sections and their parts are told apart by air and ground, not lines (SR-3)  [1440-rhythm-04-section-air.jpg]
+       fix: take the rule out: sections and their parts are parted by their ground and the air between them
+  FAIL section-air     section#ringkasan > div.wrap > nav.jump-row  "Isi berkas Histori presiden Data & grafi"
+       a top border across 100% of the container, between the section's content: sections and their parts are told apart by air and ground, not lines (and 1 more like it: "BANK DUNIA, BPS, EIU, FR") (SR-3)  [1440-rhythm-05-section-air.jpg]
+       fix: take the rule out: sections and their parts are parted by their ground and the air between them
+  WARN section-air     section#orde  "Orde Lama & Orde Baru Soekarno memusatka"
+       screen group 2 of this two-screen section fills 30.5% of a screen: 40% or more (25% WARN) (SR-3)  [1440-rhythm-14-section-air.jpg]
+       fix: fill the section to 55%: more content, a picture or a background layer, or merge it into the section above as its last block
+  WARN section-air     section#reformasi  "Reformasi & Kartelisasi 1998–2024: ruang"
+       screen group 2 of this two-screen section fills 30.5% of a screen: 40% or more (25% WARN) (and 3 more like it: "Rasio pajak terhadap PDB", "Narkotika 1.117 catatan ", "Pembunuhan 2.587+ catata") (SR-3)  [1440-rhythm-15-section-air.jpg]
+       fix: fill the section to 55%: more content, a picture or a background layer, or merge it into the section above as its last block
+  FAIL one-section     section#narkotika-pola > div.wrap > div.group:nth-of-type(2) > div.note-panel  "Catatan metodologi Sumber data: 1.117 ca"
+       a band: a box 89% of the section wide on a ground of its own that holds only text: the section's own ground is the band (SR-4)  [1440-rhythm-06-one-section.jpg]
+       fix: put every block of <main> in a <section>, and give a band its own section instead of a ground inside one
+  FAIL one-section     section#pembunuhan-pola > div.wrap > div.group:nth-of-type(2) > div.note-panel  "Catatan metodologi Sumber data: 2.587+ c"
+       a band: a box 89% of the section wide on a ground of its own that holds only text: the section's own ground is the band (SR-4)  [1440-rhythm-07-one-section.jpg]
+       fix: put every block of <main> in a <section>, and give a band its own section instead of a ground inside one
+  FAIL container-edges div.wrap > div.group:nth-of-type(1) > div.grid.takeaway-grid > p.takeaway.span-4:nth-of-type(1)  "Puncak 1980-an: ~20–22% PDB, ditopang mi"
+       32 text blocks start on a left line at x 97, 17px from the container's left: text starts on the container's left, or on one split line (x 623, 732, 841) (also "Tren menurun: ~12% → ~10% dalam ", "2025: ~9,3%, level terendah dala", "Kepuasan publik per presiden") (SR-6)  [1440-rhythm-08-container-edges.jpg]
+       fix: start the text on the container's left, or on the one split line every split shares
+  FAIL row-lines       section#orde > div.wrap > div.group:nth-of-type(1) > div.grid.grid--middle  "1945–1966 Soekarno Demokrasi Terpimpin; "
+       a row of 2 items: its items are 276/228px tall, not one height (2px either way) (SR-7)  [1440-rhythm-09-row-lines.jpg]
+       fix: start the row's first item on the container's left line and end its last on the right line, every item one height
+  FAIL row-lines       section#presiden > div.wrap > div.group:nth-of-type(1) > div.grid.grid--middle  "2024–sekarang Prabowo KIM Plus 81%; opos"
+       a row of 2 items: its items are 321/285px tall, not one height (2px either way) (SR-7)  [1440-rhythm-10-row-lines.jpg]
+       fix: start the row's first item on the container's left line and end its last on the right line, every item one height
+  FAIL row-lines       section#reformasi > div.wrap > div.group:nth-of-type(2) > div.grid.grid--middle  "2014–2024 Jokowi Kartelisasi; koalisi be"
+       a row of 2 items: its items are 249/228px tall, not one height (2px either way) (SR-7)  [1440-rhythm-11-row-lines.jpg]
+       fix: start the row's first item on the container's left line and end its last on the right line, every item one height
+  FAIL split-pair      section#top > div.wrap > div.hero-text.hero__in > div.grid.hero__foot  "Tiga orde berganti, delapan presiden men"
+       the split's columns are off the page's one pair of lines: its left column ends at 708px, not 24px before the right one (817px) (SR-8)  [1440-rhythm-12-split-pair.jpg]
+       fix: start every split's right column on one shared line (wrap.left + k x (width + 24) / 12, k 5, 6 or 7; 6 on a place page) and end the left one 24px before it
+
+1024x768  30 screens  15 FAIL  33 WARN
+  FAIL credit-wall     footer.closing > div.wrap > div.closing__links > p.footer__sources  "BANK DUNIA, BPS, EIU, FREEDOM HOUSE, V-D"
+       the photo credits fill 2 lines in 1 block (1 credits, 186 characters): a wall of credits  [1024-46-credit-wall.jpg]
+       fix: one short credit line in the footer (or the credits on an imprint page): never a block of names
+  FAIL cut-text        footer.closing > div.wrap > div.closing__cta.close--word > p.close__word  "BERKAS INVESTIGASI"
+       cut 13px at the top by the overflow of footer.closing > div.wrap > div.closing__cta.close--word > p.close__word  [1024-45-cut-text.jpg]
+       fix: give the text room: no overflow clipping a line, no line past its box
+  FAIL no-visual       section#top  "Siklus yang Tak Pernah Tuntas."
+       no picture, effect or mock in this section; a feature section needs a visual  [1024-01-no-visual.jpg]
+       fix: give the section a visual: a UI fragment on a ground, real icons, or a photograph that fits
+  FAIL no-visual       section#ringkasan  "Ringkasan eksekutif"
+       no picture, effect or mock in this section; a feature section needs a visual  [1024-03-no-visual.jpg]
+       fix: give the section a visual: a UI fragment on a ground, real icons, or a photograph that fits
+  FAIL no-visual       section#orde  "Orde Lama & Orde Baru"
+       no picture, effect or mock in this section; a feature section needs a visual  [1024-08-no-visual.jpg]
+       fix: give the section a visual: a UI fragment on a ground, real icons, or a photograph that fits
+  FAIL no-visual       section#reformasi  "Reformasi & Kartelisasi"
+       no picture, effect or mock in this section; a feature section needs a visual  [1024-12-no-visual.jpg]
+       fix: give the section a visual: a UI fragment on a ground, real icons, or a photograph that fits
+  FAIL no-visual       section#presiden  "Histori presiden"
+       no picture, effect or mock in this section; a feature section needs a visual  [1024-15-no-visual.jpg]
+       fix: give the section a visual: a UI fragment on a ground, real icons, or a photograph that fits
+  FAIL no-visual       section#narkotika-pola  "Pengungkapan terbesar"
+       no picture, effect or mock in this section; a feature section needs a visual  [1024-34-no-visual.jpg]
+       fix: give the section a visual: a UI fragment on a ground, real icons, or a photograph that fits
+  FAIL no-visual       section#pembunuhan-pola  "Kasus menonjol"
+       no picture, effect or mock in this section; a feature section needs a visual  [1024-40-no-visual.jpg]
+       fix: give the section a visual: a UI fragment on a ground, real icons, or a photograph that fits
+  FAIL no-visual       section#kesimpulan  "Kesimpulan"
+       no picture, effect or mock in this section; a feature section needs a visual  [1024-42-no-visual.jpg]
+       fix: give the section a visual: a UI fragment on a ground, real icons, or a photograph that fits
+  FAIL heading-scale   article.person-card > div.person-head > div.who > h3  "Soekarno"
+       h3 headings in 2 sizes, 13px ("KONDISI RAKYAT — ORDE LA") to 20px (x1.54)  [1024-06-heading-scale.jpg]
+       fix: size headings by level: the h1 largest, one size per level, each level below the one above
+  FAIL off-grid        div.wrap > div.group:nth-of-type(2) > div.thread-list > p.red-thread.thread-item:nth-of-type(1)  "1. Lapas sebagai Pusat Kendali. Sekitar "
+       left edge at 98px, 18px off the page margin at 80px (68 elements, like h3.group-title); 4 more in this section off the grid too (p.red-thread.thread-item:nth-of-type(2) at 98px, p.red-thread.thread-item:nth-of-type(3) at 98px, p.red-thread.thread-item:nth-of-type(4) at 98px, p.red-thread.thread-item:nth-of-type(5) at 98px)  [1024-36-off-grid.jpg]
+       fix: move it onto the page margin, or the column edge its section uses
+  FAIL off-grid        div.wrap > div.group:nth-of-type(1) > div.thread-list.solo > p.red-thread.thread-item:nth-of-type(1)  "1. Oligarki Beradaptasi. Dari terpusat d"
+       left edge at 98px, 18px off the page margin at 80px (68 elements, like p); 4 more in this section off the grid too (p.red-thread.thread-item:nth-of-type(2) at 98px, p.red-thread.thread-item:nth-of-type(3) at 98px, p.red-thread.thread-item:nth-of-type(4) at 98px, p.red-thread.thread-item:nth-of-type(5) at 98px)  [1024-43-off-grid.jpg]
+       fix: move it onto the page margin, or the column edge its section uses
+  FAIL text-contrast   div.group:nth-of-type(1) > div.grid.grid--middle > div.span-6:nth-of-type(1) > p.split-line  "Konsentrasi kekuasaan, mobilisasi massa,"
+       body text in #9c9ea3 on #18191b reads 6.56:1 (needs 7:1); 6 like it, like "Otoritarianisme elekto", "Koalisi besar, oposisi", "Dari terpusat di bawah"  [1024-09-text-contrast.jpg]
+       fix: body text in the ink at 7:1 or more; grey (4.5:1 or more) only for captions and labels
+  FAIL text-contrast   div.group:nth-of-type(1) > div.grid.grid--middle > div.span-6:nth-of-type(1) > p.split-line  "KIM Plus menguasai 81% kursi DPR; oposis"
+       body text in #9c9ea3 on #222427 reads 5.8:1 (needs 7:1)  [1024-14-text-contrast.jpg]
+       fix: body text in the ink at 7:1 or more; grey (4.5:1 or more) only for captions and labels
+  WARN no-visual       section#data  "Kemunduran demokrasi"
+       pictures, effects and mocks cover 25% of this section; a feature section needs a visual (about 25% or more)  [1024-17-no-visual.jpg]
+       fix: give the section a visual: a UI fragment on a ground, real icons, or a photograph that fits
+  WARN no-visual       section#pemilu  "Pemilu & kepuasan publik"
+       pictures, effects and mocks cover 17% of this section; a feature section needs a visual (about 25% or more)  [1024-23-no-visual.jpg]
+       fix: give the section a visual: a UI fragment on a ground, real icons, or a photograph that fits
+  WARN no-visual       section#pajak  "Rasio pajak terhadap PDB"
+       pictures, effects and mocks cover 18% of this section; a feature section needs a visual (about 25% or more)  [1024-26-no-visual.jpg]
+       fix: give the section a visual: a UI fragment on a ground, real icons, or a photograph that fits
+  WARN cta             section#orde  "Orde Lama & Orde Baru"
+       a section over 1.5 screens long with no link or button in it  [1024-10-cta.jpg]
+       fix: add the action: a button in the hero, one on every priced item, one in the closing section
+  WARN cta             section#reformasi  "Reformasi & Kartelisasi"
+       a section over 1.5 screens long with no link or button in it  [1024-13-cta.jpg]
+       fix: add the action: a button in the hero, one on every priced item, one in the closing section
+  WARN cta             section#presiden  "Histori presiden"
+       a section over 1.5 screens long with no link or button in it  [1024-16-cta.jpg]
+       fix: add the action: a button in the hero, one on every priced item, one in the closing section
+  WARN cta             section#data  "Kemunduran demokrasi"
+       a section over 1.5 screens long with no link or button in it  [1024-18-cta.jpg]
+       fix: add the action: a button in the hero, one on every priced item, one in the closing section
+  WARN cta             section#pemilu  "Pemilu & kepuasan publik"
+       a section over 1.5 screens long with no link or button in it  [1024-24-cta.jpg]
+       fix: add the action: a button in the hero, one on every priced item, one in the closing section
+  WARN cta             section#pajak  "Rasio pajak terhadap PDB"
+       a section over 1.5 screens long with no link or button in it  [1024-27-cta.jpg]
+       fix: add the action: a button in the hero, one on every priced item, one in the closing section
+  WARN cta             section#narkotika  "Narkotika"
+       a section over 1.5 screens long with no link or button in it  [1024-28-cta.jpg]
+       fix: add the action: a button in the hero, one on every priced item, one in the closing section
+  WARN cta             section#narkotika-pola  "Pengungkapan terbesar"
+       a section over 1.5 screens long with no link or button in it  [1024-35-cta.jpg]
+       fix: add the action: a button in the hero, one on every priced item, one in the closing section
+  WARN cta             section#pembunuhan  "Pembunuhan"
+       a section over 1.5 screens long with no link or button in it  [1024-37-cta.jpg]
+       fix: add the action: a button in the hero, one on every priced item, one in the closing section
+  WARN cta             section#pembunuhan-pola  "Kasus menonjol"
+       a section over 1.5 screens long with no link or button in it  [1024-41-cta.jpg]
+       fix: add the action: a button in the hero, one on every priced item, one in the closing section
+  WARN cta             section#kesimpulan  "Kesimpulan"
+       a section over 1.5 screens long with no link or button in it  [1024-44-cta.jpg]
+       fix: add the action: a button in the hero, one on every priced item, one in the closing section
+  WARN heading-scale   div.wrap > dl.facts-band > div:nth-of-type(1) > dd  "8"
+       figures in 2 sizes, 24, 34px ("1.117" at 24px, "8" at 34px)  [1024-04-heading-scale.jpg]
+       fix: set the page's figures (stats, measures, prices) in one or two sizes
+  WARN section-gaps    section#ringkasan / section#orde
+       196px between these sections, -36% against the median 308px  [1024-07-section-gaps.jpg]
+       fix: use one gap between sections (all within 25% of each other)
+  WARN section-gaps    section#orde / section#reformasi
+       441px between these sections, +43% against the median 308px  [1024-11-section-gaps.jpg]
+       fix: use one gap between sections (all within 25% of each other)
+  WARN section-gaps    section#reformasi / section#presiden
+       441px between these sections, +43% against the median 308px of gaps at a change of ground  [1024-47-section-gaps.jpg]
+       fix: use one gap between sections (all within 25% of each other)
+  WARN section-gaps    section#data / section#pemilu
+       189px between these sections, -39% against the median 308px  [1024-20-section-gaps.jpg]
+       fix: use one gap between sections (all within 25% of each other)
+  WARN section-gaps    section#pemilu / section#pajak
+       457px between these sections, +48% against the median 308px  [1024-48-section-gaps.jpg]
+       fix: use one gap between sections (all within 25% of each other)
+  WARN section-gaps    section#pajak / section#narkotika
+       444px between these sections, +44% against the median 308px  [1024-49-section-gaps.jpg]
+       fix: use one gap between sections (all within 25% of each other)
+  WARN section-gaps    section#narkotika / section#narkotika-pola
+       189px between these sections, -39% against the median 308px  [1024-30-section-gaps.jpg]
+       fix: use one gap between sections (all within 25% of each other)
+  WARN section-gaps    section#pembunuhan / section#pembunuhan-pola
+       189px between these sections, -39% against the median 308px  [1024-39-section-gaps.jpg]
+       fix: use one gap between sections (all within 25% of each other)
+  WARN label-centre    header.nav > div.wrap.nav__bar > div.nav__actions > a.btn.btn--primary  "Baca investigasinya"
+       its label sits 18px off-centre (25px of room at the left, 43px at the right) (and 1 more like it: "Baca investigasinya")  [1024-02-label-centre.jpg]
+       fix: centre the label in its button, or fill the empty side with an icon
+  WARN orphan          div.group:nth-of-type(2) > div.grid > figure.chart-card.span-6:nth-of-type(1) > p.chart-note  "Sabu dan narkoba generik mendominasi; va"
+       its last line holds only "2025–2026."  [1024-31-orphan.jpg]
+       fix: rebalance the text (text-wrap: pretty, or a shorter line) so the last line holds more than one short word
+  WARN nav-current     div > header.nav
+       the nav stays on screen with 6 links to the page's sections, but never marks the one you are in (no link changes as the page scrolls)  [1024-05-nav-current.jpg]
+       fix: mark the link of the section on screen (a colour, a weight or a line under it) as the visitor scrolls
+  WARN visual-caption  div.group:nth-of-type(2) > div.grid > figure.chart-card.span-6:nth-of-type(1) > p.chart-note  "Merosot ke 44,13 (2025) — terendah dalam"
+       a muted 12px line of 1 row sits 12px under the canvas: it reads as a caption: "Merosot ke 44,13 (2025) — terendah dalam..."; no caption or description under any image, render or visual (house rule)  [1024-21-visual-caption.jpg]
+       fix: take the line away: no caption or description under, over or on any image, render or visual; a licence credit goes in one footer line
+  WARN visual-caption  div.group:nth-of-type(2) > div.grid > figure.chart-card.span-6:nth-of-type(2) > p.chart-note  "Soekarno 21,6 tahun; Soeharto 31,2 tahun"
+       a muted 12px line of 1 row sits 12px under the canvas: it reads as a caption: "Soekarno 21,6 tahun; Soeharto 31,2 tahun..."; no caption or description under any image, render or visual (house rule)  [1024-22-visual-caption.jpg]
+       fix: take the line away: no caption or description under, over or on any image, render or visual; a licence credit goes in one footer line
+  WARN visual-caption  div.wrap > div.group:nth-of-type(1) > div.grid.takeaway-grid > p.takeaway.span-4:nth-of-type(1)  "Puncak 1980-an: ~20–22% PDB, ditopang mi"
+       a muted 11px line of 2 rows sits 29px under the canvas: it reads as a caption: "Puncak 1980-an: ~20–22% PDB, ditopang mi..."; no caption or description under any image, render or visual (house rule)  [1024-25-visual-caption.jpg]
+       fix: take the line away: no caption or description under, over or on any image, render or visual; a licence credit goes in one footer line
+  WARN visual-caption  div.group:nth-of-type(1) > div.grid > figure.chart-card.span-12 > p.chart-note  "Lonjakan pada 2017 (tembakau gorila), 20"
+       a muted 12px line of 1 row sits 12px under the canvas: it reads as a caption: "Lonjakan pada 2017 (tembakau gorila), 20..."; no caption or description under any image, render or visual (house rule)  [1024-29-visual-caption.jpg]
+       fix: take the line away: no caption or description under, over or on any image, render or visual; a licence credit goes in one footer line
+  WARN visual-caption  div.group:nth-of-type(2) > div.grid > figure.chart-card.span-6:nth-of-type(1) > p.chart-note  "Sabu dan narkoba generik mendominasi; va"
+       a muted 12px line of 2 rows sits 12px under the canvas: it reads as a caption: "Sabu dan narkoba generik mendominasi; va..."; no caption or description under any image, render or visual (house rule)  [1024-32-visual-caption.jpg]
+       fix: take the line away: no caption or description under, over or on any image, render or visual; a licence credit goes in one footer line
+  WARN visual-caption  div.group:nth-of-type(2) > div.grid > figure.chart-card.span-6:nth-of-type(2) > p.chart-note  "Jakarta, Sumatera Utara, Kepulauan Riau "
+       a muted 12px line of 2 rows sits 12px under the canvas: it reads as a caption: "Jakarta, Sumatera Utara, Kepulauan Riau ..."; no caption or description under any image, render or visual (house rule)  [1024-33-visual-caption.jpg]
+       fix: take the line away: no caption or description under, over or on any image, render or visual; a licence credit goes in one footer line
+  WARN visual-caption  div.group:nth-of-type(1) > div.grid > figure.chart-card.span-12 > p.chart-note  "Lonjakan drastis pada 2026 (1.151 catata"
+       a muted 12px line of 1 row sits 12px under the canvas: it reads as a caption: "Lonjakan drastis pada 2026 (1.151 catata..."; no caption or description under any image, render or visual (house rule) (and 2 more like it: "Dendam, sakit hati d...", "Jakarta, Sumatera Ut...")  [1024-38-visual-caption.jpg]
+       fix: take the line away: no caption or description under, over or on any image, render or visual; a licence credit goes in one footer line
+
+820x1180  30 screens  33 FAIL  26 WARN
+  FAIL cut-text        footer.closing > div.wrap > div.closing__cta.close--word > p.close__word  "BERKAS INVESTIGASI"
+       cut 11px at the top by the overflow of footer.closing > div.wrap > div.closing__cta.close--word > p.close__word  [820-44-cut-text.jpg]
+       fix: give the text room: no overflow clipping a line, no line past its box
+  FAIL no-visual       section#top  "Siklus yang Tak Pernah Tuntas."
+       no picture, effect or mock in this section; a feature section needs a visual  [820-01-no-visual.jpg]
+       fix: give the section a visual: a UI fragment on a ground, real icons, or a photograph that fits
+  FAIL no-visual       section#ringkasan  "Ringkasan eksekutif"
+       no picture, effect or mock in this section; a feature section needs a visual  [820-03-no-visual.jpg]
+       fix: give the section a visual: a UI fragment on a ground, real icons, or a photograph that fits
+  FAIL no-visual       section#orde  "Orde Lama & Orde Baru"
+       no picture, effect or mock in this section; a feature section needs a visual  [820-06-no-visual.jpg]
+       fix: give the section a visual: a UI fragment on a ground, real icons, or a photograph that fits
+  FAIL no-visual       section#reformasi  "Reformasi & Kartelisasi"
+       no picture, effect or mock in this section; a feature section needs a visual  [820-08-no-visual.jpg]
+       fix: give the section a visual: a UI fragment on a ground, real icons, or a photograph that fits
+  FAIL no-visual       section#presiden  "Histori presiden"
+       no picture, effect or mock in this section; a feature section needs a visual  [820-11-no-visual.jpg]
+       fix: give the section a visual: a UI fragment on a ground, real icons, or a photograph that fits
+  FAIL no-visual       section#pemilu  "Pemilu & kepuasan publik"
+       pictures, effects and mocks cover 12% of this section; a feature section needs a visual (about 25% or more)  [820-21-no-visual.jpg]
+       fix: give the section a visual: a UI fragment on a ground, real icons, or a photograph that fits
+  FAIL no-visual       section#pajak  "Rasio pajak terhadap PDB"
+       pictures, effects and mocks cover 12% of this section; a feature section needs a visual (about 25% or more)  [820-24-no-visual.jpg]
+       fix: give the section a visual: a UI fragment on a ground, real icons, or a photograph that fits
+  FAIL no-visual       section#narkotika-pola  "Pengungkapan terbesar"
+       no picture, effect or mock in this section; a feature section needs a visual  [820-31-no-visual.jpg]
+       fix: give the section a visual: a UI fragment on a ground, real icons, or a photograph that fits
+  FAIL no-visual       section#pembunuhan-pola  "Kasus menonjol"
+       no picture, effect or mock in this section; a feature section needs a visual  [820-37-no-visual.jpg]
+       fix: give the section a visual: a UI fragment on a ground, real icons, or a photograph that fits
+  FAIL no-visual       section#kesimpulan  "Kesimpulan"
+       no picture, effect or mock in this section; a feature section needs a visual  [820-41-no-visual.jpg]
+       fix: give the section a visual: a UI fragment on a ground, real icons, or a photograph that fits
+  FAIL heading-scale   article.person-card.person-card--lg > div.person-head > div.who > h3  "Prabowo"
+       h3 headings in 3 sizes, 13px ("KONDISI RAKYAT — ORDE LA") to 24px (x1.85)  [820-12-heading-scale.jpg]
+       fix: size headings by level: the h1 largest, one size per level, each level below the one above
+  FAIL off-grid        div.wrap > div.group:nth-of-type(2) > div.thread-list > p.red-thread.thread-item:nth-of-type(1)  "1. Lapas sebagai Pusat Kendali. Sekitar "
+       left edge at 66px, 18px off the page margin at 48px (82 elements); 4 more in this section off the grid too (p.red-thread.thread-item:nth-of-type(2) at 66px, p.red-thread.thread-item:nth-of-type(3) at 66px, p.red-thread.thread-item:nth-of-type(4) at 66px, p.red-thread.thread-item:nth-of-type(5) at 66px)  [820-34-off-grid.jpg]
+       fix: move it onto the page margin, or the column edge its section uses
+  FAIL off-grid        div.wrap > div.group:nth-of-type(2) > div.thread-list > p.red-thread.thread-item:nth-of-type(1)  "1. Femisida dan Kekerasan dalam Relasi. "
+       left edge at 66px, 18px off the page margin at 48px (82 elements, like h3.group-title); 4 more in this section off the grid too (p.red-thread.thread-item:nth-of-type(2) at 66px, p.red-thread.thread-item:nth-of-type(3) at 66px, p.red-thread.thread-item:nth-of-type(4) at 66px, p.red-thread.thread-item:nth-of-type(5) at 66px)  [820-38-off-grid.jpg]
+       fix: move it onto the page margin, or the column edge its section uses
+  FAIL off-grid        div.wrap > div.group:nth-of-type(1) > div.thread-list.solo > p.red-thread.thread-item:nth-of-type(1)  "1. Oligarki Beradaptasi. Dari terpusat d"
+       left edge at 66px, 18px off the page margin at 48px (82 elements); 4 more in this section off the grid too (p.red-thread.thread-item:nth-of-type(2) at 66px, p.red-thread.thread-item:nth-of-type(3) at 66px, p.red-thread.thread-item:nth-of-type(4) at 66px, p.red-thread.thread-item:nth-of-type(5) at 66px)  [820-42-off-grid.jpg]
+       fix: move it onto the page margin, or the column edge its section uses
+  FAIL text-contrast   div.group:nth-of-type(1) > div.grid.grid--middle > div.span-6:nth-of-type(1) > p.split-line  "Konsentrasi kekuasaan, mobilisasi massa,"
+       body text in #9c9ea3 on #18191b reads 6.56:1 (needs 7:1); 6 like it, like "Otoritarianisme elekto", "Koalisi besar, oposisi", "Dari terpusat di bawah"  [820-05-text-contrast.jpg]
+       fix: body text in the ink at 7:1 or more; grey (4.5:1 or more) only for captions and labels
+  FAIL text-contrast   div.group:nth-of-type(1) > div.grid.grid--middle > div.span-6:nth-of-type(1) > p.split-line  "KIM Plus menguasai 81% kursi DPR; oposis"
+       body text in #9c9ea3 on #222427 reads 5.8:1 (needs 7:1)  [820-13-text-contrast.jpg]
+       fix: body text in the ink at 7:1 or more; grey (4.5:1 or more) only for captions and labels
+  FAIL hole            section#presiden  "Histori presiden"
+       an empty hole 700x448px inside the section (38% of the screen's height), with content above and below it  [820-15-hole.jpg]
+       fix: close the empty space: move the content together, or give the space the visual it lacks
+  FAIL hole            section#pemilu  "Pemilu & kepuasan publik"
+       an empty hole 742x784px inside the section (66% of the screen's height), with content above and below it  [820-22-hole.jpg]
+       fix: close the empty space: move the content together, or give the space the visual it lacks
+  FAIL hole            section#narkotika-pola  "Pengungkapan terbesar"
+       an empty hole 574x616px inside the section (52% of the screen's height), with content above and below it  [820-32-hole.jpg]
+       fix: close the empty space: move the content together, or give the space the visual it lacks
+  FAIL hole            section#pembunuhan-pola  "Kasus menonjol"
+       an empty hole 630x588px inside the section (50% of the screen's height), with content above and below it  [820-39-hole.jpg]
+       fix: close the empty space: move the content together, or give the space the visual it lacks
+  WARN cta             section#orde  "Orde Lama & Orde Baru"
+       a section over 1.5 screens long with no link or button in it  [820-07-cta.jpg]
+       fix: add the action: a button in the hero, one on every priced item, one in the closing section
+  WARN cta             section#reformasi  "Reformasi & Kartelisasi"
+       a section over 1.5 screens long with no link or button in it  [820-09-cta.jpg]
+       fix: add the action: a button in the hero, one on every priced item, one in the closing section
+  WARN cta             section#presiden  "Histori presiden"
+       a section over 1.5 screens long with no link or button in it  [820-16-cta.jpg]
+       fix: add the action: a button in the hero, one on every priced item, one in the closing section
+  WARN cta             section#data  "Kemunduran demokrasi"
+       a section over 1.5 screens long with no link or button in it  [820-17-cta.jpg]
+       fix: add the action: a button in the hero, one on every priced item, one in the closing section
+  WARN cta             section#pemilu  "Pemilu & kepuasan publik"
+       a section over 1.5 screens long with no link or button in it  [820-23-cta.jpg]
+       fix: add the action: a button in the hero, one on every priced item, one in the closing section
+  WARN cta             section#pajak  "Rasio pajak terhadap PDB"
+       a section over 1.5 screens long with no link or button in it  [820-26-cta.jpg]
+       fix: add the action: a button in the hero, one on every priced item, one in the closing section
+  WARN cta             section#narkotika  "Narkotika"
+       a section over 1.5 screens long with no link or button in it  [820-28-cta.jpg]
+       fix: add the action: a button in the hero, one on every priced item, one in the closing section
+  WARN cta             section#narkotika-pola  "Pengungkapan terbesar"
+       a section over 1.5 screens long with no link or button in it  [820-33-cta.jpg]
+       fix: add the action: a button in the hero, one on every priced item, one in the closing section
+  WARN cta             section#pembunuhan  "Pembunuhan"
+       a section over 1.5 screens long with no link or button in it  [820-36-cta.jpg]
+       fix: add the action: a button in the hero, one on every priced item, one in the closing section
+  WARN cta             section#pembunuhan-pola  "Kasus menonjol"
+       a section over 1.5 screens long with no link or button in it  [820-40-cta.jpg]
+       fix: add the action: a button in the hero, one on every priced item, one in the closing section
+  WARN cta             section#kesimpulan  "Kesimpulan"
+       a section over 1.5 screens long with no link or button in it  [820-43-cta.jpg]
+       fix: add the action: a button in the hero, one on every priced item, one in the closing section
+  WARN heading-scale   div.wrap > dl.facts-band > div:nth-of-type(1) > dd  "8"
+       figures in 2 sizes, 24, 34px ("1.117" at 24px, "8" at 34px)  [820-04-heading-scale.jpg]
+       fix: set the page's figures (stats, measures, prices) in one or two sizes
+  WARN section-gaps    section#top / section#ringkasan
+       394px between these sections, -38% against the median 632px  [820-45-section-gaps.jpg]
+       fix: use one gap between sections (all within 25% of each other)
+  WARN section-gaps    section#pemilu / section#pajak
+       850px between these sections, +34% against the median 632px  [820-46-section-gaps.jpg]
+       fix: use one gap between sections (all within 25% of each other)
+  WARN section-gaps    section#reformasi / section#presiden
+       uneven space at the edge of a band: 583px outside its edge, 117px inside it (the space on either side of a change of ground reads as one gap only when the two match)  [820-10-section-gaps.jpg]
+       fix: use one gap between sections (all within 25% of each other)
+  WARN hole            div.group:nth-of-type(1) > div.grid.grid--middle > div.span-6:nth-of-type(1) > article.person-card.person-card--lg  "2024–SEKARANG Prabowo KIM Plus 81%; opos"
+       the card is 724px wide but its content keeps to the left 55%: the right side stands empty  [820-14-hole.jpg]
+       fix: close the empty space: move the content together, or give the space the visual it lacks
+  WARN label-centre    header.nav > div.wrap.nav__bar > div.nav__actions > a.btn.btn--primary  "Baca investigasinya"
+       its label sits 18px off-centre (25px of room at the left, 43px at the right) (and 1 more like it: "Baca investigasinya")  [820-02-label-centre.jpg]
+       fix: centre the label in its button, or fill the empty side with an icon
+  WARN visual-caption  div.group:nth-of-type(2) > div.grid > figure.chart-card.span-6:nth-of-type(1) > p.chart-note  "Merosot ke 44,13 (2025) — terendah dalam"
+       a muted 12px line of 1 row sits 12px under the canvas: it reads as a caption: "Merosot ke 44,13 (2025) — terendah dalam..."; no caption or description under any image, render or visual (house rule)  [820-19-visual-caption.jpg]
+       fix: take the line away: no caption or description under, over or on any image, render or visual; a licence credit goes in one footer line
+  WARN visual-caption  div.group:nth-of-type(2) > div.grid > figure.chart-card.span-6:nth-of-type(2) > p.chart-note  "Soekarno 21,6 tahun; Soeharto 31,2 tahun"
+       a muted 12px line of 1 row sits 12px under the canvas: it reads as a caption: "Soekarno 21,6 tahun; Soeharto 31,2 tahun..."; no caption or description under any image, render or visual (house rule)  [820-20-visual-caption.jpg]
+       fix: take the line away: no caption or description under, over or on any image, render or visual; a licence credit goes in one footer line
+  WARN visual-caption  div.wrap > div.group:nth-of-type(1) > div.grid.takeaway-grid > p.takeaway.span-4:nth-of-type(1)  "Puncak 1980-an: ~20–22% PDB, ditopang mi"
+       a muted 11px line of 2 rows sits 29px under the canvas: it reads as a caption: "Puncak 1980-an: ~20–22% PDB, ditopang mi..."; no caption or description under any image, render or visual (house rule)  [820-25-visual-caption.jpg]
+       fix: take the line away: no caption or description under, over or on any image, render or visual; a licence credit goes in one footer line
+  WARN visual-caption  div.group:nth-of-type(1) > div.grid > figure.chart-card.span-12 > p.chart-note  "Lonjakan pada 2017 (tembakau gorila), 20"
+       a muted 12px line of 1 row sits 12px under the canvas: it reads as a caption: "Lonjakan pada 2017 (tembakau gorila), 20..."; no caption or description under any image, render or visual (house rule)  [820-27-visual-caption.jpg]
+       fix: take the line away: no caption or description under, over or on any image, render or visual; a licence credit goes in one footer line
+  WARN visual-caption  div.group:nth-of-type(2) > div.grid > figure.chart-card.span-6:nth-of-type(1) > p.chart-note  "Sabu dan narkoba generik mendominasi; va"
+       a muted 12px line of 1 row sits 12px under the canvas: it reads as a caption: "Sabu dan narkoba generik mendominasi; va..."; no caption or description under any image, render or visual (house rule)  [820-29-visual-caption.jpg]
+       fix: take the line away: no caption or description under, over or on any image, render or visual; a licence credit goes in one footer line
+  WARN visual-caption  div.group:nth-of-type(2) > div.grid > figure.chart-card.span-6:nth-of-type(2) > p.chart-note  "Jakarta, Sumatera Utara, Kepulauan Riau "
+       a muted 12px line of 1 row sits 12px under the canvas: it reads as a caption: "Jakarta, Sumatera Utara, Kepulauan Riau ..."; no caption or description under any image, render or visual (house rule)  [820-30-visual-caption.jpg]
+       fix: take the line away: no caption or description under, over or on any image, render or visual; a licence credit goes in one footer line
+  WARN visual-caption  div.group:nth-of-type(1) > div.grid > figure.chart-card.span-12 > p.chart-note  "Lonjakan drastis pada 2026 (1.151 catata"
+       a muted 12px line of 1 row sits 12px under the canvas: it reads as a caption: "Lonjakan drastis pada 2026 (1.151 catata..."; no caption or description under any image, render or visual (house rule) (and 2 more like it: "Dendam, sakit hati d...", "Jakarta, Sumatera Ut...")  [820-35-visual-caption.jpg]
+       fix: take the line away: no caption or description under, over or on any image, render or visual; a licence credit goes in one footer line
+  FAIL section-air     section#pemilu / section#pajak
+       850px of air between the content of these two sections: 128-480px (64-600px WARN) (every gap out of the band at 820px, top to bottom: 538px after "Ringkasan eksekutif ", 718px after "Orde Lama & Orde Bar", 741px after "Reformasi & Kartelis", 600px after "Histori presiden Del", 574px after "Kemunduran demokrasi", 850px after "Pemilu & kepuasan pu", 750px after "Rasio pajak terhadap", 601px after "Narkotika 1.117 cata", 795px after "Pengungkapan terbesa", 601px after "Pembunuhan 2.587+ ca", 776px after "Kasus menonjol 2002–") (SR-3)  [820-rhythm-01-section-air.jpg]
+       fix: keep 128-480px of air between the content of neighbouring sections (112-420px on a phone): the sections' padding (--padt, --padb)
+  FAIL section-air     section#narkotika-pola / section#pembunuhan
+       795px of air between the content of these two sections: 128-480px (64-600px WARN) (SR-3)  [820-rhythm-02-section-air.jpg]
+       fix: keep 128-480px of air between the content of neighbouring sections (112-420px on a phone): the sections' padding (--padt, --padb)
+  FAIL section-air     section#pembunuhan-pola / section#kesimpulan
+       776px of air between the content of these two sections: 128-480px (64-600px WARN) (SR-3)  [820-rhythm-03-section-air.jpg]
+       fix: keep 128-480px of air between the content of neighbouring sections (112-420px on a phone): the sections' padding (--padt, --padb)
+  FAIL section-air     section#ringkasan > div.wrap > p.kicker-line  "Berkas 01 · 1945–2026 · Tiga orde · Dela"
+       a top border across 100% of the container, between the section's content: sections and their parts are told apart by air and ground, not lines (SR-3)  [820-rhythm-04-section-air.jpg]
+       fix: take the rule out: sections and their parts are parted by their ground and the air between them
+  FAIL section-air     section#ringkasan > div.wrap > dl.facts-band  "Presiden 8Rasio pajak 2025 ~9,3%Catatan "
+       a top border across 100% of the container, between the section's content: sections and their parts are told apart by air and ground, not lines (SR-3)  [820-rhythm-05-section-air.jpg]
+       fix: take the rule out: sections and their parts are parted by their ground and the air between them
+  FAIL section-air     section#ringkasan > div.wrap > nav.jump-row  "Isi berkas Histori presiden Data & grafi"
+       a top border across 100% of the container, between the section's content: sections and their parts are told apart by air and ground, not lines (and 1 more like it: "BANK DUNIA, BPS, EIU, FR") (SR-3)  [820-rhythm-06-section-air.jpg]
+       fix: take the rule out: sections and their parts are parted by their ground and the air between them
+  WARN section-air     section#pemilu  "Pemilu & kepuasan publik Campuran survei"
+       screen group 1 of this two-screen section fills 32.1% of a screen: 40% or more (25% WARN) (SR-3)  [820-rhythm-13-section-air.jpg]
+       fix: fill the section to 55%: more content, a picture or a background layer, or merge it into the section above as its last block
+  WARN section-air     section#narkotika-pola  "Pengungkapan terbesar 2011–2026. Sumber:"
+       screen group 2 of this two-screen section fills 32.4% of a screen: 40% or more (25% WARN) (and 5 more like it: "Kasus menonjol 2002–2026", "Rasio pajak terhadap PDB", "Orde Lama & Orde Baru So") (SR-3)  [820-rhythm-14-section-air.jpg]
+       fix: fill the section to 55%: more content, a picture or a background layer, or merge it into the section above as its last block
+  FAIL one-section     section#narkotika-pola > div.wrap > div.group:nth-of-type(2) > div.note-panel  "Catatan metodologi Sumber data: 1.117 ca"
+       a band: a box 88% of the section wide on a ground of its own that holds only text: the section's own ground is the band (SR-4)  [820-rhythm-07-one-section.jpg]
+       fix: put every block of <main> in a <section>, and give a band its own section instead of a ground inside one
+  FAIL one-section     section#pembunuhan-pola > div.wrap > div.group:nth-of-type(2) > div.note-panel  "Catatan metodologi Sumber data: 2.587+ c"
+       a band: a box 88% of the section wide on a ground of its own that holds only text: the section's own ground is the band (SR-4)  [820-rhythm-08-one-section.jpg]
+       fix: put every block of <main> in a <section>, and give a band its own section instead of a ground inside one
+  FAIL container-edges article.person-card > div.person-head > div.who > h3  "Soekarno"
+       3 text blocks start on a left line at x 117, 69px from the container's left: text starts on the container's left, or on one split line (x 360, 422, 484) (also "Soeharto", "Jokowi") (SR-6)  [820-rhythm-09-container-edges.jpg]
+       fix: start the text on the container's left, or on the one split line every split shares
+  FAIL container-edges div.grid.grid--middle > div.span-6:nth-of-type(1) > article.person-card.person-card--lg > p.person-character  "KIM Plus 81%; oposisi nyaris tidak ada."
+       2 text blocks start on a left line at x 81, 33px from the container's left: text starts on the container's left, or on one split line (x 360, 422, 484) (also "KIM Plus 81% kursi DPR; oposisi ") (SR-6)  [820-rhythm-10-container-edges.jpg]
+       fix: start the text on the container's left, or on the one split line every split shares
+  FAIL container-edges div.group:nth-of-type(1) > div.grid > figure.chart-card.span-12 > figcaption.chart-title  "Kepuasan publik per presiden"
+       38 text blocks start on a left line at x 65, 17px from the container's left: text starts on the container's left, or on one split line (x 360, 422, 484) (also "Rasio pajak terhadap PDB: 1969–2", "Puncak 1980-an: ~20–22% PDB, dit", "Tren menurun: ~12% → ~10% dalam ") (SR-6)  [820-rhythm-11-container-edges.jpg]
+       fix: start the text on the container's left, or on the one split line every split shares
+  FAIL container-edges footer.closing > div.wrap > div.closing__cta.close--word > a.btn.btn--primary  "Baca investigasinya"
+       a box over half the container wide runs 48-688px, not on the container's lines at 48-772px (SR-6)  [820-rhythm-12-container-edges.jpg]
+       fix: run the picture or box from the container's left line to its right line, or put it in a row or a split
+
+768x1024  30 screens  32 FAIL  28 WARN
+  FAIL overlap-text    table.investigasi.table-compact > tbody > tr:nth-of-type(1) > td:nth-of-type(5)  "Vonis mati; banding ditolak."
+       lies over the text "PEMBUNUHAN BERENCANA" (td:nth-of-type(4) > span.era-badge.era-narkoba) (and 1 more like it: "Pelaku pacar korban; bur")  [768-35-overlap-text.jpg]
+       fix: move the box off the text (or the text off the box)
+  FAIL cut-text        footer.closing > div.wrap > div.closing__cta.close--word > p.close__word  "BERKAS INVESTIGASI"
+       cut 10px at the top by the overflow of footer.closing > div.wrap > div.closing__cta.close--word > p.close__word  [768-43-cut-text.jpg]
+       fix: give the text room: no overflow clipping a line, no line past its box
+  FAIL no-visual       section#top  "Siklus yang Tak Pernah Tuntas."
+       no picture, effect or mock in this section; a feature section needs a visual  [768-01-no-visual.jpg]
+       fix: give the section a visual: a UI fragment on a ground, real icons, or a photograph that fits
+  FAIL no-visual       section#ringkasan  "Ringkasan eksekutif"
+       no picture, effect or mock in this section; a feature section needs a visual  [768-03-no-visual.jpg]
+       fix: give the section a visual: a UI fragment on a ground, real icons, or a photograph that fits
+  FAIL no-visual       section#orde  "Orde Lama & Orde Baru"
+       no picture, effect or mock in this section; a feature section needs a visual  [768-06-no-visual.jpg]
+       fix: give the section a visual: a UI fragment on a ground, real icons, or a photograph that fits
+  FAIL no-visual       section#reformasi  "Reformasi & Kartelisasi"
+       no picture, effect or mock in this section; a feature section needs a visual  [768-08-no-visual.jpg]
+       fix: give the section a visual: a UI fragment on a ground, real icons, or a photograph that fits
+  FAIL no-visual       section#presiden  "Histori presiden"
+       no picture, effect or mock in this section; a feature section needs a visual  [768-13-no-visual.jpg]
+       fix: give the section a visual: a UI fragment on a ground, real icons, or a photograph that fits
+  FAIL no-visual       section#pemilu  "Pemilu & kepuasan publik"
+       pictures, effects and mocks cover 13% of this section; a feature section needs a visual (about 25% or more)  [768-20-no-visual.jpg]
+       fix: give the section a visual: a UI fragment on a ground, real icons, or a photograph that fits
+  FAIL no-visual       section#pajak  "Rasio pajak terhadap PDB"
+       pictures, effects and mocks cover 13% of this section; a feature section needs a visual (about 25% or more)  [768-23-no-visual.jpg]
+       fix: give the section a visual: a UI fragment on a ground, real icons, or a photograph that fits
+  FAIL no-visual       section#narkotika-pola  "Pengungkapan terbesar"
+       no picture, effect or mock in this section; a feature section needs a visual  [768-29-no-visual.jpg]
+       fix: give the section a visual: a UI fragment on a ground, real icons, or a photograph that fits
+  FAIL no-visual       section#pembunuhan-pola  "Kasus menonjol"
+       no picture, effect or mock in this section; a feature section needs a visual  [768-36-no-visual.jpg]
+       fix: give the section a visual: a UI fragment on a ground, real icons, or a photograph that fits
+  FAIL no-visual       section#kesimpulan  "Kesimpulan"
+       no picture, effect or mock in this section; a feature section needs a visual  [768-40-no-visual.jpg]
+       fix: give the section a visual: a UI fragment on a ground, real icons, or a photograph that fits
+  FAIL heading-scale   article.person-card.person-card--lg > div.person-head > div.who > h3  "Prabowo"
+       h3 headings in 3 sizes, 13px ("KONDISI RAKYAT — ORDE LA") to 24px (x1.85)  [768-10-heading-scale.jpg]
+       fix: size headings by level: the h1 largest, one size per level, each level below the one above
+  FAIL off-grid        div.wrap > div.group:nth-of-type(2) > div.thread-list > p.red-thread.thread-item:nth-of-type(1)  "1. Lapas sebagai Pusat Kendali. Sekitar "
+       left edge at 66px, 18px off the page margin at 48px (82 elements); 4 more in this section off the grid too (p.red-thread.thread-item:nth-of-type(2) at 66px, p.red-thread.thread-item:nth-of-type(3) at 66px, p.red-thread.thread-item:nth-of-type(4) at 66px, p.red-thread.thread-item:nth-of-type(5) at 66px)  [768-32-off-grid.jpg]
+       fix: move it onto the page margin, or the column edge its section uses
+  FAIL off-grid        div.wrap > div.group:nth-of-type(2) > div.thread-list > p.red-thread.thread-item:nth-of-type(1)  "1. Femisida dan Kekerasan dalam Relasi. "
+       left edge at 66px, 18px off the page margin at 48px (82 elements, like h3.group-title); 4 more in this section off the grid too (p.red-thread.thread-item:nth-of-type(2) at 66px, p.red-thread.thread-item:nth-of-type(3) at 66px, p.red-thread.thread-item:nth-of-type(4) at 66px, p.red-thread.thread-item:nth-of-type(5) at 66px)  [768-37-off-grid.jpg]
+       fix: move it onto the page margin, or the column edge its section uses
+  FAIL off-grid        div.wrap > div.group:nth-of-type(1) > div.thread-list.solo > p.red-thread.thread-item:nth-of-type(1)  "1. Oligarki Beradaptasi. Dari terpusat d"
+       left edge at 66px, 18px off the page margin at 48px (82 elements); 4 more in this section off the grid too (p.red-thread.thread-item:nth-of-type(2) at 66px, p.red-thread.thread-item:nth-of-type(3) at 66px, p.red-thread.thread-item:nth-of-type(4) at 66px, p.red-thread.thread-item:nth-of-type(5) at 66px)  [768-41-off-grid.jpg]
+       fix: move it onto the page margin, or the column edge its section uses
+  FAIL text-contrast   div.group:nth-of-type(1) > div.grid.grid--middle > div.span-6:nth-of-type(1) > p.split-line  "Konsentrasi kekuasaan, mobilisasi massa,"
+       body text in #9c9ea3 on #18191b reads 6.56:1 (needs 7:1); 6 like it, like "Otoritarianisme elekto", "Koalisi besar, oposisi", "Dari terpusat di bawah"  [768-05-text-contrast.jpg]
+       fix: body text in the ink at 7:1 or more; grey (4.5:1 or more) only for captions and labels
+  FAIL text-contrast   div.group:nth-of-type(1) > div.grid.grid--middle > div.span-6:nth-of-type(1) > p.split-line  "KIM Plus menguasai 81% kursi DPR; oposis"
+       body text in #9c9ea3 on #222427 reads 5.8:1 (needs 7:1)  [768-11-text-contrast.jpg]
+       fix: body text in the ink at 7:1 or more; grey (4.5:1 or more) only for captions and labels
+  FAIL hole            section#narkotika-pola  "Pengungkapan terbesar"
+       an empty hole 780x442px inside the section (43% of the screen's height), with content above and below it  [768-30-hole.jpg]
+       fix: close the empty space: move the content together, or give the space the visual it lacks
+  WARN cta             section#orde  "Orde Lama & Orde Baru"
+       a section over 1.5 screens long with no link or button in it  [768-07-cta.jpg]
+       fix: add the action: a button in the hero, one on every priced item, one in the closing section
+  WARN cta             section#reformasi  "Reformasi & Kartelisasi"
+       a section over 1.5 screens long with no link or button in it  [768-09-cta.jpg]
+       fix: add the action: a button in the hero, one on every priced item, one in the closing section
+  WARN cta             section#presiden  "Histori presiden"
+       a section over 1.5 screens long with no link or button in it  [768-14-cta.jpg]
+       fix: add the action: a button in the hero, one on every priced item, one in the closing section
+  WARN cta             section#data  "Kemunduran demokrasi"
+       a section over 1.5 screens long with no link or button in it  [768-16-cta.jpg]
+       fix: add the action: a button in the hero, one on every priced item, one in the closing section
+  WARN cta             section#pemilu  "Pemilu & kepuasan publik"
+       a section over 1.5 screens long with no link or button in it  [768-21-cta.jpg]
+       fix: add the action: a button in the hero, one on every priced item, one in the closing section
+  WARN cta             section#pajak  "Rasio pajak terhadap PDB"
+       a section over 1.5 screens long with no link or button in it  [768-24-cta.jpg]
+       fix: add the action: a button in the hero, one on every priced item, one in the closing section
+  WARN cta             section#narkotika  "Narkotika"
+       a section over 1.5 screens long with no link or button in it  [768-25-cta.jpg]
+       fix: add the action: a button in the hero, one on every priced item, one in the closing section
+  WARN cta             section#narkotika-pola  "Pengungkapan terbesar"
+       a section over 1.5 screens long with no link or button in it  [768-31-cta.jpg]
+       fix: add the action: a button in the hero, one on every priced item, one in the closing section
+  WARN cta             section#pembunuhan  "Pembunuhan"
+       a section over 1.5 screens long with no link or button in it  [768-34-cta.jpg]
+       fix: add the action: a button in the hero, one on every priced item, one in the closing section
+  WARN cta             section#pembunuhan-pola  "Kasus menonjol"
+       a section over 1.5 screens long with no link or button in it  [768-38-cta.jpg]
+       fix: add the action: a button in the hero, one on every priced item, one in the closing section
+  WARN cta             section#kesimpulan  "Kesimpulan"
+       a section over 1.5 screens long with no link or button in it  [768-42-cta.jpg]
+       fix: add the action: a button in the hero, one on every priced item, one in the closing section
+  WARN heading-scale   div.wrap > dl.facts-band > div:nth-of-type(1) > dd  "8"
+       figures in 2 sizes, 24, 34px ("1.117" at 24px, "8" at 34px)  [768-04-heading-scale.jpg]
+       fix: set the page's figures (stats, measures, prices) in one or two sizes
+  WARN section-gaps    section#top / section#ringkasan
+       281px between these sections, -41% against the median 476px  [768-44-section-gaps.jpg]
+       fix: use one gap between sections (all within 25% of each other)
+  WARN section-gaps    section#pemilu / section#pajak
+       654px between these sections, +37% against the median 476px  [768-45-section-gaps.jpg]
+       fix: use one gap between sections (all within 25% of each other)
+  WARN section-gaps    section#narkotika-pola / section#pembunuhan
+       625px between these sections, +31% against the median 476px  [768-46-section-gaps.jpg]
+       fix: use one gap between sections (all within 25% of each other)
+  WARN section-gaps    section#pembunuhan-pola / section#kesimpulan
+       610px between these sections, +28% against the median 476px  [768-39-section-gaps.jpg]
+       fix: use one gap between sections (all within 25% of each other)
+  WARN section-gaps    section#presiden / section#data
+       uneven space at the edge of a band: 117px outside its edge, 287px inside it (the space on either side of a change of ground reads as one gap only when the two match)  [768-15-section-gaps.jpg]
+       fix: use one gap between sections (all within 25% of each other)
+  WARN hole            div.group:nth-of-type(1) > div.grid.grid--middle > div.span-6:nth-of-type(1) > article.person-card.person-card--lg  "2024–SEKARANG Prabowo KIM Plus 81%; opos"
+       the card is 672px wide but its content keeps to the left 59%: the right side stands empty  [768-12-hole.jpg]
+       fix: close the empty space: move the content together, or give the space the visual it lacks
+  WARN label-centre    header.nav > div.wrap.nav__bar > div.nav__actions > a.btn.btn--primary  "Baca investigasinya"
+       its label sits 18px off-centre (25px of room at the left, 43px at the right) (and 1 more like it: "Baca investigasinya")  [768-02-label-centre.jpg]
+       fix: centre the label in its button, or fill the empty side with an icon
+  WARN visual-caption  div.group:nth-of-type(2) > div.grid > figure.chart-card.span-6:nth-of-type(1) > p.chart-note  "Merosot ke 44,13 (2025) — terendah dalam"
+       a muted 12px line of 1 row sits 12px under the canvas: it reads as a caption: "Merosot ke 44,13 (2025) — terendah dalam..."; no caption or description under any image, render or visual (house rule)  [768-18-visual-caption.jpg]
+       fix: take the line away: no caption or description under, over or on any image, render or visual; a licence credit goes in one footer line
+  WARN visual-caption  div.group:nth-of-type(2) > div.grid > figure.chart-card.span-6:nth-of-type(2) > p.chart-note  "Soekarno 21,6 tahun; Soeharto 31,2 tahun"
+       a muted 12px line of 1 row sits 12px under the canvas: it reads as a caption: "Soekarno 21,6 tahun; Soeharto 31,2 tahun..."; no caption or description under any image, render or visual (house rule)  [768-19-visual-caption.jpg]
+       fix: take the line away: no caption or description under, over or on any image, render or visual; a licence credit goes in one footer line
+  WARN visual-caption  div.wrap > div.group:nth-of-type(1) > div.grid.takeaway-grid > p.takeaway.span-4:nth-of-type(1)  "Puncak 1980-an: ~20–22% PDB, ditopang mi"
+       a muted 11px line of 2 rows sits 29px under the canvas: it reads as a caption: "Puncak 1980-an: ~20–22% PDB, ditopang mi..."; no caption or description under any image, render or visual (house rule)  [768-22-visual-caption.jpg]
+       fix: take the line away: no caption or description under, over or on any image, render or visual; a licence credit goes in one footer line
+  WARN visual-caption  div.group:nth-of-type(1) > div.grid > figure.chart-card.span-12 > p.chart-note  "Lonjakan pada 2017 (tembakau gorila), 20"
+       a muted 12px line of 1 row sits 12px under the canvas: it reads as a caption: "Lonjakan pada 2017 (tembakau gorila), 20..."; no caption or description under any image, render or visual (house rule)  [768-26-visual-caption.jpg]
+       fix: take the line away: no caption or description under, over or on any image, render or visual; a licence credit goes in one footer line
+  WARN visual-caption  div.group:nth-of-type(2) > div.grid > figure.chart-card.span-6:nth-of-type(1) > p.chart-note  "Sabu dan narkoba generik mendominasi; va"
+       a muted 12px line of 1 row sits 12px under the canvas: it reads as a caption: "Sabu dan narkoba generik mendominasi; va..."; no caption or description under any image, render or visual (house rule)  [768-27-visual-caption.jpg]
+       fix: take the line away: no caption or description under, over or on any image, render or visual; a licence credit goes in one footer line
+  WARN visual-caption  div.group:nth-of-type(2) > div.grid > figure.chart-card.span-6:nth-of-type(2) > p.chart-note  "Jakarta, Sumatera Utara, Kepulauan Riau "
+       a muted 12px line of 1 row sits 12px under the canvas: it reads as a caption: "Jakarta, Sumatera Utara, Kepulauan Riau ..."; no caption or description under any image, render or visual (house rule)  [768-28-visual-caption.jpg]
+       fix: take the line away: no caption or description under, over or on any image, render or visual; a licence credit goes in one footer line
+  WARN visual-caption  div.group:nth-of-type(1) > div.grid > figure.chart-card.span-12 > p.chart-note  "Lonjakan drastis pada 2026 (1.151 catata"
+       a muted 12px line of 2 rows sits 12px under the canvas: it reads as a caption: "Lonjakan drastis pada 2026 (1.151 catata..."; no caption or description under any image, render or visual (house rule) (and 2 more like it: "Dendam, sakit hati d...", "Jakarta, Sumatera Ut...")  [768-33-visual-caption.jpg]
+       fix: take the line away: no caption or description under, over or on any image, render or visual; a licence credit goes in one footer line
+  FAIL section-height  div > footer.closing  "Siklus yang Tak Pernah Tuntas. Baca inve"
+       the section is 1165px tall (1.1 screens), 141px over one screen (1024px): every section after the hero is one screen or two, 2px either way (SR-2)  [768-rhythm-01-section-height.jpg]
+       fix: set the section to one screen or two (height: calc(var(--h,1) * 100vh), --h 1 or 2) and cut or split its content to fit
+  FAIL section-air     section#pemilu / section#pajak
+       654px of air between the content of these two sections: 128-480px (64-600px WARN) (every gap out of the band at 768px, top to bottom: 562px after "Orde Lama & Orde Bar", 585px after "Reformasi & Kartelis", 654px after "Pemilu & kepuasan pu", 594px after "Rasio pajak terhadap", 639px after "Pengungkapan terbesa", 620px after "Kasus menonjol 2002–") (SR-3)  [768-rhythm-02-section-air.jpg]
+       fix: keep 128-480px of air between the content of neighbouring sections (112-420px on a phone): the sections' padding (--padt, --padb)
+  FAIL section-air     section#narkotika-pola / section#pembunuhan
+       639px of air between the content of these two sections: 128-480px (64-600px WARN) (SR-3)  [768-rhythm-03-section-air.jpg]
+       fix: keep 128-480px of air between the content of neighbouring sections (112-420px on a phone): the sections' padding (--padt, --padb)
+  FAIL section-air     section#pembunuhan-pola / section#kesimpulan
+       620px of air between the content of these two sections: 128-480px (64-600px WARN) (SR-3)  [768-rhythm-04-section-air.jpg]
+       fix: keep 128-480px of air between the content of neighbouring sections (112-420px on a phone): the sections' padding (--padt, --padb)
+  FAIL section-air     section#ringkasan > div.wrap > p.kicker-line  "Berkas 01 · 1945–2026 · Tiga orde · Dela"
+       a top border across 100% of the container, between the section's content: sections and their parts are told apart by air and ground, not lines (SR-3)  [768-rhythm-05-section-air.jpg]
+       fix: take the rule out: sections and their parts are parted by their ground and the air between them
+  FAIL section-air     section#ringkasan > div.wrap > dl.facts-band  "Presiden 8Rasio pajak 2025 ~9,3%Catatan "
+       a top border across 100% of the container, between the section's content: sections and their parts are told apart by air and ground, not lines (SR-3)  [768-rhythm-06-section-air.jpg]
+       fix: take the rule out: sections and their parts are parted by their ground and the air between them
+  FAIL section-air     section#ringkasan > div.wrap > nav.jump-row  "Isi berkas Histori presiden Data & grafi"
+       a top border across 100% of the container, between the section's content: sections and their parts are told apart by air and ground, not lines (and 1 more like it: "BANK DUNIA, BPS, EIU, FR") (SR-3)  [768-rhythm-07-section-air.jpg]
+       fix: take the rule out: sections and their parts are parted by their ground and the air between them
+  WARN section-air     section#pemilu  "Pemilu & kepuasan publik Campuran survei"
+       screen group 1 of this two-screen section fills 36.9% of a screen: 40% or more (25% WARN) (SR-3)  [768-rhythm-14-section-air.jpg]
+       fix: fill the section to 55%: more content, a picture or a background layer, or merge it into the section above as its last block
+  WARN section-air     section#narkotika-pola  "Pengungkapan terbesar 2011–2026. Sumber:"
+       screen group 2 of this two-screen section fills 37.3% of a screen: 40% or more (25% WARN) (and 1 more like it: "Kasus menonjol 2002–2026") (SR-3)  [768-rhythm-15-section-air.jpg]
+       fix: fill the section to 55%: more content, a picture or a background layer, or merge it into the section above as its last block
+  FAIL one-section     section#narkotika-pola > div.wrap > div.group:nth-of-type(2) > div.note-panel  "Catatan metodologi Sumber data: 1.117 ca"
+       a band: a box 88% of the section wide on a ground of its own that holds only text: the section's own ground is the band (SR-4)  [768-rhythm-08-one-section.jpg]
+       fix: put every block of <main> in a <section>, and give a band its own section instead of a ground inside one
+  FAIL one-section     section#pembunuhan-pola > div.wrap > div.group:nth-of-type(2) > div.note-panel  "Catatan metodologi Sumber data: 2.587+ c"
+       a band: a box 88% of the section wide on a ground of its own that holds only text: the section's own ground is the band (SR-4)  [768-rhythm-09-one-section.jpg]
+       fix: put every block of <main> in a <section>, and give a band its own section instead of a ground inside one
+  FAIL container-edges article.person-card > div.person-head > div.who > h3  "Soekarno"
+       3 text blocks start on a left line at x 117, 69px from the container's left: text starts on the container's left, or on one split line (x 338, 396, 454) (also "Soeharto", "Jokowi") (SR-6)  [768-rhythm-10-container-edges.jpg]
+       fix: start the text on the container's left, or on the one split line every split shares
+  FAIL container-edges div.grid.grid--middle > div.span-6:nth-of-type(1) > article.person-card.person-card--lg > p.person-character  "KIM Plus 81%; oposisi nyaris tidak ada."
+       2 text blocks start on a left line at x 81, 33px from the container's left: text starts on the container's left, or on one split line (x 338, 396, 454) (also "KIM Plus 81% kursi DPR; oposisi ") (SR-6)  [768-rhythm-11-container-edges.jpg]
+       fix: start the text on the container's left, or on the one split line every split shares
+  FAIL container-edges div.group:nth-of-type(1) > div.grid > figure.chart-card.span-12 > figcaption.chart-title  "Kepuasan publik per presiden"
+       38 text blocks start on a left line at x 65, 17px from the container's left: text starts on the container's left, or on one split line (x 338, 396, 454) (also "Rasio pajak terhadap PDB: 1969–2", "Puncak 1980-an: ~20–22% PDB, dit", "Tren menurun: ~12% → ~10% dalam ") (SR-6)  [768-rhythm-12-container-edges.jpg]
+       fix: start the text on the container's left, or on the one split line every split shares
+  FAIL container-edges footer.closing > div.wrap > div.closing__cta.close--word > a.btn.btn--primary  "Baca investigasinya"
+       a box over half the container wide runs 48-688px, not on the container's lines at 48-720px (SR-6)  [768-rhythm-13-container-edges.jpg]
+       fix: run the picture or box from the container's left line to its right line, or put it in a row or a split
+
+390x844  31 screens  36 FAIL  31 WARN
+  FAIL credit-wall     footer.closing > div.wrap > div.closing__links > p.footer__sources  "BANK DUNIA, BPS, EIU, FREEDOM HOUSE, V-D"
+       the photo credits fill 5 lines in 1 block (1 credits, 186 characters): a wall of credits  [390-53-credit-wall.jpg]
+       fix: one short credit line in the footer (or the credits on an imprint page): never a block of names
+  FAIL overlap-text    table.investigasi.rik-table > tbody > tr.era-lama-row > td:nth-of-type(4)  "Demokrasi Terpimpin; Nasakom."
+       lies over the text "Dampak sosial: 10 juta orang turun kelas" (div.focus-panel.focus-panel--lg > p.focus-note)  [390-14-overlap-text.jpg]
+       fix: move the box off the text (or the text off the box)
+  FAIL overlap-text    table.investigasi.rik-table > tbody > tr.era-reformasi-row:nth-of-type(3) > td:nth-of-type(2)  "1998–1999"
+       lies over the text "B.J. Habibie" (span.presiden-cell > strong)  [390-15-overlap-text.jpg]
+       fix: move the box off the text (or the text off the box)
+  FAIL overlap-text    h2#data-h  "Kemunduran demokrasi"
+       lies over the text "2024–sekarang" (tr.era-reformasi-row:nth-of-type(8) > td:nth-of-type(2))  [390-19-overlap-text.jpg]
+       fix: move the box off the text (or the text off the box)
+  FAIL overlap-text    section#narkotika-pola > div.wrap > div.group:nth-of-type(2) > h3.group-title  "LIMA POLA DARI DATA NARKOTIKA"
+       lies over the text "TNI AL; jaringan Amerika Latin." (tr:nth-of-type(10) > td:nth-of-type(5)) (and 2 more like it: "LIMA POLA DARI DATA PEMB", "Banyak korban adalah per")  [390-37-overlap-text.jpg]
+       fix: move the box off the text (or the text off the box)
+  FAIL overlap-text    table.investigasi.table-compact > tbody > tr:nth-of-type(1) > td:nth-of-type(5)  "Vonis mati; banding ditolak."
+       lies over the text "PEMBUNUHAN BERENCANA" (td:nth-of-type(4) > span.era-badge.era-narkoba) (and 1 more like it: "Motif ekonomi; kedua ora")  [390-42-overlap-text.jpg]
+       fix: move the box off the text (or the text off the box)
+  FAIL overlap-text    div.group:nth-of-type(2) > div.thread-list > p.red-thread.thread-item:nth-of-type(1) > strong  "1. Femisida dan Kekerasan dalam Relasi."
+       lies over the text "2026" (tr:nth-of-type(10) > td.font-strong)  [390-44-overlap-text.jpg]
+       fix: move the box off the text (or the text off the box)
+  FAIL cut-text        table.investigasi.rik-table > tbody > tr.era-reformasi-row:nth-of-type(7) > td:nth-of-type(4)  "Kartelisasi; koalisi besar."
+       3 of 4 lines hidden by the overflow of section#presiden > div.wrap > div.group:nth-of-type(2) > div.table-wrap (and 1 more like it: "Kemiskinan 9,36%; 21,35 ")  [390-20-cut-text.jpg]
+       fix: give the text room: no overflow clipping a line, no line past its box
+  FAIL cut-text        footer.closing > div.wrap > div.closing__cta.close--word > p.close__word  "BERKAS INVESTIGASI"
+       cut 6px at the top by the overflow of footer.closing > div.wrap > div.closing__cta.close--word > p.close__word  [390-52-cut-text.jpg]
+       fix: give the text room: no overflow clipping a line, no line past its box
+  FAIL no-visual       section#top  "Siklus yang Tak Pernah Tuntas."
+       no picture, effect or mock in this section; a feature section needs a visual  [390-01-no-visual.jpg]
+       fix: give the section a visual: a UI fragment on a ground, real icons, or a photograph that fits
+  FAIL no-visual       section#ringkasan  "Ringkasan eksekutif"
+       no picture, effect or mock in this section; a feature section needs a visual  [390-03-no-visual.jpg]
+       fix: give the section a visual: a UI fragment on a ground, real icons, or a photograph that fits
+  FAIL no-visual       section#orde  "Orde Lama & Orde Baru"
+       no picture, effect or mock in this section; a feature section needs a visual  [390-07-no-visual.jpg]
+       fix: give the section a visual: a UI fragment on a ground, real icons, or a photograph that fits
+  FAIL no-visual       section#reformasi  "Reformasi & Kartelisasi"
+       no picture, effect or mock in this section; a feature section needs a visual  [390-10-no-visual.jpg]
+       fix: give the section a visual: a UI fragment on a ground, real icons, or a photograph that fits
+  FAIL no-visual       section#presiden  "Histori presiden"
+       no picture, effect or mock in this section; a feature section needs a visual  [390-16-no-visual.jpg]
+       fix: give the section a visual: a UI fragment on a ground, real icons, or a photograph that fits
+  FAIL no-visual       section#narkotika-pola  "Pengungkapan terbesar"
+       no picture, effect or mock in this section; a feature section needs a visual  [390-35-no-visual.jpg]
+       fix: give the section a visual: a UI fragment on a ground, real icons, or a photograph that fits
+  FAIL no-visual       section#pembunuhan-pola  "Kasus menonjol"
+       no picture, effect or mock in this section; a feature section needs a visual  [390-45-no-visual.jpg]
+       fix: give the section a visual: a UI fragment on a ground, real icons, or a photograph that fits
+  FAIL no-visual       section#kesimpulan  "Kesimpulan"
+       no picture, effect or mock in this section; a feature section needs a visual  [390-51-no-visual.jpg]
+       fix: give the section a visual: a UI fragment on a ground, real icons, or a photograph that fits
+  FAIL heading-scale   article.person-card.person-card--lg > div.person-head > div.who > h3  "Prabowo"
+       h3 headings in 3 sizes, 13px ("KONDISI RAKYAT — ORDE LA") to 24px (x1.85)  [390-12-heading-scale.jpg]
+       fix: size headings by level: the h1 largest, one size per level, each level below the one above
+  FAIL off-grid        section#ringkasan > div.wrap > nav.jump-row > a:nth-of-type(5)  "Pembunuhan"
+       left edge at 192px, 12px off a common edge of its section at 204px (4 elements, like dd)  [390-04-off-grid.jpg]
+       fix: move it onto the page margin, or the column edge its section uses
+  FAIL off-grid        div.wrap > div.group:nth-of-type(2) > div.thread-list > p.red-thread.thread-item:nth-of-type(1)  "1. Lapas sebagai Pusat Kendali. Sekitar "
+       left edge at 42px, 18px off the page margin at 24px (79 elements, like h3.group-title); 4 more in this section off the grid too (p.red-thread.thread-item:nth-of-type(2) at 42px, p.red-thread.thread-item:nth-of-type(3) at 42px, p.red-thread.thread-item:nth-of-type(4) at 42px, p.red-thread.thread-item:nth-of-type(5) at 42px)  [390-38-off-grid.jpg]
+       fix: move it onto the page margin, or the column edge its section uses
+  FAIL off-grid        div.wrap > div.group:nth-of-type(1) > div.thread-list.solo > p.red-thread.thread-item:nth-of-type(1)  "1. Oligarki Beradaptasi. Dari terpusat d"
+       left edge at 42px, 18px off the page margin at 24px (79 elements, like h3.group-title); 4 more in this section off the grid too (p.red-thread.thread-item:nth-of-type(2) at 42px, p.red-thread.thread-item:nth-of-type(3) at 42px, p.red-thread.thread-item:nth-of-type(4) at 42px, p.red-thread.thread-item:nth-of-type(5) at 42px)  [390-48-off-grid.jpg]
+       fix: move it onto the page margin, or the column edge its section uses
+  FAIL text-contrast   div.group:nth-of-type(1) > div.grid.grid--middle > div.span-6:nth-of-type(1) > p.split-line  "Konsentrasi kekuasaan, mobilisasi massa,"
+       body text in #9c9ea3 on #18191b reads 6.56:1 (needs 7:1); 6 like it, like "Otoritarianisme elekto", "Koalisi besar, oposisi", "Dari terpusat di bawah"  [390-06-text-contrast.jpg]
+       fix: body text in the ink at 7:1 or more; grey (4.5:1 or more) only for captions and labels
+  FAIL text-contrast   div.group:nth-of-type(1) > div.grid.grid--middle > div.span-6:nth-of-type(1) > p.split-line  "KIM Plus menguasai 81% kursi DPR; oposis"
+       body text in #9c9ea3 on #222427 reads 5.8:1 (needs 7:1)  [390-13-text-contrast.jpg]
+       fix: body text in the ink at 7:1 or more; grey (4.5:1 or more) only for captions and labels
+  FAIL section-gaps    section#pemilu / section#pajak
+       812px between these sections, +145% against the median 332px  [390-54-section-gaps.jpg]
+       fix: use one gap between sections (all within 25% of each other)
+  FAIL section-gaps    section#pembunuhan-pola / section#kesimpulan
+       73px between these sections, -78% against the median 332px  [390-47-section-gaps.jpg]
+       fix: use one gap between sections (all within 25% of each other)
+  WARN cut-text        table.investigasi.rik-table > thead > tr > th:nth-of-type(2)  "MASA JABATAN"
+       sits across the edge of a panel behind it  [390-17-cut-text.jpg]
+       fix: give the text room: no overflow clipping a line, no line past its box
+  WARN no-visual       section#pemilu  "Pemilu & kepuasan publik"
+       pictures, effects and mocks cover 24% of this section; a feature section needs a visual (about 25% or more)  [390-26-no-visual.jpg]
+       fix: give the section a visual: a UI fragment on a ground, real icons, or a photograph that fits
+  WARN no-visual       section#pajak  "Rasio pajak terhadap PDB"
+       pictures, effects and mocks cover 15% of this section; a feature section needs a visual (about 25% or more)  [390-28-no-visual.jpg]
+       fix: give the section a visual: a UI fragment on a ground, real icons, or a photograph that fits
+  WARN cta             section#orde  "Orde Lama & Orde Baru"
+       a section over 1.5 screens long with no link or button in it  [390-08-cta.jpg]
+       fix: add the action: a button in the hero, one on every priced item, one in the closing section
+  WARN cta             section#reformasi  "Reformasi & Kartelisasi"
+       a section over 1.5 screens long with no link or button in it  [390-11-cta.jpg]
+       fix: add the action: a button in the hero, one on every priced item, one in the closing section
+  WARN cta             section#presiden  "Histori presiden"
+       a section over 1.5 screens long with no link or button in it  [390-18-cta.jpg]
+       fix: add the action: a button in the hero, one on every priced item, one in the closing section
+  WARN cta             section#data  "Kemunduran demokrasi"
+       a section over 1.5 screens long with no link or button in it  [390-23-cta.jpg]
+       fix: add the action: a button in the hero, one on every priced item, one in the closing section
+  WARN cta             section#pemilu  "Pemilu & kepuasan publik"
+       a section over 1.5 screens long with no link or button in it  [390-27-cta.jpg]
+       fix: add the action: a button in the hero, one on every priced item, one in the closing section
+  WARN cta             section#pajak  "Rasio pajak terhadap PDB"
+       a section over 1.5 screens long with no link or button in it  [390-29-cta.jpg]
+       fix: add the action: a button in the hero, one on every priced item, one in the closing section
+  WARN cta             section#narkotika  "Narkotika"
+       a section over 1.5 screens long with no link or button in it  [390-30-cta.jpg]
+       fix: add the action: a button in the hero, one on every priced item, one in the closing section
+  WARN cta             section#narkotika-pola  "Pengungkapan terbesar"
+       a section over 1.5 screens long with no link or button in it  [390-36-cta.jpg]
+       fix: add the action: a button in the hero, one on every priced item, one in the closing section
+  WARN cta             section#pembunuhan  "Pembunuhan"
+       a section over 1.5 screens long with no link or button in it  [390-40-cta.jpg]
+       fix: add the action: a button in the hero, one on every priced item, one in the closing section
+  WARN cta             section#pembunuhan-pola  "Kasus menonjol"
+       a section over 1.5 screens long with no link or button in it  [390-46-cta.jpg]
+       fix: add the action: a button in the hero, one on every priced item, one in the closing section
+  WARN cta             section#kesimpulan  "Kesimpulan"
+       a section over 1.5 screens long with no link or button in it  [390-49-cta.jpg]
+       fix: add the action: a button in the hero, one on every priced item, one in the closing section
+  WARN body-size       div.group:nth-of-type(1) > div.thread-list.solo > p.red-thread.thread-item:nth-of-type(1) > span  "Dari terpusat di bawah Soeharto menjadi "
+       9 of 17 paragraphs of running text are set under 16px (13, 14px)  [390-50-body-size.jpg]
+       fix: set running text at 16px or more
+  WARN section-gaps    section#top / section#ringkasan
+       155px between these sections, -53% against the median 332px  [390-05-section-gaps.jpg]
+       fix: use one gap between sections (all within 25% of each other)
+  WARN section-gaps    section#orde / section#reformasi
+       452px between these sections, +36% against the median 332px  [390-09-section-gaps.jpg]
+       fix: use one gap between sections (all within 25% of each other)
+  WARN section-gaps    section#presiden / section#data
+       142px between these sections, -54% against the median 307px of gaps at a change of ground  [390-21-section-gaps.jpg]
+       fix: use one gap between sections (all within 25% of each other)
+  WARN section-gaps    section#narkotika-pola / section#pembunuhan
+       133px between these sections, -60% against the median 332px  [390-39-section-gaps.jpg]
+       fix: use one gap between sections (all within 25% of each other)
+  WARN section-gaps    section#presiden / section#data
+       uneven space at the edge of a band: 94px outside its edge, 48px inside it (the space on either side of a change of ground reads as one gap only when the two match)  [390-22-section-gaps.jpg]
+       fix: use one gap between sections (all within 25% of each other)
+  WARN label-centre    header.nav > div.wrap.nav__bar > div.nav__actions > a.btn.btn--primary  "Baca investigasinya"
+       its label sits 18px off-centre (13px of room at the left, 31px at the right)  [390-02-label-centre.jpg]
+       fix: centre the label in its button, or fill the empty side with an icon
+  WARN orphan          div.group:nth-of-type(1) > div.grid > figure.chart-card.span-12 > figcaption.chart-title  "TREN PEMBERITAAN NARKOBA PER TAHUN: 2011"
+       its last line holds only "2011–2026"  [390-31-orphan.jpg]
+       fix: rebalance the text (text-wrap: pretty, or a shorter line) so the last line holds more than one short word
+  WARN visual-caption  div.group:nth-of-type(2) > div.grid > figure.chart-card.span-6:nth-of-type(1) > p.chart-note  "Merosot ke 44,13 (2025) — terendah dalam"
+       a muted 12px line of 1 row sits 12px under the canvas: it reads as a caption: "Merosot ke 44,13 (2025) — terendah dalam..."; no caption or description under any image, render or visual (house rule)  [390-24-visual-caption.jpg]
+       fix: take the line away: no caption or description under, over or on any image, render or visual; a licence credit goes in one footer line
+  WARN visual-caption  div.group:nth-of-type(2) > div.grid > figure.chart-card.span-6:nth-of-type(2) > p.chart-note  "Soekarno 21,6 tahun; Soeharto 31,2 tahun"
+       a muted 12px line of 1 row sits 12px under the canvas: it reads as a caption: "Soekarno 21,6 tahun; Soeharto 31,2 tahun..."; no caption or description under any image, render or visual (house rule)  [390-25-visual-caption.jpg]
+       fix: take the line away: no caption or description under, over or on any image, render or visual; a licence credit goes in one footer line
+  WARN visual-caption  div.group:nth-of-type(1) > div.grid > figure.chart-card.span-12 > p.chart-note  "Lonjakan pada 2017 (tembakau gorila), 20"
+       a muted 12px line of 2 rows sits 12px under the canvas: it reads as a caption: "Lonjakan pada 2017 (tembakau gorila), 20..."; no caption or description under any image, render or visual (house rule)  [390-32-visual-caption.jpg]
+       fix: take the line away: no caption or description under, over or on any image, render or visual; a licence credit goes in one footer line
+  WARN visual-caption  div.group:nth-of-type(2) > div.grid > figure.chart-card.span-6:nth-of-type(1) > p.chart-note  "Sabu dan narkoba generik mendominasi; va"
+       a muted 12px line of 2 rows sits 12px under the canvas: it reads as a caption: "Sabu dan narkoba generik mendominasi; va..."; no caption or description under any image, render or visual (house rule)  [390-33-visual-caption.jpg]
+       fix: take the line away: no caption or description under, over or on any image, render or visual; a licence credit goes in one footer line
+  WARN visual-caption  div.group:nth-of-type(2) > div.grid > figure.chart-card.span-6:nth-of-type(2) > p.chart-note  "Jakarta, Sumatera Utara, Kepulauan Riau "
+       a muted 12px line of 2 rows sits 12px under the canvas: it reads as a caption: "Jakarta, Sumatera Utara, Kepulauan Riau ..."; no caption or description under any image, render or visual (house rule)  [390-34-visual-caption.jpg]
+       fix: take the line away: no caption or description under, over or on any image, render or visual; a licence credit goes in one footer line
+  WARN visual-caption  div.group:nth-of-type(2) > div.grid > figure.chart-card.span-6:nth-of-type(1) > p.chart-note  "Dendam, sakit hati dan narkoba mendomina"
+       a muted 12px line of 2 rows sits 12px under the canvas: it reads as a caption: "Dendam, sakit hati dan narkoba mendomina..."; no caption or description under any image, render or visual (house rule)  [390-41-visual-caption.jpg]
+       fix: take the line away: no caption or description under, over or on any image, render or visual; a licence credit goes in one footer line
+  WARN visual-caption  div.group:nth-of-type(2) > div.grid > figure.chart-card.span-6:nth-of-type(2) > p.chart-note  "Jakarta, Sumatera Utara, Jawa Barat dan "
+       a muted 12px line of 2 rows sits 12px under the canvas: it reads as a caption: "Jakarta, Sumatera Utara, Jawa Barat dan ..."; no caption or description under any image, render or visual (house rule)  [390-43-visual-caption.jpg]
+       fix: take the line away: no caption or description under, over or on any image, render or visual; a licence credit goes in one footer line
+  FAIL section-height  section#pembunuhan-pola  "Kasus menonjol 2002–2026. Sumber: 2.587+"
+       the section's content does not fit it: its content is 21px taller than the section (scrollHeight 1709, clientHeight 1688); its lowest content ends 1699px below its top, past 1640px (the section less 48px of bottom padding); 2 parts lie outside the section's box; its first screen group ends 855px below its top, past 796px (SR-2)  [390-rhythm-01-section-height.jpg]
+       fix: fit the content above the section's bottom padding (--padb), or make it two screens (.g2) in two groups
+  FAIL section-height  section#orde  "Orde Lama & Orde Baru Soekarno memusatka"
+       the section's content does not fit it: its first screen group ends 860px below its top, past 796px (SR-2)  [390-rhythm-02-section-height.jpg]
+       fix: fit the content above the section's bottom padding (--padb), or make it two screens (.g2) in two groups
+  FAIL section-height  section#reformasi  "Reformasi & Kartelisasi 1998–2024: ruang"
+       the section's content does not fit it: its first screen group ends 856px below its top, past 796px (and 10 more like it: "Histori presiden Delapan", "Kemunduran demokrasi Fre", "Pemilu & kepuasan publik") (SR-2)  [390-rhythm-03-section-height.jpg]
+       fix: fit the content above the section's bottom padding (--padb), or make it two screens (.g2) in two groups
+  FAIL section-air     section#pemilu / section#pajak
+       812px of air between the content of these two sections: 112-420px (56-560px WARN) (every gap out of the band at 390px, top to bottom: 492px after "Orde Lama & Orde Bar", 812px after "Pemilu & kepuasan pu", 83px after "Kasus menonjol 2002–") (SR-3)  [390-rhythm-04-section-air.jpg]
+       fix: keep 128-480px of air between the content of neighbouring sections (112-420px on a phone): the sections' padding (--padt, --padb)
+  WARN section-air     section#orde / section#reformasi
+       492px of air between the content of these two sections: 112-420px (56-560px WARN) (SR-3)  [390-rhythm-12-section-air.jpg]
+       fix: keep 128-480px of air between the content of neighbouring sections (112-420px on a phone): the sections' padding (--padt, --padb)
+  WARN section-air     section#pembunuhan-pola / section#kesimpulan
+       83px of air between the content of these two sections: 112-420px (56-560px WARN) (SR-3)  [390-rhythm-13-section-air.jpg]
+       fix: keep 128-480px of air between the content of neighbouring sections (112-420px on a phone): the sections' padding (--padt, --padb)
+  FAIL section-air     section#pemilu  "Pemilu & kepuasan publik Campuran survei"
+       screen group 2 of this two-screen section fills 13.5% of a screen: 40% or more (25% WARN) (SR-3)  [390-rhythm-05-section-air.jpg]
+       fix: fill the section to 55%: more content, a picture or a background layer, or merge it into the section above as its last block
+  FAIL section-air     section#ringkasan > div.wrap > dl.facts-band  "Presiden 8Rasio pajak 2025 ~9,3%Catatan "
+       a top border across 100% of the container, between the section's content: sections and their parts are told apart by air and ground, not lines (SR-3)  [390-rhythm-06-section-air.jpg]
+       fix: take the rule out: sections and their parts are parted by their ground and the air between them
+  FAIL section-air     section#ringkasan > div.wrap > nav.jump-row  "Isi berkas Histori presiden Data & grafi"
+       a top border across 100% of the container, between the section's content: sections and their parts are told apart by air and ground, not lines (SR-3)  [390-rhythm-07-section-air.jpg]
+       fix: take the rule out: sections and their parts are parted by their ground and the air between them
+  FAIL section-air     footer.closing > div.wrap > div.closing__links > p.footer__sources  "BANK DUNIA, BPS, EIU, FREEDOM HOUSE, V-D"
+       a top border across 100% of the container, between the section's content: sections and their parts are told apart by air and ground, not lines (SR-3)  [390-rhythm-08-section-air.jpg]
+       fix: take the rule out: sections and their parts are parted by their ground and the air between them
+  FAIL container-edges article.person-card > div.person-head > div.who > h3  "Soekarno"
+       3 text blocks start on a left line at x 93, 69px from the container's left: text starts on the container's left, or on one split line (x 177, 207, 238) (also "Soeharto", "Jokowi") (SR-6)  [390-rhythm-09-container-edges.jpg]
+       fix: start the text on the container's left, or on the one split line every split shares
+  FAIL container-edges div.grid.grid--middle > div.span-6:nth-of-type(1) > article.person-card.person-card--lg > p.person-character  "KIM Plus 81%; oposisi nyaris tidak ada."
+       2 text blocks start on a left line at x 57, 33px from the container's left: text starts on the container's left, or on one split line (x 177, 207, 238) (also "KIM Plus 81% kursi DPR; oposisi ") (SR-6)  [390-rhythm-10-container-edges.jpg]
+       fix: start the text on the container's left, or on the one split line every split shares
+  FAIL container-edges div.group:nth-of-type(1) > div.grid > figure.chart-card.span-12 > figcaption.chart-title  "Kepuasan publik per presiden"
+       38 text blocks start on a left line at x 41, 17px from the container's left: text starts on the container's left, or on one split line (x 177, 207, 238) (also "Rasio pajak terhadap PDB: 1969–2", "Puncak 1980-an: ~20–22% PDB, dit", "Tren menurun: ~12% → ~10% dalam ") (SR-6)  [390-rhythm-11-container-edges.jpg]
+       fix: start the text on the container's left, or on the one split line every split shares
+
+first screen at 1280, 1152, 896  0 FAIL  0 WARN
+
+checks
+  PASS assets                 PASS shader-lint            PASS gl-fallback            
+  PASS empty-visual           PASS hero-fill              PASS flush                  
+  PASS placeholder            PASS sample-label           WARN caption                
+  FAIL credit-wall            PASS nav                    PASS nav-covers             
+  PASS spill                  PASS off-viewport           PASS fold-card              
+  PASS hover-spill            FAIL overlap-text           PASS row-gap                
+  FAIL cut-text               PASS fold-cut               PASS marquee                
+  PASS scroll-linked          PASS scroll-reveal          PASS pinned                 
+  PASS loop-pause             PASS reduced-motion         PASS hidden-content         
+  PASS webgl                  FAIL no-visual              PASS text-only              
+  PASS card-visual            PASS hidden-visual          PASS card-family            
+  PASS card-layout            PASS nesting                PASS effect-repeat          
+  PASS ui-fit                 PASS ui-centre              PASS dark-ground            
+  FAIL button-styles          PASS button-shape           FAIL same-action            
+  PASS button-picture         WARN cta                    PASS pricing-tiers          
+  FAIL copy-headline          PASS copy-fact              FAIL copy-headings          
+  PASS copy-buttons           PASS copy-actions           FAIL heading-scale          
+  PASS stagger                PASS top-stagger            FAIL off-grid               
+  PASS col-edge               PASS right-edge             PASS centre-axis            
+  PASS tilt                   PASS contrast               FAIL text-contrast          
+  WARN body-size              PASS busy-ground            FAIL section-gaps           
+  PASS proximity              FAIL hole                   PASS links                  
+  PASS forms                  PASS photo-upscale          PASS photo-set              
+  WARN photo-credit           PASS nav-family             WARN nav-labels             
+  PASS link-styles            PASS heading-align          WARN label-centre           
+  PASS fake-button            PASS stranded-action        WARN orphan                 
+  PASS unit-break             PASS tab-wrap               PASS effects-fit            
+  PASS fade-cut               PASS photo-weight           WARN copy-length            
+  WARN nav-current            PASS progress-bar           PASS photo-repeat           
+  PASS button-contrast        PASS photo-print            PASS grounds                
+  PASS split-align            PASS fact-agree             PASS fold-action            
+  PASS action-count           PASS one-screen             PASS hover                  
+  PASS hover-move             PASS product-shown          PASS same-object            
+  PASS font-load              FAIL visual-caption         PASS visual-empty           
+  PASS effect-kind            PASS street-number          PASS postcode               
+  PASS coordinates            PASS company-number         PASS phone-number           
+  PASS hero-screen            FAIL section-height         FAIL section-air            
+  FAIL one-section            PASS one-heading            FAIL container-edges        
+  FAIL row-lines              FAIL split-pair             PASS motion-layer           
+  PASS count-text             PASS loop-cycle             PASS section-tile           
+
+total  158 FAIL  146 WARN  (crops and report.json in /tmp/taste-skill-consistency/127.0.0.1-8899)

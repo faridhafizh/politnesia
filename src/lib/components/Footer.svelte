@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { CREDITS, SOURCES_LINE } from '#lib/data/copy';
+	import { CREDITS } from '#lib/data/copy';
 </script>
 
 <footer class="closing" aria-labelledby="close-h">
@@ -9,7 +9,7 @@
 				<h2 id="close-h">Siklus yang Tak Pernah Tuntas.</h2>
 			</div>
 			<a class="btn btn--primary btn--xl" href="#top">Baca investigasinya<svg class="m-arrow" viewBox="0 0 12 12" aria-hidden="true"><path class="m-arrow__stem" d="M1 6h8" /><path class="m-arrow__head" d="M4.5 2.5 8 6l-3.5 3.5" /></svg></a>
-			<p class="close__word" aria-hidden="true">BERKAS<br />INVESTIGASI</p>
+			<p class="close__word" aria-hidden="true">BERKAS INVESTIGASI</p>
 		</div>
 		<div class="closing__links">
 			<div class="grid">
@@ -37,7 +37,6 @@
 					</p>
 				</div>
 			</div>
-			<p class="footer__sources">{SOURCES_LINE}</p>
 			<div class="footer__legal">
 				<span>© 2026 Berkas Investigasi</span>
 				<details class="credits">
