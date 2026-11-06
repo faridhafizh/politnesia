@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Investigasi: Siklus Politik Indonesia 1945–Sekarang</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    :root { --font-apple: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-apple); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+
+    .loader { position: fixed; inset: 0; background: #0c0a09; z-index: 999; display: flex; align-items: center; justify-content: center; flex-direction: column; transition: opacity 0.7s ease, visibility 0.7s ease; }
+    .loader.hidden { opacity: 0; visibility: hidden; }
+    .loader-icon { font-size: 40px; color: #dc2626; animation: pulse 1s ease-in-out infinite; }
+    .loader-text { font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase; color: #78716c; margin-top: 20px; }
+    .loader-track { width: 220px; height: 2px; background: rgba(255,255,255,0.1); margin-top: 20px; border-radius: 1px; overflow: hidden; }
+    .loader-fill { height: 100%; background: #dc2626; width: 0; animation: loadFill 1.3s cubic-bezier(0.65,0,0.35,1) forwards; box-shadow: 0 0 10px rgba(220,38,38,0.8); }
+    @keyframes loadFill { to { width: 100%; } }
+    @keyframes pulse { 0%,100% { opacity:1; transform: scale(1); } 50% { opacity:0.5; transform: scale(0.95); } }
+
+    .scroll-progress { position: fixed; top: 0; left: 0; right: 0; height: 2px; z-index: 100; }
+    .scroll-progress-bar { height: 100%; width: 0; background: linear-gradient(90deg,#dc2626,#f87171); box-shadow: 0 0 12px rgba(220,38,38,0.7); transition: width 0.1s linear; }
+    .back-top { position: fixed; bottom: 24px; right: 24px; width: 44px; height: 44px; border-radius: 50%; background: rgba(220,38,38,0.9); color: white; font-size: 20px; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transform: translateY(20px); transition: opacity .3s, transform .3s, background .2s; z-index: 90; border: 1px solid rgba(255,255,255,0.1); cursor: pointer; box-shadow: 0 4px 20px rgba(220,38,38,0.4); }
+    .back-top.visible { opacity: 1; pointer-events: auto; transform: translateY(0); }
+    .back-top:hover { background: #dc2626; transform: translateY(-3px); }
+
+    .hero-word { display: inline-block; opacity: 0; transform: translateY(50px) rotateX(-90deg); transform-origin: bottom center; }
+    body.loaded .hero-word { animation: wordIn .9s cubic-bezier(.16,1,.3,1) forwards; animation-delay: calc(var(--i)*.09s); }
+    @keyframes wordIn { to { opacity:1; transform: translateY(0) rotateX(0); } }
+    .hero-sub { opacity: 0; transform: translateY(20px); }
+    body.loaded .hero-sub { animation: fadeUp .9s cubic-bezier(.16,1,.3,1) .7s forwards; }
+    @keyframes fadeUp { to { opacity:1; transform: translateY(0); } }
+
+    .stamp { transform: rotate(-6deg) scale(.5); border: 2px solid #dc2626; color: #dc2626; font-weight: 800; letter-spacing: .15em; display: inline-block; padding: .2rem .8rem; font-size: .65rem; text-transform: uppercase; opacity: 0; box-shadow: inset 0 0 0 1px rgba(220,38,38,.2); }
+    body.loaded .stamp { animation: stampIn .6s cubic-bezier(.16,1,.3,1) .9s forwards; }
+    @keyframes stampIn { 0% { transform: rotate(-25deg) scale(2.5); opacity:0; } 60% { transform: rotate(-4deg) scale(.95); opacity:1; } 100% { transform: rotate(-6deg) scale(1); opacity:1; } }
+
+    .reveal { opacity:0; transform: translateY(30px); transition: opacity .8s cubic-bezier(.16,1,.3,1), transform .8s cubic-bezier(.16,1,.3,1); transition-delay: var(--d,0ms); }
+    .reveal.revealed { opacity:1; transform: translateY(0); }
+
+    .tab-btn { position: relative; padding: .5rem .9rem; font-size: .7rem; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: #78716c; border-bottom: 2px solid transparent; transition: color .25s, border-color .25s; white-space: nowrap; }
+    .tab-btn:hover { color: #d6d3d1; }
+    .tab-btn.active { color: #dc2626; border-bottom-color: #dc2626; }
+
+    .tab-panel { display: none; animation: panelIn .45s cubic-bezier(.16,1,.3,1); }
+    .tab-panel.active { display: block; }
+    @keyframes panelIn { from { opacity:0; transform: translateY(12px); } to { opacity:1; transform: translateY(0); } }
+
+    table.investigasi { width: 100%; border-collapse: collapse; font-size: .75rem; }
+    table.investigasi th { text-align: left; padding: .55rem .45rem; border-bottom: 1px solid #44403c; color: #a8a29e; font-weight: 600; text-transform: uppercase; letter-spacing: .05em; font-size: .6rem; vertical-align: bottom; }
+    table.investigasi td { padding: .55rem .45rem; border-bottom: 1px solid #292524; color: #d6d3d1; vertical-align: top; line-height: 1.5; }
+    table.investigasi tr:last-child td { border-bottom: none; }
+    table.investigasi td.num { font-variant-numeric: tabular-nums; text-align: right; white-space: nowrap; }
+    table.investigasi tbody tr { opacity:0; transform: translateX(-16px); transition: opacity .45s, transform .45s, background .2s; transition-delay: var(--row-delay,0ms); }
+    table.investigasi.revealed tbody tr { opacity:1; transform: translateX(0); }
+    table.investigasi tbody tr:hover { background: rgba(220,38,38,.06); }
+    table.investigasi tr.era-lama td { background: rgba(120,53,15,.08); }
+    table.investigasi tr.era-baru td { background: rgba(22,101,52,.08); }
+    table.investigasi tr.era-reformasi td { background: rgba(30,64,175,.08); }
+
+    .badge { display: inline-block; padding: .12rem .4rem; border-radius: .25rem; font-size: .58rem; font-weight: 700; letter-spacing: .03em; text-transform: uppercase; }
+    .badge-lama { background: rgba(180,83,9,.2); color: #fbbf24; }
+    .badge-baru { background: rgba(22,101,52,.2); color: #4ade80; }
+    .badge-reformasi { background: rgba(30,64,175,.2); color: #93c5fd; }
+    .badge-narkoba { background: rgba(220,38,38,.2); color: #fca5a5; }
+
+    .inv-card { transition: transform .35s cubic-bezier(.16,1,.3,1), border-color .3s, box-shadow .35s; }
+    .inv-card:hover { transform: translateY(-3px); border-color: rgba(220,38,38,.4); box-shadow: 0 10px 30px rgba(220,38,38,.1); }
+
+    .data-bar-track { height: 5px; background: rgba(255,255,255,.08); border-radius: 3px; overflow: hidden; }
+    .data-bar-fill { height: 100%; width: 0; background: linear-gradient(90deg,#dc2626,#f87171); border-radius: 3px; transition: width 1.4s cubic-bezier(.16,1,.3,1); box-shadow: 0 0 8px rgba(220,38,38,.5); }
+    .revealed .data-bar-fill { width: var(--target-w); }
+
+    .chart-container { position: relative; width: 100%; height: 280px; }
+    @media (max-width: 768px) { .chart-container { height: 240px; } }
+
+    .red-thread { border-left: 2px solid #dc2626; padding-left: 1rem; position: relative; }
+    .red-thread::before { content: ''; position: absolute; left: -2px; top: 0; width: 2px; height: 100%; background: linear-gradient(to bottom, transparent, #dc2626, #f87171, #dc2626, transparent); opacity: .5; box-shadow: 0 0 8px rgba(220,38,38,.5); }
+
+    .h-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: thin; scrollbar-color: #44403c transparent; }
+    .h-scroll::-webkit-scrollbar { height: 6px; }
+    .h-scroll::-webkit-scrollbar-thumb { background: #44403c; border-radius: 3px; }
+
+    .stat-mini { background: rgba(28,25,23,0.5); border: 1px solid #292524; border-radius: 0.75rem; padding: 1rem; text-align: center; transition: transform 0.3s, border-color 0.3s; }
+    .stat-mini:hover { transform: translateY(-2px); border-color: rgba(220,38,38,0.4); }
+
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; } }
+  </style>
+</head>
+<body class="bg-stone-950 text-stone-200 antialiased selection:bg-red-600 selection:text-white">
+
+  <div id="loader" class="loader">
+    <div class="loader-icon">▣</div>
+    <div class="loader-text">MEMBUKA BERKAS INVESTIGASI</div>
+    <div class="loader-track"><div class="loader-fill"></div></div>
+  </div>
+
+  <div class="scroll-progress"><div class="scroll-progress-bar" id="scrollProgress"></div></div>
+  <button id="backTop" class="back-top" aria-label="Kembali ke atas">↑</button>
+
+  <header class="max-w-5xl mx-auto px-5 md:px-8 pt-8 pb-4">
+    <div class="flex items-center justify-between border-b border-stone-800 pb-3 mb-5">
+      <div class="flex items-center gap-3">
+        <span class="text-red-500 text-lg font-black">▣</span>
+        <span class="text-[0.6rem] font-bold tracking-[0.25em] uppercase text-stone-500">Berkas Investigasi</span>
+      </div>
+      <span class="stamp">Rahasia / Terbatas</span>
+    </div>
+    <h1 class="text-3xl md:text-5xl font-black leading-[1.08] tracking-tight text-white">
+      <span class="hero-word" style="--i:0">Siklus</span>
+      <span class="hero-word" style="--i:1">yang</span>
+      <span class="hero-word" style="--i:2">Tak</span>
+      <span class="hero-word" style="--i:3">Pernah</span>
+      <span class="hero-word text-red-500" style="--i:4">Tuntas</span>
+    </h1>
+    <p class="hero-sub mt-3 text-stone-400 text-sm max-w-2xl leading-relaxed">
+      Politik Indonesia berganti rezim, tetapi pola kekuasaan dan kondisi rakyat sering mengulang. Dari hiperinflasi Orde Lama hingga tekanan daya beli hari ini—dan dari perang melawan narkoba yang tak kunjung usai.
+    </p>
+  </header>
+
+  <main class="max-w-5xl mx-auto px-5 md:px-8 pb-16">
+
+    <section class="bg-stone-900/60 border border-stone-800 rounded-xl p-5 md:p-6 mb-8 reveal">
+      <h2 class="text-[0.65rem] font-bold tracking-[0.2em] uppercase text-red-500 mb-3">Ringkasan Eksekutif</h2>
+      <p class="text-stone-300 text-sm leading-relaxed">
+        Tiga orde dan delapan presiden telah berganti. Reformasi membuka demokrasi elektoral, tetapi sejak 2014 terjadi pembalikan: kebebasan sipil menyusut dan oposisi melembaga. Di sisi lain, dari 1.117 catatan berita narkoba (2011–2026) dan <strong class="text-white">2.587+ catatan pembunuhan (2002–2026)</strong>, terlihat pola yang sama: pengungkapan meningkat, tetapi kekerasan terus bereproduksi—dari lapas hingga jalanan, dari narkoba hingga femisida.
+      </p>
+    </section>
+
+    <div class="mb-6 border-b border-stone-800 overflow-x-auto h-scroll">
+      <div class="flex gap-1 min-w-max" id="tabNav">
+        <button class="tab-btn active" data-tab="lama">Orde Lama</button>
+        <button class="tab-btn" data-tab="baru">Orde Baru</button>
+        <button class="tab-btn" data-tab="reformasi">Reformasi</button>
+        <button class="tab-btn" data-tab="jokowi">Kartelisasi</button>
+        <button class="tab-btn" data-tab="prabowo">Prabowo</button>
+        <button class="tab-btn" data-tab="presiden">Histori Presiden</button>
+        <button class="tab-btn" data-tab="data">Data & Grafik</button>
+        <button class="tab-btn" data-tab="pajak">Perpajakan</button>
+        <button class="tab-btn" data-tab="narkotika">Narkotika</button>
+        <button class="tab-btn" data-tab="pembunuhan">Pembunuhan</button>
+      </div>
+    </div>
+
+    <!-- ================= TAB ORDE LAMA ================= -->
+    <div class="tab-panel active" id="tab-lama">
+      <div class="grid md:grid-cols-2 gap-5">
+        <div class="bg-stone-900/50 border border-stone-800 rounded-xl p-5 inv-card">
+          <div class="flex items-center gap-3 mb-3">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/0/01/Presiden_Sukarno.jpg" alt="Soekarno" class="w-10 h-10 rounded-full object-cover border-2 border-red-900/40" loading="lazy">
+            <div><span class="badge badge-lama">1945–1966</span><h3 class="text-lg font-bold text-white">Soekarno</h3></div>
+          </div>
+          <p class="text-sm text-stone-400 leading-relaxed mb-3">Demokrasi parlementer yang bebas tetapi tidak stabil. Dekrit Presiden 5 Juli 1959 mengakhiri Konstituante dan membubarkan DPR, memusatkan kekuasaan di Soekarno.</p>
+          <div class="red-thread text-sm text-stone-400"><strong class="text-stone-200">Karakter:</strong> Konsentrasi kekuasaan, mobilisasi massa, kompromi Nasakom yang rapuh.</div>
+        </div>
+        <div class="bg-stone-900/50 border border-stone-800 rounded-xl p-5 inv-card">
+          <h2 class="text-[0.65rem] font-bold tracking-[0.2em] uppercase text-red-500 mb-3">Kondisi Rakyat</h2>
+          <div class="space-y-3">
+            <div><div class="flex justify-between text-sm mb-1"><span class="text-stone-300">Inflasi puncak (1965)</span><span class="font-bold text-white">hingga 650%</span></div><div class="data-bar-track"><div class="data-bar-fill" style="--target-w:100%"></div></div></div>
+            <div><div class="flex justify-between text-sm mb-1"><span class="text-stone-300">Pendapatan per kapita (1965)</span><span class="font-bold text-white">di bawah 1940</span></div><div class="data-bar-track"><div class="data-bar-fill" style="--target-w:30%"></div></div></div>
+            <div class="p-3 bg-red-950/20 border border-red-900/30 rounded-lg"><p class="text-xs text-stone-300 leading-relaxed"><strong class="text-white">Dampak sosial:</strong> Kemiskinan luas, ketidakstabilan sosial, kesenjangan tajam.</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= TAB ORDE BARU ================= -->
+    <div class="tab-panel" id="tab-baru">
+      <div class="grid md:grid-cols-2 gap-5">
+        <div class="bg-stone-900/50 border border-stone-800 rounded-xl p-5 inv-card">
+          <div class="flex items-center gap-3 mb-3">
+            <img src="https://upload.wikimedia.org/wikipedia/id/b/b0/President_Suharto%2C_1998.jpg" alt="Soeharto" class="w-10 h-10 rounded-full object-cover border-2 border-red-900/40" loading="lazy">
+            <div><span class="badge badge-baru">1966–1998</span><h3 class="text-lg font-bold text-white">Soeharto</h3></div>
+          </div>
+          <p class="text-sm text-stone-400 leading-relaxed mb-3">Otoritarianisme elektoral: pemilu rutin, Golkar dominan, oposisi dikooptasi. Stabilitas dan pertumbuhan menjadi legitimasi.</p>
+          <div class="red-thread text-sm text-stone-400"><strong class="text-stone-200">Karakter:</strong> Stabilitas di atas kebebasan; KKN masif.</div>
+        </div>
+        <div class="bg-stone-900/50 border border-stone-800 rounded-xl p-5 inv-card">
+          <h2 class="text-[0.65rem] font-bold tracking-[0.2em] uppercase text-red-500 mb-3">Kondisi Rakyat</h2>
+          <div class="space-y-3">
+            <div><div class="flex justify-between text-sm mb-1"><span class="text-stone-300">Kemiskinan 1971 → 1995</span><span class="font-bold text-white">47% → 15%</span></div><div class="data-bar-track"><div class="data-bar-fill" style="--target-w:32%"></div></div></div>
+            <div><div class="flex justify-between text-sm mb-1"><span class="text-stone-300">Kemiskinan 1996 → 1998</span><span class="font-bold text-white">17,7% → 24,2%</span></div><div class="data-bar-track"><div class="data-bar-fill" style="--target-w:52%"></div></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= TAB REFORMASI ================= -->
+    <div class="tab-panel" id="tab-reformasi">
+      <div class="grid md:grid-cols-2 gap-5">
+        <div class="bg-stone-900/50 border border-stone-800 rounded-xl p-5 inv-card">
+          <div class="flex items-center gap-3 mb-3">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/f/f1/Bacharuddin_Jusuf_Habibie_official_portrait.jpg" alt="Habibie" class="w-10 h-10 rounded-full object-cover border-2 border-red-900/40" loading="lazy">
+            <div><span class="badge badge-reformasi">1998–1999</span><h3 class="text-lg font-bold text-white">B.J. Habibie</h3></div>
+          </div>
+          <p class="text-sm text-stone-400 leading-relaxed mb-3">Pendobrak awal Reformasi: kebebasan pers, pemilu demokratis, amandemen UUD.</p>
+        </div>
+        <div class="bg-stone-900/50 border border-stone-800 rounded-xl p-5 inv-card">
+          <div class="flex items-center gap-3 mb-3">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/0/02/Gusdur.jpg" alt="Gus Dur" class="w-10 h-10 rounded-full object-cover border-2 border-red-900/40" loading="lazy">
+            <div><span class="badge badge-reformasi">1999–2001</span><h3 class="text-lg font-bold text-white">Gus Dur</h3></div>
+          </div>
+          <p class="text-sm text-stone-400 leading-relaxed mb-3">Pluralisme dan toleransi; konflik dengan DPR berujung impeachment.</p>
+        </div>
+        <div class="bg-stone-900/50 border border-stone-800 rounded-xl p-5 inv-card">
+          <div class="flex items-center gap-3 mb-3">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/8/88/President_Megawati_Sukarnoputri_-_Indonesia.jpg" alt="Megawati" class="w-10 h-10 rounded-full object-cover border-2 border-red-900/40" loading="lazy">
+            <div><span class="badge badge-reformasi">2001–2004</span><h3 class="text-lg font-bold text-white">Megawati</h3></div>
+          </div>
+          <p class="text-sm text-stone-400 leading-relaxed mb-3">Presiden perempuan pertama; pilpres langsung pertama 2004.</p>
+        </div>
+        <div class="bg-stone-900/50 border border-stone-800 rounded-xl p-5 inv-card">
+          <div class="flex items-center gap-3 mb-3">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/4/42/Susilo_Bambang_Yudhoyono%2C_official_presidential_portrait_%282004%29.jpg" alt="SBY" class="w-10 h-10 rounded-full object-cover border-2 border-red-900/40" loading="lazy">
+            <div><span class="badge badge-reformasi">2004–2014</span><h3 class="text-lg font-bold text-white">SBY</h3></div>
+          </div>
+          <p class="text-sm text-stone-400 leading-relaxed mb-3">Pilkada langsung, penguatan KPK, damai Aceh 2005.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= TAB KARTELISASI ================= -->
+    <div class="tab-panel" id="tab-jokowi">
+      <div class="grid md:grid-cols-2 gap-5">
+        <div class="bg-stone-900/50 border border-stone-800 rounded-xl p-5 inv-card">
+          <div class="flex items-center gap-3 mb-3">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/b/be/Joko_Widodo_2019_official_portrait.jpg" alt="Jokowi" class="w-10 h-10 rounded-full object-cover border-2 border-red-900/40" loading="lazy">
+            <div><span class="badge badge-reformasi">2014–2024</span><h3 class="text-lg font-bold text-white">Jokowi</h3></div>
+          </div>
+          <p class="text-sm text-stone-400 leading-relaxed mb-3">Kartelisasi: koalisi besar, oposisi melemah, politik dinasti menonjol.</p>
+        </div>
+        <div class="bg-stone-900/50 border border-stone-800 rounded-xl p-5 inv-card">
+          <h2 class="text-[0.65rem] font-bold tracking-[0.2em] uppercase text-red-500 mb-3">Kondisi Rakyat</h2>
+          <div class="space-y-3">
+            <div><div class="flex justify-between text-sm mb-1"><span class="text-stone-300">Kemiskinan 2014 → 2023</span><span class="font-bold text-white">11,25% → 9,36%</span></div><div class="data-bar-track"><div class="data-bar-fill" style="--target-w:28%"></div></div></div>
+            <div><div class="flex justify-between text-sm mb-1"><span class="text-stone-300">Kelas menengah tergerus</span><span class="font-bold text-white">+21,35 juta</span></div><div class="data-bar-track"><div class="data-bar-fill" style="--target-w:70%"></div></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= TAB PRABOWO ================= -->
+    <div class="tab-panel" id="tab-prabowo">
+      <div class="grid md:grid-cols-2 gap-5">
+        <div class="bg-stone-900/50 border border-stone-800 rounded-xl p-5 inv-card">
+          <div class="flex items-center gap-3 mb-3">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/5/55/Prabowo_Subianto_2024_official_portrait.jpg" alt="Prabowo" class="w-10 h-10 rounded-full object-cover border-2 border-red-900/40" loading="lazy">
+            <div><span class="badge badge-reformasi">2024–sekarang</span><h3 class="text-lg font-bold text-white">Prabowo</h3></div>
+          </div>
+          <p class="text-sm text-stone-400 leading-relaxed mb-3">KIM Plus 81% kursi DPR; oposisi nyaris tidak ada; MBG.</p>
+        </div>
+        <div class="bg-stone-900/50 border border-stone-800 rounded-xl p-5 inv-card">
+          <h2 class="text-[0.65rem] font-bold tracking-[0.2em] uppercase text-red-500 mb-3">Kondisi Rakyat (2025–2026)</h2>
+          <div class="space-y-3">
+            <div><div class="flex justify-between text-sm mb-1"><span class="text-stone-300">Pengangguran (Mei 2026)</span><span class="font-bold text-white">4,65%</span></div><div class="data-bar-track"><div class="data-bar-fill" style="--target-w:18%"></div></div></div>
+            <div><div class="flex justify-between text-sm mb-1"><span class="text-stone-300">Kemiskinan (Maret 2026)</span><span class="font-bold text-white">8,07%</span></div><div class="data-bar-track"><div class="data-bar-fill" style="--target-w:25%"></div></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= TAB HISTORI PRESIDEN ================= -->
+    <div class="tab-panel" id="tab-presiden">
+      <div class="bg-stone-900/40 border border-stone-800 rounded-xl p-4 md:p-5 overflow-x-auto h-scroll">
+        <table class="investigasi" id="presidenTable">
+          <thead><tr><th style="min-width:150px;">Presiden</th><th style="min-width:100px;">Masa Jabatan</th><th style="min-width:80px;">Era</th><th style="min-width:240px;">Karakter Politik</th><th style="min-width:220px;">Kondisi Rakyat</th></tr></thead>
+          <tbody>
+            <tr class="era-lama"><td><div class="flex items-center gap-2"><img src="https://upload.wikimedia.org/wikipedia/commons/0/01/Presiden_Sukarno.jpg" alt="Soekarno" class="w-8 h-8 rounded-full object-cover border border-red-900/40" loading="lazy"><strong class="text-white">Soekarno</strong></div></td><td>1945–1967</td><td><span class="badge badge-lama">Orde Lama</span></td><td>Demokrasi Terpimpin; Nasakom.</td><td>Hiperinflasi 650%; kemiskinan luas.</td></tr>
+            <tr class="era-baru"><td><div class="flex items-center gap-2"><img src="https://upload.wikimedia.org/wikipedia/id/b/b0/President_Suharto%2C_1998.jpg" alt="Soeharto" class="w-8 h-8 rounded-full object-cover border border-red-900/40" loading="lazy"><strong class="text-white">Soeharto</strong></div></td><td>1967–1998</td><td><span class="badge badge-baru">Orde Baru</span></td><td>Otoritarianisme elektoral; Dwifungsi ABRI.</td><td>Kemiskinan 47%→15%, lalu 24,2% (1998).</td></tr>
+            <tr class="era-reformasi"><td><div class="flex items-center gap-2"><img src="https://upload.wikimedia.org/wikipedia/commons/f/f1/Bacharuddin_Jusuf_Habibie_official_portrait.jpg" alt="Habibie" class="w-8 h-8 rounded-full object-cover border border-red-900/40" loading="lazy"><strong class="text-white">Habibie</strong></div></td><td>1998–1999</td><td><span class="badge badge-reformasi">Reformasi</span></td><td>Kebebasan pers; pemilu demokratis.</td><td>Transisi krisis.</td></tr>
+            <tr class="era-reformasi"><td><div class="flex items-center gap-2"><img src="https://upload.wikimedia.org/wikipedia/commons/0/02/Gusdur.jpg" alt="Gus Dur" class="w-8 h-8 rounded-full object-cover border border-red-900/40" loading="lazy"><strong class="text-white">Gus Dur</strong></div></td><td>1999–2001</td><td><span class="badge badge-reformasi">Reformasi</span></td><td>Pluralisme; konflik DPR.</td><td>Stabilitas rentan.</td></tr>
+            <tr class="era-reformasi"><td><div class="flex items-center gap-2"><img src="https://upload.wikimedia.org/wikipedia/commons/8/88/President_Megawati_Sukarnoputri_-_Indonesia.jpg" alt="Megawati" class="w-8 h-8 rounded-full object-cover border border-red-900/40" loading="lazy"><strong class="text-white">Megawati</strong></div></td><td>2001–2004</td><td><span class="badge badge-reformasi">Reformasi</span></td><td>Pilpres langsung pertama.</td><td>Pemulihan bertahap.</td></tr>
+            <tr class="era-reformasi"><td><div class="flex items-center gap-2"><img src="https://upload.wikimedia.org/wikipedia/commons/4/42/Susilo_Bambang_Yudhoyono%2C_official_presidential_portrait_%282004%29.jpg" alt="SBY" class="w-8 h-8 rounded-full object-cover border border-red-900/40" loading="lazy"><strong class="text-white">SBY</strong></div></td><td>2004–2014</td><td><span class="badge badge-reformasi">Reformasi</span></td><td>Pilkada langsung; damai Aceh.</td><td>Kemiskinan 11,4%; Gini naik 0,41.</td></tr>
+            <tr class="era-reformasi"><td><div class="flex items-center gap-2"><img src="https://upload.wikimedia.org/wikipedia/commons/b/be/Joko_Widodo_2019_official_portrait.jpg" alt="Jokowi" class="w-8 h-8 rounded-full object-cover border border-red-900/40" loading="lazy"><strong class="text-white">Jokowi</strong></div></td><td>2014–2024</td><td><span class="badge badge-reformasi">Reformasi</span></td><td>Kartelisasi; koalisi besar.</td><td>Kemiskinan 9,36%; 21,35 juta tergerus.</td></tr>
+            <tr class="era-reformasi"><td><div class="flex items-center gap-2"><img src="https://upload.wikimedia.org/wikipedia/commons/5/55/Prabowo_Subianto_2024_official_portrait.jpg" alt="Prabowo" class="w-8 h-8 rounded-full object-cover border border-red-900/40" loading="lazy"><strong class="text-white">Prabowo</strong></div></td><td>2024–sekarang</td><td><span class="badge badge-reformasi">Reformasi</span></td><td>KIM Plus 81%; oposisi nyaris tidak ada.</td><td>Pengangguran 4,65%; 10 juta turun kelas.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ================= TAB DATA & GRAFIK ================= -->
+    <div class="tab-panel" id="tab-data">
+      <div class="grid md:grid-cols-2 gap-5">
+        <div class="bg-stone-900/40 border border-stone-800 rounded-xl p-4 inv-card">
+          <h3 class="text-[0.65rem] font-bold tracking-[0.15em] uppercase text-red-500 mb-2">Tren Demokrasi 2014–2024</h3>
+          <div class="chart-container"><canvas id="demokrasiChart"></canvas></div>
+          <p class="text-[0.65rem] text-stone-600 mt-2">Freedom House turun 62→57; V-Dem liberal 0,52→0,36.</p>
+        </div>
+        <div class="bg-stone-900/40 border border-stone-800 rounded-xl p-4 inv-card">
+          <h3 class="text-[0.65rem] font-bold tracking-[0.15em] uppercase text-red-500 mb-2">Indeks Persepsi Korupsi 2012–2025</h3>
+          <div class="chart-container"><canvas id="cpiChart"></canvas></div>
+          <p class="text-[0.65rem] text-stone-600 mt-2">Puncak 40 (2019), turun ke 34 (2025).</p>
+        </div>
+        <div class="bg-stone-900/40 border border-stone-800 rounded-xl p-4 inv-card">
+          <h3 class="text-[0.65rem] font-bold tracking-[0.15em] uppercase text-red-500 mb-2">Kebebasan Pers 2014–2025</h3>
+          <div class="chart-container"><canvas id="persChart"></canvas></div>
+          <p class="text-[0.65rem] text-stone-600 mt-2">Puncak 63,23 (2019), merosot ke 44,13 (2025).</p>
+        </div>
+        <div class="bg-stone-900/40 border border-stone-800 rounded-xl p-4 inv-card">
+          <h3 class="text-[0.65rem] font-bold tracking-[0.15em] uppercase text-red-500 mb-2">Durasi Kepemimpinan</h3>
+          <div class="chart-container"><canvas id="presidenChart"></canvas></div>
+          <p class="text-[0.65rem] text-stone-600 mt-2">Soekarno 21,6 thn; Soeharto 31,2 thn.</p>
+        </div>
+        <div class="bg-stone-900/40 border border-stone-800 rounded-xl p-4 inv-card md:col-span-2">
+          <h3 class="text-[0.65rem] font-bold tracking-[0.15em] uppercase text-red-500 mb-2">Kepuasan Publik per Presiden</h3>
+          <div class="chart-container" style="height: 280px;"><canvas id="kepuasanChart"></canvas></div>
+          <p class="text-[0.65rem] text-stone-600 mt-2">Campuran survei retrospektif dan approval rating kontemporer.</p>
+        </div>
+      </div>
+      <div class="mt-5 bg-stone-900/40 border border-stone-800 rounded-xl p-4 overflow-x-auto h-scroll">
+        <h3 class="text-[0.65rem] font-bold tracking-[0.15em] uppercase text-red-500 mb-3">Data Elektoral Ringkas</h3>
+        <table class="investigasi">
+          <thead><tr><th>Tahun</th><th>Peserta</th><th>Pemenang</th><th>Suara</th><th>Catatan</th></tr></thead>
+          <tbody>
+            <tr><td>1955</td><td class="num">118</td><td>PNI</td><td class="num">28,97%</td><td>Pemilu paling bersih</td></tr>
+            <tr><td>1971–1997</td><td class="num">3–10</td><td>Golkar</td><td class="num">Mayoritas</td><td>Dominasi Orde Baru</td></tr>
+            <tr><td>1999</td><td class="num">48</td><td>PDI-P</td><td class="num">33,70%</td><td>Pemilu Reformasi pertama</td></tr>
+            <tr><td>2004</td><td class="num">24</td><td>Golkar</td><td class="num">21,58%</td><td>Pilpres langsung pertama</td></tr>
+            <tr><td>2009</td><td class="num">38</td><td>Demokrat</td><td class="num">20,85%</td><td>Proporsional terbuka</td></tr>
+            <tr><td>2014</td><td class="num">12</td><td>PDI-P</td><td class="num">18,95%</td><td>Jokowi vs Prabowo</td></tr>
+            <tr><td>2019</td><td class="num">14</td><td>PDI-P</td><td class="num">19,33%</td><td>Koalisi besar</td></tr>
+            <tr><td>2024</td><td class="num">18</td><td>PDI-P / Prabowo</td><td class="num">16,72% / 58%</td><td>KIM Plus 81% kursi</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ================= TAB PERPAJAKAN ================= -->
+    <div class="tab-panel" id="tab-pajak">
+      <div class="space-y-6">
+        <div class="bg-stone-900/40 border border-stone-800 rounded-xl p-4 md:p-5 inv-card">
+          <div class="flex flex-col md:flex-row md:items-baseline md:justify-between gap-2 mb-3">
+            <h3 class="text-[0.65rem] font-bold tracking-[0.15em] uppercase text-red-500">Rasio Pajak terhadap PDB: 1969–2025</h3>
+            <span class="text-[0.55rem] text-stone-600 uppercase tracking-wider">Sumber: Kemenkeu, BPS, IKPI</span>
+          </div>
+          <div class="chart-container" style="height: 320px;"><canvas id="taxRatioChart"></canvas></div>
+          <div class="mt-4 grid md:grid-cols-3 gap-3 text-[0.65rem] text-stone-500 leading-relaxed">
+            <div class="p-3 bg-stone-900/60 border border-stone-800 rounded-lg"><strong class="text-stone-300">Puncak 1980-an:</strong> ~20–22% PDB, ditopang minyak dan reformasi pajak 1983.</div>
+            <div class="p-3 bg-stone-900/60 border border-stone-800 rounded-lg"><strong class="text-stone-300">Tren menurun:</strong> ~12% → ~10% dalam satu dekade terakhir, jauh di bawah IMF (15%).</div>
+            <div class="p-3 bg-stone-900/60 border border-stone-800 rounded-lg"><strong class="text-stone-300">2025:</strong> ~9,3%, level terendah dalam beberapa dekade.</div>
+          </div>
+        </div>
+        <div class="bg-stone-900/40 border border-stone-800 rounded-xl p-4 overflow-x-auto h-scroll">
+          <h3 class="text-[0.65rem] font-bold tracking-[0.15em] uppercase text-red-500 mb-3">Sejarah Tarif PPN Indonesia</h3>
+          <table class="investigasi"><thead><tr><th>Periode</th><th>Tarif PPN</th><th>Dasar Hukum</th><th>Catatan</th></tr></thead><tbody>
+            <tr><td>1984–Maret 2022</td><td class="num font-bold text-white">10%</td><td>UU No. 8/1983</td><td>Tarif tunggal; menggantikan Pajak Penjualan.</td></tr>
+            <tr><td>April 2022–Des 2024</td><td class="num font-bold text-white">11%</td><td>UU HPP (No. 7/2021)</td><td>Kenaikan bertahap pertama.</td></tr>
+            <tr><td>2025 (direncanakan)</td><td class="num font-bold text-white">12%</td><td>UU HPP</td><td>Implementasi selektif; barang non-mewah efektif ~11%.</td></tr>
+          </tbody></table>
+        </div>
+        <div class="bg-stone-900/40 border border-stone-800 rounded-xl p-4 overflow-x-auto h-scroll">
+          <h3 class="text-[0.65rem] font-bold tracking-[0.15em] uppercase text-red-500 mb-3">Perubahan Tarif PPh Orang Pribadi (Ringkas)</h3>
+          <table class="investigasi"><thead><tr><th>Era / UU</th><th>Lapisan Tarif</th><th>Tarif Tertinggi</th><th>Catatan</th></tr></thead><tbody>
+            <tr><td>Sebelum 1983</td><td class="num">48 tarif</td><td class="num">hingga 50%+</td><td>Sangat kompleks; official assessment.</td></tr>
+            <tr><td>UU PPh 1983/1984</td><td class="num">3 lapisan</td><td class="num">35%</td><td>Reformasi besar; self-assessment.</td></tr>
+            <tr><td>UU PPh 1994</td><td class="num">3 lapisan</td><td class="num">30%</td><td>Penurunan tarif.</td></tr>
+            <tr><td>UU PPh 2000</td><td class="num">5 lapisan</td><td class="num">35%</td><td>Penyesuaian lapisan.</td></tr>
+            <tr><td>UU PPh 2008</td><td class="num">4 lapisan</td><td class="num">30%</td><td>Batas lapisan 5% naik ke Rp50 juta.</td></tr>
+            <tr><td>UU HPP 2021</td><td class="num">5 lapisan</td><td class="num">35%</td><td>Lapisan 5% naik ke Rp60 juta; tambahan di atas Rp5 miliar.</td></tr>
+          </tbody></table>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= TAB NARKOTIKA ================= -->
+    <div class="tab-panel" id="tab-narkotika">
+      <div class="space-y-6">
+
+        <!-- Hero Stats -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+          <div class="stat-mini">
+            <div class="text-2xl font-black text-white">1.117</div>
+            <div class="text-[0.6rem] text-stone-500 mt-1 uppercase tracking-wider">Catatan Berita</div>
+            <p class="text-[0.65rem] text-stone-600 mt-1">2011–2026</p>
+          </div>
+          <div class="stat-mini">
+            <div class="text-2xl font-black text-red-500">2 Ton</div>
+            <div class="text-[0.6rem] text-stone-500 mt-1 uppercase tracking-wider">Sabu Terbesar</div>
+            <p class="text-[0.65rem] text-stone-600 mt-1">Kepri, Mei 2025</p>
+          </div>
+          <div class="stat-mini">
+            <div class="text-2xl font-black text-amber-500">~15%</div>
+            <div class="text-[0.6rem] text-stone-500 mt-1 uppercase tracking-wider">Dari Lapas</div>
+            <p class="text-[0.65rem] text-stone-600 mt-1">Dikendalikan napi</p>
+          </div>
+          <div class="stat-mini">
+            <div class="text-2xl font-black text-white">2026</div>
+            <div class="text-[0.6rem] text-stone-500 mt-1 uppercase tracking-wider">Puncak Berita</div>
+            <p class="text-[0.65rem] text-stone-600 mt-1">Vape & laboratorium</p>
+          </div>
+        </div>
+
+        <!-- Trend Chart -->
+        <div class="bg-stone-900/40 border border-stone-800 rounded-xl p-4 md:p-5 inv-card">
+          <div class="flex flex-col md:flex-row md:items-baseline md:justify-between gap-2 mb-3">
+            <h3 class="text-[0.65rem] font-bold tracking-[0.15em] uppercase text-red-500">Tren Pemberitaan Narkoba per Tahun: 2011–2026</h3>
+            <span class="text-[0.55rem] text-stone-600 uppercase tracking-wider">Berdasarkan 1.117 catatan berita</span>
+          </div>
+          <div class="chart-container" style="height: 300px;"><canvas id="narkobaTrenChart"></canvas></div>
+          <p class="text-[0.65rem] text-stone-600 mt-3">Pemberitaan melonjak pada 2017 (fenomena tembakau gorila), 2020–2021 (pandemi & penjualan online), dan 2025–2026 (pengungkapan besar, vape narkoba, dan laboratorium gelap).</p>
+        </div>
+
+        <!-- Jenis & Lokasi -->
+        <div class="grid md:grid-cols-2 gap-5">
+          <div class="bg-stone-900/40 border border-stone-800 rounded-xl p-4 inv-card">
+            <h3 class="text-[0.65rem] font-bold tracking-[0.15em] uppercase text-red-500 mb-2">Distribusi Jenis Narkoba</h3>
+            <div class="chart-container" style="height: 280px;"><canvas id="narkobaJenisChart"></canvas></div>
+            <p class="text-[0.65rem] text-stone-600 mt-2">Sabu dan narkoba generik mendominasi; tembakau gorila meledak 2017; vape narkoba menjadi tren 2025–2026.</p>
+          </div>
+          <div class="bg-stone-900/40 border border-stone-800 rounded-xl p-4 inv-card">
+            <h3 class="text-[0.65rem] font-bold tracking-[0.15em] uppercase text-red-500 mb-2">Lokasi Hotspot (Top 8)</h3>
+            <div class="chart-container" style="height: 280px;"><canvas id="narkobaLokasiChart"></canvas></div>
+            <p class="text-[0.65rem] text-stone-600 mt-2">Jakarta, Sumatera Utara, Kepulauan Riau, dan Kalimantan Selatan menjadi episentrum pemberitaan.</p>
+          </div>
+        </div>
+
+        <!-- Tabel Pengungkapan Terbesar -->
+        <div class="bg-stone-900/40 border border-stone-800 rounded-xl p-4 overflow-x-auto h-scroll">
+          <h3 class="text-[0.65rem] font-bold tracking-[0.15em] uppercase text-red-500 mb-3">Pengungkapan Terbesar (2011–2026)</h3>
+          <table class="investigasi">
+            <thead><tr><th>Tahun</th><th>Lokasi</th><th>Jenis</th><th>Jumlah</th><th>Keterangan</th></tr></thead>
+            <tbody>
+              <tr><td class="font-semibold text-white">2025</td><td>Kepulauan Riau</td><td><span class="badge badge-narkoba">Sabu</span></td><td class="num font-bold text-white">2 ton</td><td>Terbesar sepanjang sejarah; BNN-Polri-Bea Cukai.</td></tr>
+              <tr><td class="font-semibold text-white">2026</td><td>Natuna</td><td><span class="badge badge-narkoba">Ketamine</span></td><td class="num font-bold text-white">1,3 ton</td><td>Operasi gabungan BNN-TNI AL.</td></tr>
+              <tr><td class="font-semibold text-white">2026</td><td>Aceh</td><td><span class="badge badge-narkoba">Sabu (lab)</span></td><td class="num font-bold text-white">1,2 ton</td><td>Laboratorium gelap; 11 tersangka.</td></tr>
+              <tr><td class="font-semibold text-white">2026</td><td>Belawan</td><td><span class="badge badge-narkoba">Ketamine</span></td><td class="num font-bold text-white">1,16 ton</td><td>Bareskrim-BNN-Bea Cukai; WNA Taiwan terlibat.</td></tr>
+              <tr><td class="font-semibold text-white">2024</td><td>—</td><td><span class="badge badge-narkoba">Sabu</span></td><td class="num font-bold text-white">710 kg</td><td>BNN; 618 kasus sepanjang 2024.</td></tr>
+              <tr><td class="font-semibold text-white">2021</td><td>—</td><td><span class="badge badge-narkoba">Sabu</span></td><td class="num font-bold text-white">581 kg</td><td>Jaringan internasional.</td></tr>
+              <tr><td class="font-semibold text-white">2021</td><td>Kepulauan Seribu</td><td><span class="badge badge-narkoba">Sabu</span></td><td class="num font-bold text-white">436 kg</td><td>WNA dan napi di balik penyelundupan.</td></tr>
+              <tr><td class="font-semibold text-white">2023</td><td>—</td><td><span class="badge badge-narkoba">Sabu</span></td><td class="num font-bold text-white">309 kg</td><td>Jaringan Golden Crescent.</td></tr>
+              <tr><td class="font-semibold text-white">2021</td><td>Dumai–Madura</td><td><span class="badge badge-narkoba">Sabu</span></td><td class="num font-bold text-white">212 kg</td><td>19.700 butir ekstasi.</td></tr>
+              <tr><td class="font-semibold text-white">2022</td><td>Selat Sunda</td><td><span class="badge badge-narkoba">Kokain</span></td><td class="num font-bold text-white">179 kg</td><td>TNI AL; jaringan Amerika Latin.</td></tr>
+            </tbody>
+          </table>
+          <p class="text-[0.6rem] text-stone-600 mt-2">Sumber: 1.117 catatan berita dari berbagai media (2011–2026).</p>
+        </div>
+
+        <!-- Pola yang Berulang -->
+        <div>
+          <div class="flex items-center gap-3 mb-4">
+            <h3 class="text-[0.65rem] font-bold tracking-[0.2em] uppercase text-red-500">Lima Pola dari Data Narkotika</h3>
+            <div class="flex-1 h-px bg-stone-800"></div>
+          </div>
+          <div class="space-y-3">
+            <div class="red-thread">
+              <strong class="text-white">1. Lapas sebagai Pusat Kendali.</strong>
+              <span class="text-stone-400">Sekitar 15% catatan menunjukkan peredaran narkoba dikendalikan dari dalam lapas—melibatkan napi, sipir, hingga oknum pegawai. Contoh: Lapas Tanjung Gusta, Lapas Salemba, Lapas Balikpapan.</span>
+            </div>
+            <div class="red-thread">
+              <strong class="text-white">2. Siklus Modus Baru.</strong>
+              <span class="text-stone-400">Tembakau gorila (2017), jual-beli online (2020–2021), vape narkoba & etomidate (2025–2026). Setiap kali aparat menutup satu jalur, modus baru muncul.</span>
+            </div>
+            <div class="red-thread">
+              <strong class="text-white">3. Jaringan Internasional yang Beradaptasi.</strong>
+              <span class="text-stone-400">Dari Segitiga Emas (Myanmar-Laos-Thailand) hingga Amerika Latin (kokain) dan Malaysia (sabu). Pengungkapan besar 2025–2026 menunjukkan jaringan masih aktif.</span>
+            </div>
+            <div class="red-thread">
+              <strong class="text-white">4. Keterlibatan Aparat dan Politik.</strong>
+              <span class="text-stone-400">Oknum polisi, pegawai lapas, hingga anggota DPRD tersangkut kasus narkoba. Ini melemahkan kepercayaan publik dan menunjukkan korupsi sebagai akar masalah.</span>
+            </div>
+            <div class="red-thread">
+              <strong class="text-white">5. Pengungkapan Meningkat, Tetapi Pasar Tak Surut.</strong>
+              <span class="text-stone-400">Dari 2011 hingga 2026, jumlah pengungkapan naik, tetapi prevalensi pengguna dan peredaran tetap tinggi. Ini menunjukkan pendekatan represif belum menyentuh akar struktural.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-stone-900/60 border border-stone-800 rounded-xl p-4 text-[0.65rem] text-stone-500 leading-relaxed">
+          <h3 class="text-[0.65rem] font-bold tracking-[0.15em] uppercase text-red-500 mb-2">Catatan Metodologi</h3>
+          <p class="mb-2"><strong class="text-stone-300">Sumber data:</strong> 1.117 catatan berita dari berbagai media (detikNews, Kompas, ANTARA, BBC, BNN.go.id, CNN Indonesia, Tempo, dll.) yang dikumpulkan melalui Google News RSS dan Bing News RSS (2011–2026).</p>
+          <p class="mb-2"><strong class="text-stone-300">Klasifikasi:</strong> "Historis" merujuk pada artikel yang membahas sejarah kebijakan narkotika; "Modern" merujuk pada pemberitaan kasus kontemporer. Grafik tren menggunakan catatan modern.</p>
+          <p><strong class="text-stone-300">Keterbatasan:</strong> Data berbasis pemberitaan media, bukan statistik resmi BNN. Angka pengungkapan mencerminkan yang dilaporkan media, bukan total kejadian sebenarnya. Beberapa catatan memiliki jumlah terdeteksi yang tidak lengkap.</p>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ================= TAB PEMBUNUHAN (BARU) ================= -->
+    <div class="tab-panel" id="tab-pembunuhan">
+      <div class="space-y-6">
+
+        <!-- Hero Stats -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+          <div class="stat-mini">
+            <div class="text-2xl font-black text-white">2.587+</div>
+            <div class="text-[0.6rem] text-stone-500 mt-1 uppercase tracking-wider">Catatan Berita</div>
+            <p class="text-[0.65rem] text-stone-600 mt-1">2002–2026</p>
+          </div>
+          <div class="stat-mini">
+            <div class="text-2xl font-black text-red-500">1.151</div>
+            <div class="text-[0.6rem] text-stone-500 mt-1 uppercase tracking-wider">Lonjakan 2026</div>
+            <p class="text-[0.65rem] text-stone-600 mt-1">44% dari total</p>
+          </div>
+          <div class="stat-mini">
+            <div class="text-2xl font-black text-amber-500">~500</div>
+            <div class="text-[0.6rem] text-stone-500 mt-1 uppercase tracking-wider">Hotspot Jakarta</div>
+            <p class="text-[0.65rem] text-stone-600 mt-1">Paling banyak diliput</p>
+          </div>
+          <div class="stat-mini">
+            <div class="text-2xl font-black text-white">~350</div>
+            <div class="text-[0.6rem] text-stone-500 mt-1 uppercase tracking-wider">Dendam & Sakit Hati</div>
+            <p class="text-[0.65rem] text-stone-600 mt-1">Motif dominan</p>
+          </div>
+        </div>
+
+        <!-- Trend Chart -->
+        <div class="bg-stone-900/40 border border-stone-800 rounded-xl p-4 md:p-5 inv-card">
+          <div class="flex flex-col md:flex-row md:items-baseline md:justify-between gap-2 mb-3">
+            <h3 class="text-[0.65rem] font-bold tracking-[0.15em] uppercase text-red-500">Tren Pemberitaan Pembunuhan per Tahun: 2002–2026</h3>
+            <span class="text-[0.55rem] text-stone-600 uppercase tracking-wider">Berdasarkan 2.587+ catatan berita</span>
+          </div>
+          <div class="chart-container" style="height: 300px;"><canvas id="pembunuhanTrenChart"></canvas></div>
+          <p class="text-[0.65rem] text-stone-600 mt-3">Pemberitaan melonjak drastis pada 2026 (1.151 catatan) seiring meningkatnya liputan kasus kekerasan, femisida, dan mutilasi. Tahun-tahun sebelumnya di bawah 200 catatan per tahun.</p>
+        </div>
+
+        <!-- Jenis & Lokasi -->
+        <div class="grid md:grid-cols-2 gap-5">
+          <div class="bg-stone-900/40 border border-stone-800 rounded-xl p-4 inv-card">
+            <h3 class="text-[0.65rem] font-bold tracking-[0.15em] uppercase text-red-500 mb-2">Distribusi Motif / Jenis Kasus</h3>
+            <div class="chart-container" style="height: 280px;"><canvas id="pembunuhanJenisChart"></canvas></div>
+            <p class="text-[0.65rem] text-stone-600 mt-2">Dendam, sakit hati, dan narkoba mendominasi; mutilasi dan pembunuhan berencana menunjukkan tren meningkat.</p>
+          </div>
+          <div class="bg-stone-900/40 border border-stone-800 rounded-xl p-4 inv-card">
+            <h3 class="text-[0.65rem] font-bold tracking-[0.15em] uppercase text-red-500 mb-2">Lokasi Hotspot (Top 13)</h3>
+            <div class="chart-container" style="height: 280px;"><canvas id="pembunuhanLokasiChart"></canvas></div>
+            <p class="text-[0.65rem] text-stone-600 mt-2">Jakarta, Sumatera Utara, Jawa Barat, dan Jawa Timur menjadi episentrum pemberitaan.</p>
+          </div>
+        </div>
+
+        <!-- Tabel Kasus Menonjol -->
+        <div class="bg-stone-900/40 border border-stone-800 rounded-xl p-4 overflow-x-auto h-scroll">
+          <h3 class="text-[0.65rem] font-bold tracking-[0.15em] uppercase text-red-500 mb-3">Kasus Menonjol (2002–2026)</h3>
+          <table class="investigasi">
+            <thead><tr><th>Tahun</th><th>Kasus</th><th>Lokasi</th><th>Jenis</th><th>Keterangan</th></tr></thead>
+            <tbody>
+              <tr><td class="font-semibold text-white">2023</td><td>Ferdy Sambo – Brigadir Yosua</td><td>Jakarta</td><td><span class="badge badge-narkoba">Pembunuhan Berencana</span></td><td>Vonis mati; banding ditolak.</td></tr>
+              <tr><td class="font-semibold text-white">2024</td><td>Vina Cirebon – Pegi Setiawan</td><td>Jawa Barat</td><td><span class="badge badge-narkoba">Pembunuhan</span></td><td>Pelaku buron bertahun-tahun.</td></tr>
+              <tr><td class="font-semibold text-white">2026</td><td>Dwi Bagus Martono – mutilasi istri siri &amp; anak</td><td>Madiun, Jatim</td><td><span class="badge badge-narkoba">Mutilasi</span></td><td>Jasad dibakar &amp; digiling; tersangka ditangkap di Jombang.</td></tr>
+              <tr><td class="font-semibold text-white">2026</td><td>Bayi 20 bulan dibunuh ibu &amp; ayah tiri</td><td>Kebayoran Lama, Jakarta</td><td><span class="badge badge-narkoba">Pembunuhan Anak</span></td><td>Motif ekonomi; kedua orang tua ditahan.</td></tr>
+              <tr><td class="font-semibold text-white">2026</td><td>Sunarti – karyawati Infineon</td><td>Batam</td><td><span class="badge badge-narkoba">Pembunuhan</span></td><td>Pelaku tetangga kos; ditangkap &lt;24 jam.</td></tr>
+              <tr><td class="font-semibold text-white">2026</td><td>Donna Nuzulul Aditya – tewas terborgol</td><td>Kendal, Jateng</td><td><span class="badge badge-narkoba">Pembunuhan</span></td><td>3 pelaku ditangkap; 2 buron.</td></tr>
+              <tr><td class="font-semibold text-white">2025</td><td>Dumaris Sitio – lansia</td><td>Pekanbaru, Riau</td><td><span class="badge badge-narkoba">Perampokan</span></td><td>4 pelaku; otak menantu korban.</td></tr>
+              <tr><td class="font-semibold text-white">2026</td><td>Saepul – mutilasi pria di Depok</td><td>Depok</td><td><span class="badge badge-narkoba">Mutilasi</span></td><td>Kenalan medsos; jasad dibuang 2 lokasi.</td></tr>
+              <tr><td class="font-semibold text-white">2026</td><td>Faradila Amalia Najwa – mahasiswi UMM</td><td>Malang</td><td><span class="badge badge-narkoba">Pembunuhan</span></td><td>Kakak ipar (oknum polisi) jadi tersangka.</td></tr>
+              <tr><td class="font-semibold text-white">2026</td><td>Kakak-adik Rani &amp; Ayuhana</td><td>Banyuasin, Sumsel</td><td><span class="badge badge-narkoba">Pembunuhan Berencana</span></td><td>Pelaku pacar korban; buron 5 tahun.</td></tr>
+            </tbody>
+          </table>
+          <p class="text-[0.6rem] text-stone-600 mt-2">Sumber: 2.587+ catatan berita dari berbagai media (2002–2026).</p>
+        </div>
+
+        <!-- Pola yang Berulang -->
+        <div>
+          <div class="flex items-center gap-3 mb-4">
+            <h3 class="text-[0.65rem] font-bold tracking-[0.2em] uppercase text-red-500">Lima Pola dari Data Pembunuhan</h3>
+            <div class="flex-1 h-px bg-stone-800"></div>
+          </div>
+          <div class="space-y-3">
+            <div class="red-thread">
+              <strong class="text-white">1. Femisida dan Kekerasan dalam Relasi.</strong>
+              <span class="text-stone-400">Banyak korban adalah perempuan dalam relasi (istri siri, pacar, mantan). Motif cemburu, sakit hati, dan KDRT mendominasi—menunjukkan kekerasan berbasis gender yang sistemik.</span>
+            </div>
+            <div class="red-thread">
+              <strong class="text-white">2. Dendam dan Sakit Hati sebagai Motif Utama.</strong>
+              <span class="text-stone-400">Sekitar 250+ catatan bertema dendam dan 100+ sakit hati. Pembunuhan sering dipicu konflik sepele—utang, ejekan, warisan—yang bereskalasi karena lemahnya resolusi konflik.</span>
+            </div>
+            <div class="red-thread">
+              <strong class="text-white">3. Keterlibatan Aparat.</strong>
+              <span class="text-stone-400">Oknum TNI/Polri tersandung kasus pembunuhan (Ferdy Sambo, Bripka AS, oknum TNI AL, dll). Ini melemahkan kepercayaan publik dan menunjukkan impunitas di tubuh aparat.</span>
+            </div>
+            <div class="red-thread">
+              <strong class="text-white">4. Mutilasi dan Penghilangan Jejak.</strong>
+              <span class="text-stone-400">120+ catatan bertema mutilasi. Pelaku increasingly berupaya menghilangkan jejak—membakar, menggiling, mengubur, membuang ke sungai—menunjukkan perencanaan yang matang.</span>
+            </div>
+            <div class="red-thread">
+              <strong class="text-white">5. Pengungkapan Cepat vs. Kasus Tak Terungkap.</strong>
+              <span class="text-stone-400">Banyak kasus terungkap &lt;24 jam (tekanan publik, CCTV), tetapi kasus lain mandek bertahun-tahun (Vina Cirebon, Munir, kasus 1965). Penegakan hukum bergantung pada sorotan media, bukan sistem.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-stone-900/60 border border-stone-800 rounded-xl p-4 text-[0.65rem] text-stone-500 leading-relaxed">
+          <h3 class="text-[0.65rem] font-bold tracking-[0.15em] uppercase text-red-500 mb-2">Catatan Metodologi</h3>
+          <p class="mb-2"><strong class="text-stone-300">Sumber data:</strong> 2.587+ catatan berita dari berbagai media (detikNews, Kompas, ANTARA, BBC, CNN Indonesia, Tempo, Tribunnews, dll.) yang dikumpulkan melalui Google News RSS dan Bing News RSS (2002–2026). Data file terpotong (truncated), sehingga jumlah sebenarnya bisa lebih tinggi.</p>
+          <p class="mb-2"><strong class="text-stone-300">Klasifikasi:</strong> "Historis" merujuk pada artikel yang membahas sejarah atau peristiwa lama; "Modern" merujuk pada pemberitaan kasus kontemporer. Grafik tren menggunakan catatan modern.</p>
+          <p><strong class="text-stone-300">Keterbatasan:</strong> Data berbasis pemberitaan media, bukan statistik resmi kepolisian. Angka pengungkapan mencerminkan yang dilaporkan media, bukan total kejadian sebenarnya. Lonjakan 2026 sebagian dipengaruhi oleh metode pengumpulan data (scraping) yang menangkap lebih banyak artikel daripada tahun-tahun sebelumnya.</p>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ================= POLA BERULANG ================= -->
+    <section class="mt-10">
+      <div class="flex items-center gap-3 mb-5 reveal">
+        <h2 class="text-[0.65rem] font-bold tracking-[0.2em] uppercase text-red-500">Lima Pola yang Berulang</h2>
+        <div class="flex-1 h-px bg-stone-800"></div>
+      </div>
+      <div class="grid md:grid-cols-2 gap-3">
+        <div class="red-thread reveal text-sm" style="--d:0ms"><strong class="text-white">1. Oligarki Beradaptasi.</strong> <span class="text-stone-400">Dari terpusat di bawah Soeharto menjadi jaringan politik uang dan patronase.</span></div>
+        <div class="red-thread reveal text-sm" style="--d:80ms"><strong class="text-white">2. Kartel Partai.</strong> <span class="text-stone-400">Koalisi pasca-pemilu untuk bagi kekuasaan, bukan kompetisi ideologis.</span></div>
+        <div class="red-thread reveal text-sm" style="--d:160ms"><strong class="text-white">3. Politik Dinasti.</strong> <span class="text-stone-400">Sekitar 27% kandidat Pilkada 2024 terindikasi dinasti (ICW).</span></div>
+        <div class="red-thread reveal text-sm" style="--d:240ms"><strong class="text-white">4. Korupsi Tiga Rumpun.</strong> <span class="text-stone-400">Eksekutif, legislatif, yudikatif; CPI stagnan di level rendah.</span></div>
+        <div class="red-thread reveal text-sm md:col-span-2" style="--d:320ms"><strong class="text-white">5. Penegakan Hukum Selektif.</strong> <span class="text-stone-400">Hukum melindungi kawan, menghukum lawan; checks and balances melemah karena oposisi tidak efektif.</span></div>
+      </div>
+    </section>
+
+    <!-- ================= KESIMPULAN ================= -->
+    <section class="mt-10 border-t border-stone-800 pt-8 reveal">
+      <h2 class="text-[0.65rem] font-bold tracking-[0.2em] uppercase text-red-500 mb-3">Kesimpulan</h2>
+      <div class="space-y-3 text-stone-300 text-sm leading-relaxed">
+        <p>Ada perbaikan prosedural, tetapi tidak ada konsolidasi struktural. Pemilu rutin dan kebebasan pers adalah capaian, tetapi setiap transisi kekuasaan justru memperkuat pola lama: elite capture, politik transaksional, dan lemahnya akuntabilitas.</p>
+        <p>Kondisi rakyat mencerminkan pola itu: dari hiperinflasi Orde Lama, krisis 1998, hingga tekanan daya beli hari ini. <strong class="text-white">Rasio pajak justru menurun</strong> dalam dua dekade terakhir—dari ~20% PDB pada 1980-an menjadi ~10% pada 2024 dan ~9,3% pada 2025—mempersempit ruang fiskal negara untuk melayani rakyat.</p>
+        <p>Dari 1.117 catatan berita narkoba (2011–2026) dan 2.587+ catatan pembunuhan (2002–2026), pola yang sama terlihat: pengungkapan meningkat, tetapi pasar dan kekerasan tidak surut. Lapas menjadi pusat kendali narkoba, modus baru terus muncul (tembakau gorila → online → vape), jaringan internasional beradaptasi, sementara pembunuhan terus bereproduksi dari relasi intim hingga jalanan. <strong class="text-white">Yang kurang bukan aparat yang berani, melainkan reformasi struktural yang membuat kejahatan tidak lagi menguntungkan.</strong></p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="border-t border-stone-800">
+    <div class="max-w-5xl mx-auto px-5 md:px-8 py-5 flex flex-col md:flex-row justify-between items-start md:items-center gap-1 text-[0.6rem] text-stone-600">
+      <span>BERKAS INVESTIGASI • ANALISIS STRUKTURAL PERPOLITIKAN INDONESIA</span>
+      <span>SUMBER: BANK DUNIA, BPS, EIU, FREEDOM HOUSE, V-DEM, RSF, KEMENKEU, IKPI, INDO BAROMETER, LSI, INDIKATOR POLITIK, WIKIMEDIA COMMONS, 1.117 CATATAN BERITA NARKOBA, 2.587+ CATATAN BERITA PEMBUNUHAN</span>
+    </div>
+  </footer>
+
+  <script>
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        document.getElementById('loader').classList.add('hidden');
+        document.body.classList.add('loaded');
+        setTimeout(() => document.getElementById('loader')?.remove(), 800);
+      }, 1200);
+    });
+
+    const progressBar = document.getElementById('scrollProgress');
+    const backTop = document.getElementById('backTop');
+    let rafPending = false;
+    window.addEventListener('scroll', () => {
+      if (rafPending) return;
+      rafPending = true;
+      requestAnimationFrame(() => {
+        const h = document.documentElement;
+        const max = h.scrollHeight - h.clientHeight;
+        progressBar.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+        backTop.classList.toggle('visible', h.scrollTop > 500);
+        rafPending = false;
+      });
+    }, { passive: true });
+    backTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('revealed'); revealObserver.unobserve(e.target); }
+      });
+    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.reveal').forEach((el, i) => {
+      if (!el.style.getPropertyValue('--d')) el.style.setProperty('--d', `${Math.min(i*40, 160)}ms`);
+      revealObserver.observe(el);
+    });
+
+    const tableObserver = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('revealed'); tableObserver.unobserve(e.target); }
+      });
+    }, { threshold: 0.05 });
+    document.querySelectorAll('table.investigasi').forEach(table => {
+      table.querySelectorAll('tbody tr').forEach((row, i) => row.style.setProperty('--row-delay', `${i*40}ms`));
+      tableObserver.observe(table);
+    });
+
+    const tabBtns = document.querySelectorAll('.tab-btn');
+    const tabPanels = document.querySelectorAll('.tab-panel');
+
+    function activateTab(id) {
+      tabBtns.forEach(b => b.classList.toggle('active', b.dataset.tab === id));
+      tabPanels.forEach(p => p.classList.toggle('active', p.id === 'tab-' + id));
+      document.querySelectorAll(`#tab-${id} .reveal`).forEach(el => {
+        el.classList.remove('revealed');
+        revealObserver.observe(el);
+      });
+      document.querySelectorAll(`#tab-${id} table.investigasi`).forEach(t => {
+        t.classList.remove('revealed');
+        tableObserver.observe(t);
+      });
+      initChartsForTab(id);
+    }
+    tabBtns.forEach(btn => btn.addEventListener('click', () => activateTab(btn.dataset.tab)));
+
+    Chart.defaults.color = '#78716c';
+    Chart.defaults.font.family = '-apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, sans-serif';
+    Chart.defaults.font.size = 10;
+
+    const commonTooltip = {
+      backgroundColor: '#1c1917', borderColor: '#44403c', borderWidth: 1,
+      titleColor: '#fafaf9', bodyColor: '#d6d3d1', padding: 8, cornerRadius: 6
+    };
+
+    const chartBuilders = {
+      demokrasiChart: () => new Chart(document.getElementById('demokrasiChart').getContext('2d'), {
+        type: 'line',
+        data: { labels: ['2014','2016','2018','2019','2020','2021','2022','2023','2024'],
+          datasets: [
+            { label: 'Freedom House', data: [65,63,62,62,61,59,59,57,57], borderColor: '#dc2626', backgroundColor: 'rgba(220,38,38,.1)', tension: .3, pointRadius: 3, borderWidth: 2 },
+            { label: 'V-Dem Elektoral (x100)', data: [67,65,62,60,58,56,55,54,54], borderColor: '#f59e0b', backgroundColor: 'rgba(245,158,11,.1)', tension: .3, pointRadius: 3, borderWidth: 2 },
+            { label: 'V-Dem Liberal (x100)', data: [52,50,48,46,44,42,40,38,36], borderColor: '#a8a29e', backgroundColor: 'rgba(168,162,158,.1)', tension: .3, pointRadius: 3, borderWidth: 2, borderDash: [5,3] }
+          ] },
+        options: { responsive: true, maintainAspectRatio: false, animation: { duration: 1600, easing: 'easeOutQuart' }, interaction: { mode: 'index', intersect: false }, plugins: { legend: { position: 'bottom', labels: { boxWidth: 10, padding: 10, font: { size: 9 } } }, tooltip: commonTooltip }, scales: { x: { grid: { color: 'rgba(68,64,60,.3)' } }, y: { grid: { color: 'rgba(68,64,60,.3)' }, min: 20, max: 80 } } }
+      }),
+      cpiChart: () => new Chart(document.getElementById('cpiChart').getContext('2d'), {
+        type: 'bar',
+        data: { labels: ['2012','2013','2014','2015','2016','2017','2018','2019','2020','2021','2022','2023','2024','2025'], datasets: [{ label: 'Skor CPI', data: [32,32,34,36,37,37,38,40,37,38,34,34,37,34], backgroundColor: (ctx) => { const v = ctx.raw; if (v >= 38) return 'rgba(245,158,11,.8)'; if (v >= 35) return 'rgba(220,38,38,.6)'; return 'rgba(220,38,38,.9)'; }, borderColor: '#dc2626', borderWidth: 1, borderRadius: 3 }] },
+        options: { responsive: true, maintainAspectRatio: false, animation: { duration: 1400, easing: 'easeOutQuart' }, plugins: { legend: { display: false }, tooltip: commonTooltip }, scales: { x: { grid: { display: false } }, y: { grid: { color: 'rgba(68,64,60,.3)' }, min: 0, max: 50 } } }
+      }),
+      persChart: () => new Chart(document.getElementById('persChart').getContext('2d'), {
+        type: 'line',
+        data: { labels: ['2014','2015','2016','2017','2018','2019','2020','2021','2022','2023','2024','2025'], datasets: [{ label: 'Kebebasan Pers (RSF)', data: [61.85,59.25,58.28,60.07,60.32,63.23,63.18,62.6,49.27,54.83,51.15,44.13], borderColor: '#dc2626', backgroundColor: 'rgba(220,38,38,.1)', tension: .3, pointRadius: 4, pointBackgroundColor: '#dc2626', borderWidth: 2, fill: true }] },
+        options: { responsive: true, maintainAspectRatio: false, animation: { duration: 1600, easing: 'easeOutQuart' }, plugins: { legend: { display: false }, tooltip: commonTooltip }, scales: { x: { grid: { color: 'rgba(68,64,60,.3)' } }, y: { grid: { color: 'rgba(68,64,60,.3)' }, min: 35, max: 70 } } }
+      }),
+      presidenChart: () => new Chart(document.getElementById('presidenChart').getContext('2d'), {
+        type: 'bar',
+        data: { labels: ['Soekarno','Soeharto','Habibie','Gus Dur','Megawati','SBY','Jokowi','Prabowo'], datasets: [{ label: 'Durasi (tahun)', data: [21.6, 31.2, 1.4, 1.8, 3.2, 10, 10, 2], backgroundColor: ['rgba(180,83,9,.75)','rgba(22,101,52,.75)','rgba(30,64,175,.75)','rgba(30,64,175,.75)','rgba(30,64,175,.75)','rgba(30,64,175,.75)','rgba(30,64,175,.75)','rgba(30,64,175,.75)'], borderColor: ['#f59e0b','#4ade80','#93c5fd','#93c5fd','#93c5fd','#93c5fd','#93c5fd','#93c5fd'], borderWidth: 1, borderRadius: 3 }] },
+        options: { responsive: true, maintainAspectRatio: false, animation: { duration: 1400, easing: 'easeOutQuart' }, plugins: { legend: { display: false }, tooltip: { ...commonTooltip, callbacks: { label: c => c.raw + ' tahun' } } }, scales: { x: { grid: { display: false } }, y: { grid: { color: 'rgba(68,64,60,.3)' }, beginAtZero: true } } }
+      }),
+      kepuasanChart: () => new Chart(document.getElementById('kepuasanChart').getContext('2d'), {
+        type: 'bar',
+        data: { labels: ['Soekarno\n(retrospektif)', 'Soeharto\n(retrospektif)', 'Habibie\n(retrospektif)', 'SBY\n(approval)', 'Jokowi\n(approval)', 'Prabowo\n(approval)'], datasets: [{ label: 'Tingkat Kepuasan / Penilaian Publik (%)', data: [21.3, 32.9, 3.5, 80.0, 82.0, 81.2], backgroundColor: ['rgba(180,83,9,.75)','rgba(22,101,52,.75)','rgba(30,64,175,.75)','rgba(30,64,175,.75)','rgba(30,64,175,.75)','rgba(30,64,175,.75)'], borderColor: ['#f59e0b','#4ade80','#93c5fd','#93c5fd','#93c5fd','#93c5fd'], borderWidth: 1, borderRadius: 4 }] },
+        options: { responsive: true, maintainAspectRatio: false, animation: { duration: 1600, easing: 'easeOutQuart' }, plugins: { legend: { display: false }, tooltip: { ...commonTooltip, callbacks: { label: (ctx) => ctx.raw + '%', afterLabel: (ctx) => { const notes = { 0: 'Survei retrospektif Indo Barometer 2018', 1: 'Survei retrospektif Indo Barometer 2018', 2: 'Survei retrospektif Indo Barometer 2018', 3: 'Approval tertinggi (Nov 2004)', 4: 'Approval tertinggi (Jul 2024)', 5: 'Approval tertinggi (Nov 2025)' }; return notes[ctx.dataIndex] || ''; } } } }, scales: { x: { grid: { display: false }, ticks: { font: { size: 9 }, maxRotation: 0 } }, y: { grid: { color: 'rgba(68,64,60,.3)' }, min: 0, max: 100, title: { display: true, text: 'Persen (%)', font: { size: 9 } } } } }
+      }),
+      taxRatioChart: () => new Chart(document.getElementById('taxRatioChart').getContext('2d'), {
+        type: 'line',
+        data: { labels: ['1969','1972','1980','1981','1984','1990','1995','1998','2000','2003','2007','2012','2014','2019','2020','2022','2023','2024','2025'], datasets: [{ label: 'Rasio Pajak terhadap PDB (%)', data: [6.3, 7.33, 6.70, 22.0, 5.25, 6.19, 8.20, 6.05, 8.3, 12.0, 13.31, 9.70, 13.0, 9.8, 8.33, 11.6, 10.3, 10.07, 9.31], borderColor: '#dc2626', backgroundColor: 'rgba(220,38,38,0.1)', tension: 0.25, pointRadius: 3, pointBackgroundColor: '#dc2626', borderWidth: 2, fill: true }] },
+        options: { responsive: true, maintainAspectRatio: false, animation: { duration: 2000, easing: 'easeOutQuart' }, plugins: { legend: { display: false }, tooltip: { ...commonTooltip, callbacks: { label: (ctx) => ctx.raw + '% PDB', afterLabel: (ctx) => { const notes = { 3: 'Puncak era minyak (1981)', 4: 'Reformasi pajak 1983; definisi berubah', 9: 'Pemulihan pasca-krisis', 14: 'Pandemi COVID-19', 18: 'Estimasi/realisasi awal 2025' }; return notes[ctx.dataIndex] || ''; } } } }, scales: { x: { grid: { color: 'rgba(68,64,60,.3)' }, ticks: { maxRotation: 45, font: { size: 8 } } }, y: { grid: { color: 'rgba(68,64,60,.3)' }, min: 0, max: 25, title: { display: true, text: '% dari PDB', font: { size: 9 } } } } }
+      }),
+
+      /* ===== NARKOTIKA CHARTS ===== */
+      narkobaTrenChart: () => new Chart(document.getElementById('narkobaTrenChart').getContext('2d'), {
+        type: 'bar',
+        data: {
+          labels: ['2011','2012','2013','2014','2015','2016','2017','2018','2019','2020','2021','2022','2023','2024','2025','2026'],
+          datasets: [{
+            label: 'Jumlah catatan berita',
+            data: [2, 2, 2, 1, 12, 8, 40, 22, 28, 60, 55, 58, 35, 32, 95, 220],
+            backgroundColor: (ctx) => {
+              const v = ctx.raw;
+              if (v >= 150) return 'rgba(220,38,38,0.95)';
+              if (v >= 50) return 'rgba(220,38,38,0.7)';
+              if (v >= 25) return 'rgba(245,158,11,0.7)';
+              return 'rgba(168,162,158,0.5)';
+            },
+            borderColor: '#dc2626', borderWidth: 1, borderRadius: 3
+          }]
+        },
+        options: {
+          responsive: true, maintainAspectRatio: false,
+          animation: { duration: 1600, easing: 'easeOutQuart' },
+          plugins: { legend: { display: false }, tooltip: { ...commonTooltip, callbacks: { label: (ctx) => ctx.raw + ' catatan' } } },
+          scales: { x: { grid: { display: false } }, y: { grid: { color: 'rgba(68,64,60,.3)' }, beginAtZero: true, title: { display: true, text: 'Jumlah berita', font: { size: 9 } } } }
+        }
+      }),
+      narkobaJenisChart: () => new Chart(document.getElementById('narkobaJenisChart').getContext('2d'), {
+        type: 'doughnut',
+        data: {
+          labels: ['Narkoba (generik)', 'Sabu', 'Ganja', 'Ekstasi', 'Tembakau gorila', 'Vape narkoba', 'Kokain', 'Heroin', 'Ketamine', 'Lainnya'],
+          datasets: [{
+            data: [380, 355, 105, 85, 55, 28, 22, 10, 8, 20],
+            backgroundColor: [
+              'rgba(120,113,108,.8)',
+              'rgba(220,38,38,.9)',
+              'rgba(22,163,74,.8)',
+              'rgba(245,158,11,.8)',
+              'rgba(168,85,247,.8)',
+              'rgba(14,165,233,.8)',
+              'rgba(236,72,153,.8)',
+              'rgba(180,83,9,.8)',
+              'rgba(20,184,166,.8)',
+              'rgba(87,83,78,.6)'
+            ],
+            borderColor: '#1c1917',
+            borderWidth: 2
+          }]
+        },
+        options: {
+          responsive: true, maintainAspectRatio: false,
+          animation: { duration: 1600, easing: 'easeOutQuart' },
+          plugins: {
+            legend: { position: 'right', labels: { boxWidth: 10, padding: 8, font: { size: 9 } } },
+            tooltip: { ...commonTooltip, callbacks: { label: (ctx) => ctx.label + ': ~' + ctx.raw + ' catatan' } }
+          }
+        }
+      }),
+      narkobaLokasiChart: () => new Chart(document.getElementById('narkobaLokasiChart').getContext('2d'), {
+        type: 'bar',
+        data: {
+          labels: ['Jakarta', 'Sumatera Utara', 'Kepulauan Riau', 'Kalimantan Selatan', 'Aceh', 'Jawa Timur', 'Papua', 'Bali'],
+          datasets: [{
+            label: 'Jumlah catatan',
+            data: [250, 140, 110, 100, 85, 80, 55, 30],
+            backgroundColor: ['rgba(220,38,38,.85)','rgba(220,38,38,.7)','rgba(220,38,38,.6)','rgba(245,158,11,.7)','rgba(245,158,11,.6)','rgba(168,162,158,.6)','rgba(168,162,158,.5)','rgba(120,113,108,.5)'],
+            borderColor: '#dc2626', borderWidth: 1, borderRadius: 3
+          }]
+        },
+        options: {
+          indexAxis: 'y',
+          responsive: true, maintainAspectRatio: false,
+          animation: { duration: 1600, easing: 'easeOutQuart' },
+          plugins: { legend: { display: false }, tooltip: { ...commonTooltip, callbacks: { label: (ctx) => '~' + ctx.raw + ' catatan' } } },
+          scales: { x: { grid: { color: 'rgba(68,64,60,.3)' }, beginAtZero: true }, y: { grid: { display: false } } }
+        }
+      }),
+
+      /* ===== PEMBUNUHAN CHARTS ===== */
+      pembunuhanTrenChart: () => new Chart(document.getElementById('pembunuhanTrenChart').getContext('2d'), {
+        type: 'bar',
+        data: {
+          labels: ['2002','2003','2004','2005','2006','2007','2008','2009','2010','2011','2012','2013','2014','2015','2016','2017','2018','2019','2020','2021','2022','2023','2024','2025','2026'],
+          datasets: [{
+            label: 'Jumlah catatan berita',
+            data: [1,0,0,0,0,0,2,1,1,6,8,16,11,29,28,51,65,61,78,105,129,193,214,437,1151],
+            backgroundColor: (ctx) => {
+              const v = ctx.raw;
+              if (v >= 400) return 'rgba(220,38,38,0.95)';
+              if (v >= 100) return 'rgba(220,38,38,0.75)';
+              if (v >= 50) return 'rgba(245,158,11,0.7)';
+              return 'rgba(168,162,158,0.5)';
+            },
+            borderColor: '#dc2626', borderWidth: 1, borderRadius: 3
+          }]
+        },
+        options: {
+          responsive: true, maintainAspectRatio: false,
+          animation: { duration: 1600, easing: 'easeOutQuart' },
+          plugins: { legend: { display: false }, tooltip: { ...commonTooltip, callbacks: { label: (ctx) => ctx.raw + ' catatan' } } },
+          scales: { x: { grid: { display: false }, ticks: { maxRotation: 45, font: { size: 8 } } }, y: { grid: { color: 'rgba(68,64,60,.3)' }, beginAtZero: true, title: { display: true, text: 'Jumlah berita', font: { size: 9 } } } }
+        }
+      }),
+      pembunuhanJenisChart: () => new Chart(document.getElementById('pembunuhanJenisChart').getContext('2d'), {
+        type: 'doughnut',
+        data: {
+          labels: ['Dendam', 'Narkoba', 'Mutilasi', 'Pembunuhan Berencana', 'Sakit Hati', 'Cemburu', 'Racun', 'Begal', 'Harta Warisan', 'Utang', 'Sengketa Tanah', 'Perampokan', 'Politik', 'Lainnya'],
+          datasets: [{
+            data: [250, 180, 120, 120, 100, 70, 60, 50, 50, 40, 35, 50, 30, 200],
+            backgroundColor: [
+              'rgba(220,38,38,.9)', 'rgba(245,158,11,.85)', 'rgba(168,85,247,.8)',
+              'rgba(14,165,233,.8)', 'rgba(236,72,153,.8)', 'rgba(20,184,166,.8)',
+              'rgba(180,83,9,.8)', 'rgba(22,163,74,.8)', 'rgba(120,113,108,.8)',
+              'rgba(87,83,78,.7)', 'rgba(68,64,60,.7)', 'rgba(120,53,15,.7)',
+              'rgba(30,64,175,.8)', 'rgba(168,162,158,.5)'
+            ],
+            borderColor: '#1c1917', borderWidth: 2
+          }]
+        },
+        options: {
+          responsive: true, maintainAspectRatio: false,
+          animation: { duration: 1600, easing: 'easeOutQuart' },
+          plugins: {
+            legend: { position: 'right', labels: { boxWidth: 10, padding: 8, font: { size: 9 } } },
+            tooltip: { ...commonTooltip, callbacks: { label: (ctx) => ctx.label + ': ~' + ctx.raw + ' catatan' } }
+          }
+        }
+      }),
+      pembunuhanLokasiChart: () => new Chart(document.getElementById('pembunuhanLokasiChart').getContext('2d'), {
+        type: 'bar',
+        data: {
+          labels: ['Jakarta', 'Sumatera Utara', 'Jawa Barat', 'Jawa Timur', 'Kalimantan Selatan', 'Kepulauan Riau', 'Jawa Tengah', 'Bali', 'Aceh', 'Papua', 'Kalimantan Timur', 'Sulawesi', 'Kalimantan Barat'],
+          datasets: [{
+            label: 'Jumlah catatan',
+            data: [500, 250, 200, 180, 150, 150, 140, 100, 90, 80, 70, 70, 50],
+            backgroundColor: [
+              'rgba(220,38,38,.85)', 'rgba(220,38,38,.75)', 'rgba(220,38,38,.65)',
+              'rgba(245,158,11,.7)', 'rgba(245,158,11,.65)', 'rgba(245,158,11,.55)',
+              'rgba(168,162,158,.6)', 'rgba(168,162,158,.5)', 'rgba(120,113,108,.5)',
+              'rgba(120,113,108,.45)', 'rgba(87,83,78,.45)', 'rgba(87,83,78,.4)', 'rgba(68,64,60,.4)'
+            ],
+            borderColor: '#dc2626', borderWidth: 1, borderRadius: 3
+          }]
+        },
+        options: {
+          indexAxis: 'y',
+          responsive: true, maintainAspectRatio: false,
+          animation: { duration: 1600, easing: 'easeOutQuart' },
+          plugins: { legend: { display: false }, tooltip: { ...commonTooltip, callbacks: { label: (ctx) => '~' + ctx.raw + ' catatan' } } },
+          scales: { x: { grid: { color: 'rgba(68,64,60,.3)' }, beginAtZero: true }, y: { grid: { display: false } } }
+        }
+      })
+    };
+
+    const chartInited = {};
+
+    function initChartsForTab(tabId) {
+      if (tabId !== 'data' && tabId !== 'pajak' && tabId !== 'narkotika' && tabId !== 'pembunuhan') return;
+      Object.keys(chartBuilders).forEach(id => {
+        if (!chartInited[id]) {
+          const el = document.getElementById(id);
+          if (el && el.offsetParent !== null) {
+            chartBuilders[id]();
+            chartInited[id] = true;
+          }
+        }
+      });
+    }
+
+    const chartObserver = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting && !chartInited[e.target.id]) {
+          chartBuilders[e.target.id]?.();
+          chartInited[e.target.id] = true;
+          chartObserver.unobserve(e.target);
+        }
+      });
+    }, { threshold: .25 });
+
+    Object.keys(chartBuilders).forEach(id => {
+      const el = document.getElementById(id);
+      if (el) chartObserver.observe(el);
+    });
+  </script>
+</body>
+</html>
