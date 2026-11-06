@@ -46,3 +46,8 @@ export const COMMON_TOOLTIP = {
 
 export const GRID = { color: 'rgba(239,240,241,.08)' };
 export const GRID_NONE = { display: false };
+
+// Under reduced motion, charts draw immediately with no draw-in animation.
+if (typeof matchMedia !== 'undefined' && matchMedia('(prefers-reduced-motion: reduce)').matches) {
+	Chart.defaults.animation = false;
+}

@@ -394,3 +394,8 @@ a.person-card:hover { transform: translateY(-2px); border-color: color-mix(in ok
   .focus-bar-row { font-size: 15px; }
   .data-bar-track { height: 6px; }
 }
+
+/* phone: the close needs two screens so the word never overflows into the links */
+@media (max-width: 639px) {
+  footer.closing { --hm: 2; }
+}
