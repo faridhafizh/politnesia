@@ -9,10 +9,10 @@ export const PEMBUNUHAN = {
 	trendData: [1, 0, 0, 0, 0, 0, 2, 1, 1, 6, 8, 16, 11, 29, 28, 51, 65, 61, 78, 105, 129, 193, 214, 437, 1151],
 	jenisLabels: ['Dendam', 'Narkoba', 'Mutilasi', 'Pembunuhan Berencana', 'Sakit Hati', 'Cemburu', 'Racun', 'Begal', 'Harta Warisan', 'Utang', 'Sengketa Tanah', 'Perampokan', 'Politik', 'Lainnya'],
 	jenisData: [250, 180, 120, 120, 100, 70, 60, 50, 50, 40, 35, 50, 30, 200],
-	jenisColors: ['rgba(255,74,31,.9)', 'rgba(245,158,11,.85)', 'rgba(168,85,247,.8)', 'rgba(14,165,233,.8)', 'rgba(236,72,153,.8)', 'rgba(20,184,166,.8)', 'rgba(180,83,9,.8)', 'rgba(22,163,74,.8)', 'rgba(120,113,108,.8)', 'rgba(87,83,78,.7)', 'rgba(68,64,60,.7)', 'rgba(120,53,15,.7)', 'rgba(59,130,246,.8)', 'rgba(168,162,158,.5)'],
+	jenisColors: ['#8c1a1a', '#a85b13', '#6b4a63', '#3e5a6b', '#853e4f', '#2f4d4a', '#54503f', '#46624a', '#7a3b2e', '#8a8578', '#6e6850', '#5f5a50', '#3e4a5c', '#b8b1a0'],
 	lokasiLabels: ['Jakarta', 'Sumatera Utara', 'Jawa Barat', 'Jawa Timur', 'Kalimantan Selatan', 'Kepulauan Riau', 'Jawa Tengah', 'Bali', 'Aceh', 'Papua', 'Kalimantan Timur', 'Sulawesi', 'Kalimantan Barat'],
 	lokasiData: [500, 250, 200, 180, 150, 150, 140, 100, 90, 80, 70, 70, 50],
-	lokasiColors: ['rgba(255,74,31,.85)', 'rgba(255,74,31,.75)', 'rgba(255,74,31,.65)', 'rgba(245,158,11,.7)', 'rgba(245,158,11,.65)', 'rgba(245,158,11,.55)', 'rgba(168,162,158,.6)', 'rgba(168,162,158,.5)', 'rgba(120,113,108,.5)', 'rgba(120,113,108,.45)', 'rgba(87,83,78,.45)', 'rgba(87,83,78,.4)', 'rgba(68,64,60,.4)']
+	lokasiColors: ['rgba(140,26,26,.9)', 'rgba(140,26,26,.75)', 'rgba(140,26,26,.6)', 'rgba(168,91,19,.7)', 'rgba(168,91,19,.6)', 'rgba(168,91,19,.5)', 'rgba(138,133,120,.6)', 'rgba(138,133,120,.5)', 'rgba(138,133,120,.45)', 'rgba(138,133,120,.4)', 'rgba(110,104,90,.45)', 'rgba(110,104,90,.4)', 'rgba(95,90,80,.4)']
 };
 
 export const PEMBUNUHAN_TABLE = [

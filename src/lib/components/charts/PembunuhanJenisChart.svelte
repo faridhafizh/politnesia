@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { Doughnut } from 'svelte-chartjs';
 	import '#lib/chartRegister';
-	import { COMMON_TOOLTIP } from '#lib/chartRegister';
+	import { COMMON_TOOLTIP, LEGEND_BOTTOM } from '#lib/chartRegister';
 	import { PEMBUNUHAN } from '#lib/data/pembunuhan';
 
 	const data = {
@@ -10,17 +10,21 @@
 			{
 				data: PEMBUNUHAN.jenisData,
 				backgroundColor: PEMBUNUHAN.jenisColors,
-				borderColor: '#18191b',
-				borderWidth: 2
+				borderColor: '#faf7ee',
+				borderWidth: 2,
+				spacing: 1,
+				hoverOffset: 4
 			}
 		]
 	};
 	const options = {
 		responsive: true,
 		maintainAspectRatio: false,
-		animation: { duration: 1600, easing: 'easeOutQuart' },
+		animation: { duration: 1200, easing: 'easeOutQuart' },
+		cutout: '62%',
+		layout: { padding: { top: 4, right: 4, bottom: 0, left: 4 } },
 		plugins: {
-			legend: { position: 'right', labels: { boxWidth: 10, padding: 8, font: { size: 9 } } },
+			legend: LEGEND_BOTTOM,
 			tooltip: { ...COMMON_TOOLTIP, callbacks: { label: (ctx: any) => ctx.label + ': ~' + ctx.raw + ' catatan' } }
 		}
 	} as const;

@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { Bar } from 'svelte-chartjs';
 	import '#lib/chartRegister';
-	import { COMMON_TOOLTIP, GRID, GRID_NONE } from '#lib/chartRegister';
+	import { COMMON_TOOLTIP, GRID, AXIS_BORDER, TICKS, AXIS_TITLE } from '#lib/chartRegister';
 	import { KEPUASAN } from '#lib/data/trends';
 
 	const data = {
@@ -13,14 +13,16 @@
 				backgroundColor: KEPUASAN.colors,
 				borderColor: KEPUASAN.borders,
 				borderWidth: 1,
-				borderRadius: 4
+				borderRadius: 2,
+				maxBarThickness: 52
 			}
 		]
 	};
 	const options = {
 		responsive: true,
 		maintainAspectRatio: false,
-		animation: { duration: 1600, easing: 'easeOutQuart' },
+		animation: { duration: 1200, easing: 'easeOutQuart' },
+		layout: { padding: { top: 4, right: 8, bottom: 0, left: 0 } },
 		plugins: {
 			legend: { display: false },
 			tooltip: {
@@ -32,8 +34,15 @@
 			}
 		},
 		scales: {
-			x: { grid: GRID_NONE, ticks: { font: { size: 9 }, maxRotation: 0 } },
-			y: { grid: GRID, min: 0, max: 100, title: { display: true, text: 'Persen (%)', font: { size: 9 } } }
+			x: { border: AXIS_BORDER, grid: { display: false }, ticks: { ...TICKS, maxRotation: 0 } },
+			y: {
+				border: AXIS_BORDER,
+				grid: GRID,
+				min: 0,
+				max: 100,
+				ticks: { ...TICKS, maxTicksLimit: 5, callback: (v: any) => v + '%' },
+				title: { display: true, text: 'Persen (%)', ...AXIS_TITLE }
+			}
 		}
 	} as const;
 </script>

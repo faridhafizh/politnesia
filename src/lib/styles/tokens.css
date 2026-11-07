@@ -1,0 +1,68 @@
+/* Politnesia — tokens
+   Light print dossier: cream paper, ink, oxblood. One accent, print-flat (no shadows, no gradients). */
+:root {
+	/* paper & ink */
+	--paper: #faf7ee;
+	--paper-2: #f2eee1;
+	--paper-3: #e9e4d5;
+	--ink: #1e1b16;
+	--ink-soft: #3f3b33;
+	--muted: #6f6a5c;
+	--faint: #948e7f;
+	--hairline: #dcd6c6;
+	--hairline-strong: #b8b1a0;
+
+	/* one accent: oxblood */
+	--accent: #8c1a1a;
+	--accent-deep: #6c1111;
+	--accent-tint: rgba(140, 26, 26, 0.08);
+	--accent-wash: rgba(140, 26, 26, 0.14);
+
+	/* era & data semantics (all muted for print) */
+	--lama: #a85b13;
+	--baru: #8c1a1a;
+	--reformasi: #3e4a5c;
+	--axis: #b8b1a0;
+
+	/* type */
+	--font-serif: 'Newsreader', 'Iowan Old Style', Georgia, 'Times New Roman', serif;
+	--font-sans: 'Schibsted Grotesk', system-ui, -apple-system, 'Segoe UI', sans-serif;
+	--font-mono: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace;
+
+	/* display (fluid) */
+	--t-display: clamp(2.9rem, 5.4vw + 1.2rem, 5.6rem);
+	--t-chapter: clamp(1.75rem, 2.1vw + 1.15rem, 2.9rem);
+	--t-lead: clamp(1.075rem, 0.35vw + 0.98rem, 1.25rem);
+	--t-body: 1.0625rem;
+	--t-small: 0.875rem;
+	--t-label: 0.6875rem;
+
+	/* tracking */
+	--track-kicker: 0.17em;
+	--track-tight: -0.021em;
+	--track-display: -0.028em;
+
+	/* spacing scale */
+	--s-1: 4px;
+	--s-2: 8px;
+	--s-3: 12px;
+	--s-4: 16px;
+	--s-5: 24px;
+	--s-6: 32px;
+	--s-7: 48px;
+	--s-8: 72px;
+	--s-9: 96px;
+
+	/* layout */
+	--wrap: 1240px;
+	--gutter: clamp(18px, 4vw, 48px);
+	--col-gap: clamp(18px, 2.4vw, 32px);
+	--row-gap: clamp(18px, 2.4vw, 32px);
+	--notes-w: 236px;
+	--radius: 2px;
+
+	/* masthead */
+	--strip-h: 34px;
+
+	--ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+}

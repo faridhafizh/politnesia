@@ -1,4 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <rect width="64" height="64" rx="12" fill="#18191b"/>
-  <path fill-rule="evenodd" fill="#ff4a1f" d="M32 8a24 24 0 1 1 0 48 24 24 0 0 1 0-48zm0 11a13 13 0 1 0 0 26 13 13 0 0 0 0-26z"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Politnesia">
+  <rect width="64" height="64" fill="#faf7ee"/>
+  <rect x="4" y="4" width="56" height="56" fill="none" stroke="#1e1b16" stroke-width="2.5"/>
+  <text x="32" y="45" font-family="Newsreader, Georgia, serif" font-weight="850" font-size="38" fill="#8c1a1a" text-anchor="middle">P</text>
+  <circle cx="47" cy="20" r="4" fill="#8c1a1a"/>
 </svg>

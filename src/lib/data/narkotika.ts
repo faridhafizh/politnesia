@@ -9,10 +9,10 @@ export const NARKOTIKA = {
 	trendData: [2, 2, 2, 1, 12, 8, 40, 22, 28, 60, 55, 58, 35, 32, 95, 220],
 	jenisLabels: ['Narkoba (generik)', 'Sabu', 'Ganja', 'Ekstasi', 'Tembakau gorila', 'Vape narkoba', 'Kokain', 'Heroin', 'Ketamine', 'Lainnya'],
 	jenisData: [380, 355, 105, 85, 55, 28, 22, 10, 8, 20],
-	jenisColors: ['rgba(120,113,108,.8)', 'rgba(255,74,31,.9)', 'rgba(22,163,74,.8)', 'rgba(245,158,11,.8)', 'rgba(168,85,247,.8)', 'rgba(14,165,233,.8)', 'rgba(236,72,153,.8)', 'rgba(180,83,9,.8)', 'rgba(20,184,166,.8)', 'rgba(87,83,78,.6)'],
+	jenisColors: ['#8a8578', '#8c1a1a', '#46624a', '#a85b13', '#6b4a63', '#3e5a6b', '#7a3b2e', '#54503f', '#2f4d4a', '#b8b1a0'],
 	lokasiLabels: ['Jakarta', 'Sumatera Utara', 'Kepulauan Riau', 'Kalimantan Selatan', 'Aceh', 'Jawa Timur', 'Papua', 'Bali'],
 	lokasiData: [250, 140, 110, 100, 85, 80, 55, 30],
-	lokasiColors: ['rgba(255,74,31,.85)', 'rgba(255,74,31,.7)', 'rgba(255,74,31,.6)', 'rgba(245,158,11,.7)', 'rgba(245,158,11,.6)', 'rgba(168,162,158,.6)', 'rgba(168,162,158,.5)', 'rgba(120,113,108,.5)']
+	lokasiColors: ['rgba(140,26,26,.9)', 'rgba(140,26,26,.75)', 'rgba(140,26,26,.6)', 'rgba(168,91,19,.7)', 'rgba(168,91,19,.55)', 'rgba(138,133,120,.6)', 'rgba(138,133,120,.5)', 'rgba(138,133,120,.4)']
 };
 
 export const NARKOTIKA_TABLE = [

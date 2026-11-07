@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { Line } from 'svelte-chartjs';
 	import '#lib/chartRegister';
-	import { COMMON_TOOLTIP, GRID } from '#lib/chartRegister';
+	import { COMMON_TOOLTIP, GRID, AXIS_BORDER, TICKS, AXIS_TITLE } from '#lib/chartRegister';
 	import { TAX_LABELS, TAX_DATA, TAX_NOTES } from '#lib/data/tax';
 
 	const data = {
@@ -10,11 +10,12 @@
 			{
 				label: 'Rasio Pajak terhadap PDB (%)',
 				data: TAX_DATA,
-				borderColor: '#ff4a1f',
-				backgroundColor: 'rgba(255,74,31,.12)',
-				tension: 0.25,
-				pointRadius: 3,
-				pointBackgroundColor: '#ff4a1f',
+				borderColor: '#8c1a1a',
+				backgroundColor: 'rgba(140,26,26,.08)',
+				tension: 0.28,
+				pointRadius: 2.5,
+				pointHoverRadius: 4,
+				pointBackgroundColor: '#8c1a1a',
 				borderWidth: 2,
 				fill: true
 			}
@@ -23,7 +24,8 @@
 	const options = {
 		responsive: true,
 		maintainAspectRatio: false,
-		animation: { duration: 2000, easing: 'easeOutQuart' },
+		animation: { duration: 1200, easing: 'easeOutQuart' },
+		layout: { padding: { top: 4, right: 8, bottom: 0, left: 0 } },
 		plugins: {
 			legend: { display: false },
 			tooltip: {
@@ -35,8 +37,19 @@
 			}
 		},
 		scales: {
-			x: { grid: GRID, ticks: { maxRotation: 45, font: { size: 8 } } },
-			y: { grid: GRID, min: 0, max: 25, title: { display: true, text: '% dari PDB', font: { size: 9 } } }
+			x: {
+				border: AXIS_BORDER,
+				grid: { display: false },
+				ticks: { ...TICKS, maxRotation: 0, autoSkip: true, maxTicksLimit: 8 }
+			},
+			y: {
+				border: AXIS_BORDER,
+				grid: GRID,
+				min: 0,
+				max: 25,
+				ticks: { ...TICKS, maxTicksLimit: 6, callback: (v: any) => v + '%' },
+				title: { display: true, text: '% PDB', ...AXIS_TITLE }
+			}
 		}
 	} as const;
 </script>

@@ -36,3 +36,16 @@ export const CREDITS = [
 
 export const SOURCES_LINE =
 	'BANK DUNIA, BPS, EIU, FREEDOM HOUSE, V-DEM, RSF, KEMENKEU, IKPI, INDO BAROMETER, LSI, INDIKATOR POLITIK, WIKIMEDIA COMMONS, 1.117 CATATAN BERITA NARKOBA, 2.587+ CATATAN BERITA PEMBUNUHAN';
+
+export const ISSUE_CONTENT = [
+	{ no: '01', title: 'Ringkasan eksekutif', href: '#ringkasan', range: '1945–2026' },
+	{ no: '02', title: 'Orde Lama & Orde Baru', href: '#orde', range: '1945–1998' },
+	{ no: '03', title: 'Reformasi & Kartelisasi', href: '#reformasi', range: '1998–2024' },
+	{ no: '04', title: 'Histori presiden', href: '#presiden', range: 'Delapan presiden' },
+	{ no: '05', title: 'Kemunduran demokrasi', href: '#data', range: '2014–2025' },
+	{ no: '06', title: 'Pemilu & kepuasan publik', href: '#pemilu', range: '1955–2026' },
+	{ no: '07', title: 'Perpajakan', href: '#pajak', range: '1969–2025' },
+	{ no: '08', title: 'Narkotika', href: '#narkotika', range: '2011–2026' },
+	{ no: '09', title: 'Pembunuhan', href: '#pembunuhan', range: '2002–2026' },
+	{ no: '10', title: 'Kesimpulan — lima pola', href: '#kesimpulan', range: 'Penutup berkas' }
+] as const;

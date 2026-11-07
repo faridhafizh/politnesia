@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { Bar } from 'svelte-chartjs';
 	import '#lib/chartRegister';
-	import { COMMON_TOOLTIP, GRID, GRID_NONE } from '#lib/chartRegister';
+	import { COMMON_TOOLTIP, GRID, AXIS_BORDER, TICKS, AXIS_TITLE } from '#lib/chartRegister';
 	import { NARKOTIKA } from '#lib/data/narkotika';
 
 	const data = {
@@ -12,28 +12,34 @@
 				data: NARKOTIKA.trendData,
 				backgroundColor: (ctx: any) => {
 					const v = ctx.raw;
-					if (v >= 150) return 'rgba(255,74,31,.95)';
-					if (v >= 50) return 'rgba(255,74,31,.7)';
-					if (v >= 25) return 'rgba(245,158,11,.7)';
-					return 'rgba(168,162,158,.5)';
+					if (v >= 150) return 'rgba(140,26,26,.9)';
+					if (v >= 50) return 'rgba(140,26,26,.68)';
+					if (v >= 25) return 'rgba(168,91,19,.68)';
+					return 'rgba(138,133,120,.45)';
 				},
-				borderColor: '#ff4a1f',
-				borderWidth: 1,
-				borderRadius: 3
+				borderRadius: 2,
+				maxBarThickness: 36
 			}
 		]
 	};
 	const options = {
 		responsive: true,
 		maintainAspectRatio: false,
-		animation: { duration: 1600, easing: 'easeOutQuart' },
+		animation: { duration: 1200, easing: 'easeOutQuart' },
+		layout: { padding: { top: 4, right: 8, bottom: 0, left: 0 } },
 		plugins: {
 			legend: { display: false },
 			tooltip: { ...COMMON_TOOLTIP, callbacks: { label: (ctx: any) => ctx.raw + ' catatan' } }
 		},
 		scales: {
-			x: { grid: GRID_NONE },
-			y: { grid: GRID, beginAtZero: true, title: { display: true, text: 'Jumlah berita', font: { size: 9 } } }
+			x: { border: AXIS_BORDER, grid: { display: false }, ticks: TICKS },
+			y: {
+				border: AXIS_BORDER,
+				grid: GRID,
+				beginAtZero: true,
+				ticks: { ...TICKS, maxTicksLimit: 5 },
+				title: { display: true, text: 'Catatan', ...AXIS_TITLE }
+			}
 		}
 	} as const;
 </script>

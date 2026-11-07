@@ -4,5 +4,6 @@
 	let { children } = $props();
 </script>
 
+<a class="skip-link" href="#ringkasan">Lewati ke isi investigasi</a>
 <Nav />
 {@render children()}

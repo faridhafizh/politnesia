@@ -1,22 +1,23 @@
 <script lang="ts">
 	import { Line } from 'svelte-chartjs';
 	import '#lib/chartRegister';
-	import { COMMON_TOOLTIP, GRID } from '#lib/chartRegister';
+	import { COMMON_TOOLTIP, GRID, AXIS_BORDER, TICKS, LEGEND_BOTTOM } from '#lib/chartRegister';
 	import { DEMOKRASI } from '#lib/data/trends';
 
 	const data = { labels: DEMOKRASI.labels, datasets: DEMOKRASI.series };
 	const options = {
 		responsive: true,
 		maintainAspectRatio: false,
-		animation: { duration: 1600, easing: 'easeOutQuart' },
+		animation: { duration: 1200, easing: 'easeOutQuart' },
 		interaction: { mode: 'index', intersect: false },
+		layout: { padding: { top: 4, right: 8, bottom: 0, left: 0 } },
 		plugins: {
-			legend: { position: 'bottom', labels: { boxWidth: 10, padding: 10, font: { size: 9 } } },
+			legend: LEGEND_BOTTOM,
 			tooltip: COMMON_TOOLTIP
 		},
 		scales: {
-			x: { grid: GRID },
-			y: { grid: GRID, min: 20, max: 80 }
+			x: { border: AXIS_BORDER, grid: { display: false }, ticks: TICKS },
+			y: { border: AXIS_BORDER, grid: GRID, min: 20, max: 80, ticks: { ...TICKS, maxTicksLimit: 5 } }
 		}
 	} as const;
 </script>

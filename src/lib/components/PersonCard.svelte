@@ -1,17 +1,27 @@
 <script lang="ts">
-	import type { President } from '#lib/data/presidents';
+	import { PRESIDENTS, type President } from '#lib/data/presidents';
 
 	let { president, large = false }: { president: President; large?: boolean } = $props();
+
+	const ROMAN = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X'];
+	const idx = PRESIDENTS.findIndex((p) => p.id === president.id);
+	const plate = ROMAN[idx] ?? String(idx + 1);
 </script>
 
-<article class="person-card" class:person-card--lg={large}>
-	<div class="person-head">
-		<img src={president.img} alt={president.alt} width="160" height="160" loading="lazy" decoding="async" />
-		<div class="who">
-			<span class="era-badge era-{president.era}">{president.cardYears}</span>
-			<h3>{president.name}</h3>
+<article class="plate" class:plate--lg={large}>
+	<div class="plate__frame">
+		<div class="plate__img">
+			<img src={president.img} alt={president.alt} width="480" height="408" loading="lazy" decoding="async" />
 		</div>
 	</div>
-	<p class="person-character">{president.character}</p>
-	{#if president.note}<p class="person-note">{president.note}</p>{/if}
+	<div class="plate__fig">
+		<span>Plate {plate}</span>
+		<span>{president.eraLabel}</span>
+	</div>
+	<div class="plate__row">
+		<h3 class="plate__name">{president.name}</h3>
+		<span class="plate__years">{president.cardYears}</span>
+	</div>
+	<p class="plate__character">{president.character}</p>
+	{#if president.note}<p class="plate__note">{president.note}</p>{/if}
 </article>

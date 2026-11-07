@@ -1,7 +1,6 @@
-/* Politnesia — the one system: the design-taste-frontend kit (copied into src/lib/styles, never edited),
-   the dealt palette/pairing block, then the dossier's own components. */
-@import './lib/styles/system.css';
-@import './lib/styles/cards.css';
-@import './lib/styles/motion.css';
+/* Politnesia — light print dossier. Tokens, then base, layout, components, motion. */
+@import './lib/styles/tokens.css';
+@import './lib/styles/base.css';
 @import './lib/styles/layout.css';
-@import './lib/styles/dossier.css';
+@import './lib/styles/plates.css';
+@import './lib/styles/motion.css';
