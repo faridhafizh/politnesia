@@ -11,8 +11,10 @@ export default defineConfig({
 					filename.split(/[/\\]/).includes('node_modules') ? undefined : true
 			},
 
-			// Static prerender for Vercel (served from the site root, no base path).
-			adapter: adapter({ strict: true })
+			// Static prerender. Call adapter with NO options so that adapter-static's
+			// Vercel zero-config mode kicks in on Vercel (writes .vercel/output/
+			// automatically instead of `build/`).
+			adapter: adapter()
 		})
 	]
 });
